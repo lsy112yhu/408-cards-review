@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<title>408 补充卡片 · 第 7 辑（草稿待审核）</title>
+<style>
+@page { size: A4; margin: 13mm 12mm 14mm 12mm;
+@bottom-center { content: "408 复习资料 · 补充卡片（第 7 辑 · 草稿待审核）　—　" counter(page) " / " counter(pages); font-size: 8pt; color: #888;}}
+* { box-sizing: border-box;}
+body { font-family: "Noto Sans CJK SC", "Noto Sans CJK JP", sans-serif; font-size: 10pt; line-height: 1.5; color: #1a202c; margin: 0;}
+.cover { text-align: center; padding-top: 30mm;}
+.cover .brand { color: #718096; font-size: 11pt; letter-spacing: 4px;}
+.cover h1 { font-size: 28pt; margin: 8mm 0 3mm 0; color: #1a202c;}
+.cover h2 { font-size: 14pt; font-weight: normal; color: #4a5568; margin: 0 0 10mm 0;}
+.chips { margin: 6mm auto;}
+.chip { display: inline-block; border-radius: 10px; color: #fff; padding: 2.2mm 5mm; margin: 0 1.5mm; font-size: 10.5pt;}
+.cover .note { width: 86%; margin: 10mm auto 0 auto; text-align: left; background: #fffaf0; border: 1px solid #ecc94b; border-radius: 6px; padding: 4mm 5mm; font-size: 9.5pt; color: #744210;}
+.section { page-break-before: always;}
+.sec-banner { border-radius: 6px; color: #fff; padding: 3.2mm 5mm; font-size: 16pt; font-weight: bold; margin-bottom: 4mm;}
+.sec-banner small { font-size: 10.5pt; font-weight: normal; opacity:.85;}
+.item { border: 1.6px solid; border-radius: 6px; margin-bottom: 3.6mm; break-inside: avoid; page-break-inside: avoid; overflow: hidden;}
+.item .ttl { color: #fff; font-weight: bold; font-size: 11pt; padding: 1.8mm 4mm;}
+.ttl .stars { font-weight: normal; font-size: 9.5pt; letter-spacing: 1.5px; margin-left: 3mm; opacity: .92;}
+.item .bd { padding: 2.6mm 4mm 3mm 4mm;}
+.ds { border-color: #2b6cb0;}.ds .ttl { background: #2b6cb0;}.dsb { background: #2b6cb0;}
+.co { border-color: #dd6b20;}.co .ttl { background: #dd6b20;}.cob { background: #dd6b20;}
+.os { border-color: #2f855a;}.os .ttl { background: #2f855a;}.osb { background: #2f855a;}
+.net { border-color: #c53030;}.net .ttl { background: #c53030;}.netb { background: #c53030;}
+table { border-collapse: collapse; width: 100%; margin: 1mm 0; font-size: 9.8pt;}
+th, td { border: 1px solid #cbd5e0; padding: 1.3mm 2.4mm; text-align: left; vertical-align: top;}
+th { background: #ebf4fa; font-weight: bold;}
+.co th { background: #fef3e8;}.os th { background: #e9f7ef;}.net th { background: #fdeeee;}
+.cmplabel td:first-child, .cmplabel th:first-child { white-space: nowrap; min-width: 3.4em;}
+ul, ol { margin: 1mm 0 1mm 0; padding-left: 6mm;}
+li { margin: 0.6mm 0;}
+.keng { background: #fff5f5; border-left: 3.5px solid #c53030; border-radius: 3px; padding: 1.8mm 3mm; margin-top: 2mm; font-size: 9.8pt;}
+.keng b { color: #c53030;}
+.ji { background: #fffaf0; border-left: 3.5px solid #d69e2e; border-radius: 3px; padding: 1.8mm 3mm; margin-top: 2mm; font-size: 9.8pt;}
+.ji b { color: #b7791f;}
+.f { background: #f7fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 1.8mm 3mm; margin: 1.2mm 0;}
+.small { font-size: 9pt; color: #718096;}
+sup, sub { font-size: 72%;}
+</style></head><body>
+
+<div class="cover">
+<div class="brand">408 复习资料 · 补充卡片</div>
+<h1>补充卡片 · 第 7 辑</h1>
+<h2>草稿待审核 · 2026-11-04</h2>
+<div class="chips">
+<span class="chip dsb">数据结构 ×2</span>
+<span class="chip osb">操作系统 ×1</span>
+<span class="chip netb">计算机网络 ×1</span>
+</div>
+<div class="note"><b>本辑说明：</b>按既定流程出草稿、交审核：<b>未经 Monika 明确点头，绝不改动正式合辑，绝不自行合并。</b>本辑 4 张卡均与正式合辑 v8.2.1 全部 82 张卡目标题逐项比对、无重复：外部排序、特殊矩阵压缩存储、SPOOLing、组帧在合辑中均为 0 次出现。本辑无组成原理新卡——计组现有 19 张覆盖已相对完整，临近初试（12-19）不硬凑，宁缺毋滥。<br><b>星级说明：</b>4 张均为高频大类的子项，无子项独立年份统计，按上位口径保守定档（外部排序、SPOOLing、组帧 3★；特殊矩阵独立题量更小，2★ 并注明依据弱），各卡来源行写明口径，不虚标。例题数值均已用程序独立验算，验算结果写在卡内。<br><b>来源总说明：</b>2027 年 408 考纲对应章节与王道教材口径；未逐条标注王道书页码——手头没有该书电子版可核页码，若某条与你书上的表述有出入，以书为准。</div>
+<p class="small" style="margin-top:6mm">目录：1. 外部排序 · 置换-选择、多路归并与败者树　2. 特殊矩阵与稀疏矩阵的压缩存储　3. SPOOLing 假脱机技术　4. 组帧与透明传输 · 零比特填充</p>
+</div>
+
+<div class="section">
+<div class="sec-banner dsb">一、数据结构 <small>（本辑 2 张）</small></div>
+
+<div class="item ds" id="supp7-ds1"><div class="ttl">1. 外部排序 · 置换-选择、多路归并与败者树 <span class="stars">★★★☆☆</span></div><div class="bd">
+<p style="margin:1mm 0">合辑《排序全家福》讲的全是内部排序，前提是数据能一次装进内存。文件大到装不下时换的是另一套打法：先分段排序写回外存，再把各段归并起来——这套流程本身就是考点。</p>
+<p><b>总框架（归并范式）：</b>① 生成初始归并段：把文件分批读入内存排序、写回外存，得到若干有序段；② 多路归并：一趟同时归并 k 个段中的记录，直到只剩一个有序段。外部排序的总代价主要由<b>外存读写次数</b>决定（408 口径），不是比较次数。</p>
+<p><b>置换-选择排序（Replacement Selection，生成初始段）：</b>工作区能放 w 条记录。工作区内分活动区（小根堆）与冻结区：不断输出堆顶，同时从输入文件补进一条新记录——新记录 ≥ 刚输出的记录就进活动区（能接进本段），&lt; 刚输出的记录就进冻结区（留给下一段）；活动区空时，本段结束，冻结区整体解冻成为下一段的活动区。结果：<b>各段长度不等，在随机输入下平均段长约为 2w</b>，比「读满 w 条排一次」的定长分段（段长恰 w）段数减半。</p>
+<p><b>多路平衡归并与趟数：</b>设初始归并段数为 r、每趟最多 k 路归并，则归并趟数 = ⌈log<sub>k</sub> r⌉（最后一趟的路数可以小于 k）。每趟要把全部数据读一遍、写一遍，故<b>外存块读写总次数 = 2 × 文件总块数 ×（归并趟数 + 1）</b>（+1 是生成初始归并段的那一趟）。增大 k 能减少趟数，但每输出一条记录要在 k 个段的当前记录中选最小：逐个扫描要比较 k − 1 次；用<b>败者树（Loser Tree）</b>后，初始建树完成、每输出一条记录并补入新记录时，沿败者树调整只需 ⌈log<sub>2</sub> k⌉ 次比较，总比较次数约 (n − 1) × ⌈log<sub>2</sub> k⌉，比较代价只随 log k 增长——这正是「k 可以放心加大」的前提。但 k 还受另一头限制：k 路归并需要 k 个输入缓冲区，缓冲区总数有限时 k 有上限。</p>
+<div class="f"><b>例题（程序验算）：</b>① 置换-选择：工作区 w = 4，输入序列 51, 12, 49, 88, 25, 63, 37, 76, 44, 90, 18, 55。按上法模拟：初始装入 51, 12, 49, 88 建小根堆；依次输出并补入——得归并段 1：<b>12, 25, 49, 51, 63, 76, 88, 90</b>（长 8 = 2w）；归并段 2：<b>18, 37, 44, 55</b>（长 4）。定长分段本应是 3 段，置换-选择只用 2 段。② 读写次数：文件共 100 个块，工作区可放 3 块，置换-选择平均段长 2 × 3 = 6 块 → 初始段数 ≈ ⌈100 / 6⌉ = 17；做 4 路归并，趟数 = ⌈log<sub>4</sub> 17⌉ = 3（4<sup>2</sup> = 16 &lt; 17 ≤ 64 = 4<sup>3</sup>）；块读写总次数 = 2 × 100 × (3 + 1) = <b>800 次</b>。</div>
+<div class="keng"><b>坑：</b>① 「平均段长 2w」是随机输入下的期望，不是每段都恰好 2w——输入本身有序时一段到底，逆序时每段恰为 w。② 归并趟数公式里的 r 是<b>初始归并段数</b>，不是记录总数也不是块数，代错数整题皆错。③ k 不是越大越好：败者树只压住了比较代价，输入缓冲区随 k 线性增加，且并行读入的段越多、单段缓冲越小，外存访问反而可能变碎。④ 败者树记的是「败者」、胜者向上继续比，别与胜者树混写。</div>
+<p class="small">来源：2027 考纲数据结构“排序：外部排序”；王道《数据结构》外部排序一节。星级：上位口径「排序算法」近 20 年 16 年（合辑 v6 ds-14 口径），外部排序为其子项，保守定 3★（非独立年份统计）。</p>
+</div></div>
+
+<div class="item ds" id="supp7-ds2"><div class="ttl">2. 特殊矩阵与稀疏矩阵的压缩存储 <span class="stars">★★☆☆☆</span></div><div class="bd">
+<p style="margin:1mm 0">合辑没有一张讲矩阵怎么存。这一类题不难、但公式全靠现推最耗时间：把对称、三角、三对角三种特殊矩阵的存储量与地址公式，以及稀疏矩阵的三元组与快速转置，一次记清。</p>
+<p><b>压缩存储（Compressed Storage）总原则：</b>多个值相同的元素只分配一个存储空间，值为 0 的元素不分配空间。下表设矩阵为 n 阶方阵、元素下标从 1 起、压缩数组 B 下标从 0 起。</p>
+<table class="cmplabel"><tr><th style="width:18%">矩阵</th><th>存法</th><th>存储量</th><th>地址公式（B 的下标 k）</th></tr>
+<tr><td>对称矩阵</td><td>只存下三角（含对角线），按行优先</td><td>n(n + 1) / 2</td><td>i ≥ j 时 k = i(i − 1) / 2 + j − 1；i &lt; j 时取 a<sub>ji</sub> 的位置</td></tr>
+<tr><td>三角矩阵</td><td>只存下（或上）三角 + 对角线外常数 c 另存 1 份</td><td>n(n + 1) / 2 + 1</td><td>下三角同对称矩阵；常数 c 存在数组最后一格</td></tr>
+<tr><td>三对角矩阵（带状）</td><td>只存 |i − j| ≤ 1 的三条对角带，按行优先</td><td>3n − 2</td><td>k = 2i + j − 3（仅对带内元素成立）</td></tr>
+<tr><td>稀疏矩阵</td><td>非零元个数 t 远小于 n<sup>2</sup>：存三元组（行号， 列号， 值）</td><td>3t（顺序三元组表）</td><td>无地址公式；顺序访问靠扫描，需快速定位时用十字链表</td></tr></table>
+<p><b>稀疏矩阵转置 · 快速转置法：</b>普通转置对每列扫描一遍三元组表，时间 O(列数 × t)。快速转置先统计原矩阵<b>每列</b>的非零元个数 num[col]，再算每列首个非零元在转置三元组表中的位置 cpot[col]（cpot[1] = 1；cpot[col] = cpot[col − 1] + num[col − 1]），然后一趟扫描原三元组表、按 cpot 直接落位并递增，时间 O(列数 + t)。</p>
+<div class="f"><b>例题（程序验算）：</b>① 三对角：n = 100 → 存储量 = 3 × 100 − 2 = <b>298</b>；元素 a<sub>50,51</sub>（带内，|50 − 51| = 1 ✓）→ k = 2 × 50 + 51 − 3 = <b>148</b>，即存入 B[148]。② 快速转置：6 行 7 列稀疏矩阵，非零元三元组（按行优先）：(1,2,12), (1,3,9), (3,1,−3), (3,6,14), (4,3,24), (5,2,18), (6,1,15), (6,4,−7)。统计得 num = [2, 2, 2, 1, 0, 1, 0]（第 1～7 列），cpot = [1, 3, 5, 7, 8, 8, 9]；一趟落位后转置三元组（按行优先）为：(1,3,−3), (1,6,15), (2,1,12), (2,5,18), (3,1,9), (3,4,24), (4,6,−7), (6,3,14) ✓（逐元核对：行列互换、值不变、按新行号有序）。</div>
+<div class="keng"><b>坑：</b>① 三套公式都建立在「下标从 1 起、B 从 0 起」之上：题干若用 0 起下标或 B 从 1 起，公式整体差一位，先认题干再套。② 三对角公式只对带内元素有意义：|i − j| &gt; 1 的元素根本没存，不要硬套公式算出一个位置。③ cpot[col] 是「位置」不是「个数」，且每落一位要 +1 更新，别拿原值重复落位。④ 对称矩阵 a<sub>ij</sub>（i &lt; j）查的是 a<sub>ji</sub> 的格子，不是另存了一份（本卡按存下三角写；题目若按上三角存储，查法方向正好相反，先认存法再套公式）。</div>
+<p class="small">来源：2027 考纲数据结构“数组与广义表：多维数组的存储、特殊矩阵的压缩存储”；王道《数据结构》数组与广义表一节。星级注：上位口径「线性表与数组」子项，本考点独立题量较小、无独立年份统计，保守定 2★（依据弱，待校准）。</p>
+</div></div>
+
+</div>
+
+<div class="section">
+<div class="sec-banner osb">三、操作系统 <small>（本辑 1 张）</small></div>
+
+<div class="item os" id="supp7-os1"><div class="ttl">3. SPOOLing 假脱机技术 <span class="stars">★★★☆☆</span></div><div class="bd">
+<p style="margin:1mm 0">合辑的 I/O 部分讲了中断与 DMA，却没有这项把独占设备「变」成共享设备的经典技术——它几乎只考选择题，概念边界一错就丢分。</p>
+<p><b>SPOOLing（假脱机技术，Simultaneous Peripheral Operations On Line，同时联机外围操作）：</b>在多道程序环境下，用磁盘（可共享设备）作中转，模拟脱机输入/输出：进程要用独占设备时不直接等设备，而是先把数据送到磁盘上的「井」里排队，由专门的井管理进程慢慢喂给设备。这样<b>多个进程可以排队共享同一台独占设备的使用权，设备在逻辑上表现为一台虚拟设备，但同一时刻仍只服务一个作业</b>。</p>
+<table class="cmplabel"><tr><th style="width:18%">组成</th><th>作用</th></tr>
+<tr><td>输入井 / 输出井</td><td>磁盘上开辟的两块存储区：输入井暂存外部设备送来的数据，输出井暂存各进程待输出的数据（按作业组织成文件排队）</td></tr>
+<tr><td>输入 / 输出缓冲区</td><td>内存中的缓冲，负责井与设备、井与进程之间的数据中转，抹平速度差</td></tr>
+<tr><td>输入 / 输出进程</td><td>常驻的井管理进程（守护进程）：把设备数据搬进输入井、把输出井队列里的数据逐个送往设备</td></tr></table>
+<p><b>打印全流程（输出 SPOOLing）：</b>① 进程申请打印，系统在输出井给它分配空闲空间，把要打印的数据拷入输出井；② 系统把这次打印请求挂到输出井的请求队列上；③ <b>进程至此即可返回继续运行，不必等打印机</b>；④ 输出进程按队列顺序，把输出井里的数据逐份送打印机打完。多个进程可以先后「申请打印」，各自的数据在井里排队——对每个进程而言，打印机仿佛是它独占的，实则共享。</p>
+<div class="f"><b>例题（示意数字，程序验算）：</b>某作业要打印 200 页，打印机速度 5 页/分钟，实际打印需 200 ÷ 5 = <b>40 分钟</b>。无 SPOOLing 且采用同步独占打印方式时，进程可能因等待打印设备而长时间阻塞；有 SPOOLing 时，进程只需把 200 页数据按磁盘速度写入输出井、挂上请求队列即可返回做别的事，40 分钟的打印由输出进程在后台完成，打印机完成 200 页仍需 40 分钟。<b>结论：SPOOLing 解耦的是「进程的等待时间」与「设备的服务时间」，设备本身一分钟也快不了。</b></div>
+<div class="keng"><b>坑：</b>① SPOOLing 没有把打印机变成真共享设备：同一时刻打印机仍只服务一个作业，共享的是「排队提交」这一层，别选「多进程可同时打印」。② 「井」在<b>磁盘</b>上，不在内存——把它说成内存缓冲区的选项是错的；内存里只有输入/输出缓冲区。③ 与缓冲技术分工不同：缓冲是内存中转、解决速度不匹配；SPOOLing 是外存设井 + 专门进程排队调度，核心目的是独占改共享，两者常配合但不是一回事。</div>
+<p class="small">来源：2027 考纲操作系统“I/O 管理：SPOOLing 技术”；王道《操作系统》I/O 管理一节。星级：上位口径「I/O 管理与设备管理」子项（合辑 v6 os-11/os-20 口径），本考点以选择题形式反复附带考查，保守定 3★（非独立年份统计）。</p>
+</div></div>
+
+</div>
+
+<div class="section">
+<div class="sec-banner netb">四、计算机网络 <small>（本辑 1 张）</small></div>
+
+<div class="item net" id="supp7-net1"><div class="ttl">4. 组帧与透明传输 · 零比特填充 <span class="stars">★★★☆☆</span></div><div class="bd">
+<p style="margin:1mm 0">合辑讲了物理层编码与 CRC，却没讲数据到了链路层先要解决的问题：一段比特流里，帧从哪儿开始、到哪儿结束；数据里恰好出现定界符的图案时怎么办。这正是组帧与透明传输。</p>
+<p><b>组帧（Framing）四种方法：</b></p>
+<table class="cmplabel"><tr><th style="width:18%">方法</th><th>定界方式</th><th>关键点</th></tr>
+<tr><td>字符计数法</td><td>帧首字段给出本帧的字节数</td><td>计数字段一旦出错，后面所有帧边界全乱、无自同步能力，现已少用</td></tr>
+<tr><td>字符填充法</td><td>帧首尾用特殊字符（如 DLE STX / DLE ETX）定界</td><td>数据中出现定界字符或 DLE 时，发送方在其前再填充一个 DLE；接收方删去成对 DLE 中的第一个，实现透明传输</td></tr>
+<tr><td>零比特填充法</td><td>帧首尾用标志字段 01111110 定界（HDLC，高级数据链路控制规程采用）</td><td>见下：靠「连续 5 个 1 后插 0」保证数据中永不出现 6 个连 1</td></tr>
+<tr><td>违规编码法</td><td>用物理层不会出现的编码组合定界</td><td>如曼彻斯特编码中用「高—高」「低—低」这种违规电平组合，只适用于有冗余编码的物理层</td></tr></table>
+<p><b>透明传输（Transparent Transmission）：</b>不管数据里是什么比特组合，都能原样、无歧义地传过去——实现手段就是上面的填充/转义：发送方加工，接收方逆向还原。</p>
+<p><b>零比特填充规则（必背）：</b>发送方扫描整个数据字段，<b>每遇到连续 5 个 1，就在其后自动插入 1 个 0</b>；接收方反向操作：每收到连续 5 个 1，若其后是 0 就删掉这个 0；若其后是第 6 个 1，则是标志字段（01111110）或帧出错。这样数据字段中最多出现 5 个连 1，标志图案 01111110 永不与数据混淆。</p>
+<div class="f"><b>例题（程序验算）：</b>数据字段比特串：01101111101111111111011111（26 位）。按规则逐段处理：其中出现 4 处「5 个连 1」，各插入 1 个 0 → 发送比特串：<b>011011111001111101111100111110</b>（30 位，共填充 4 个 0）。接收方按逆规则删去这 4 个 0 后恰好还原为原 26 位 ✓（已做插删往返验证）。</div>
+<div class="keng"><b>坑：</b>① 插入点是「5 个 1 之后」，不是等出现 6 个 1 再插——真出现 6 个连 1 已经是标志或错误了。② 填充统计要数清每一段连 1：连 1 跨过 5 后继续数（如 10 个连 1 要在第 5、第 10 个后各插一个 0，共 2 个）。③ 透明传输不是没有代价：填充使实际发送长度膨胀（例题 26 → 30 位），算有效数据率时别忘了扣。④ 字符计数法的死穴是「一错全乱」，与有自同步能力的填充法正好相对，选项里常互换设套。</div>
+<p class="small">来源：2027 考纲计算机网络“数据链路层：组帧、透明传输”；王道《计算机网络》数据链路层一节。星级：上位口径「数据链路层」子项（合辑 v6 net 口径），零比特填充计算为反复出现的选择题题型，保守定 3★（非独立年份统计）。</p>
+</div></div>
+
+</div>
+
+</body></html>
