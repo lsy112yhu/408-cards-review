@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<title>408 补充卡片 · 第 9 辑（草稿 · 待 GPT 校验）</title>
+<style>
+@page { size: A4; margin: 13mm 12mm 14mm 12mm;
+@bottom-center { content: "408 复习资料 · 补充卡片（第 9 辑 · 草稿待校验）　—　" counter(page) " / " counter(pages); font-size: 8pt; color: #888;}}
+* { box-sizing: border-box;}
+body { font-family: "Noto Sans CJK SC", "Noto Sans CJK JP", sans-serif; font-size: 10pt; line-height: 1.5; color: #1a202c; margin: 0;}
+.cover { text-align: center; padding-top: 30mm;}
+.cover .brand { color: #718096; font-size: 11pt; letter-spacing: 4px;}
+.cover h1 { font-size: 28pt; margin: 8mm 0 3mm 0; color: #1a202c;}
+.cover h2 { font-size: 14pt; font-weight: normal; color: #4a5568; margin: 0 0 10mm 0;}
+.chips { margin: 6mm auto;}
+.chip { display: inline-block; border-radius: 10px; color: #fff; padding: 2.2mm 5mm; margin: 0 1.5mm; font-size: 10.5pt;}
+.cover .note { width: 86%; margin: 10mm auto 0 auto; text-align: left; background: #fffaf0; border: 1px solid #ecc94b; border-radius: 6px; padding: 4mm 5mm; font-size: 9.5pt; color: #744210;}
+.section { page-break-before: always;}
+.sec-banner { border-radius: 6px; color: #fff; padding: 3.2mm 5mm; font-size: 16pt; font-weight: bold; margin-bottom: 4mm;}
+.sec-banner small { font-size: 10.5pt; font-weight: normal; opacity:.85;}
+.item { border: 1.6px solid; border-radius: 6px; margin-bottom: 3.6mm; break-inside: avoid; page-break-inside: avoid; overflow: hidden;}
+.item .ttl { color: #fff; font-weight: bold; font-size: 11pt; padding: 1.8mm 4mm;}
+.ttl .stars { font-weight: normal; font-size: 9.5pt; letter-spacing: 1.5px; margin-left: 3mm; opacity: .92;}
+.item .bd { padding: 2.6mm 4mm 3mm 4mm;}
+.ds { border-color: #2b6cb0;}.ds .ttl { background: #2b6cb0;}.dsb { background: #2b6cb0;}
+.co { border-color: #dd6b20;}.co .ttl { background: #dd6b20;}.cob { background: #dd6b20;}
+.os { border-color: #2f855a;}.os .ttl { background: #2f855a;}.osb { background: #2f855a;}
+.net { border-color: #c53030;}.net .ttl { background: #c53030;}.netb { background: #c53030;}
+table { border-collapse: collapse; width: 100%; margin: 1mm 0; font-size: 9.8pt;}
+th, td { border: 1px solid #cbd5e0; padding: 1.3mm 2.4mm; text-align: left; vertical-align: top;}
+th { background: #ebf4fa; font-weight: bold;}
+.co th { background: #fef3e8;}.os th { background: #e9f7ef;}.net th { background: #fdeeee;}
+.cmplabel td:first-child, .cmplabel th:first-child { white-space: nowrap; min-width: 3.4em;}
+ul, ol { margin: 1mm 0 1mm 0; padding-left: 6mm;}
+li { margin: 0.6mm 0;}
+.keng { background: #fff5f5; border-left: 3.5px solid #c53030; border-radius: 3px; padding: 1.8mm 3mm; margin-top: 2mm; font-size: 9.8pt;}
+.keng b { color: #c53030;}
+.ji { background: #fffaf0; border-left: 3.5px solid #d69e2e; border-radius: 3px; padding: 1.8mm 3mm; margin-top: 2mm; font-size: 9.8pt;}
+.ji b { color: #b7791f;}
+.f { background: #f7fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 1.8mm 3mm; margin: 1.2mm 0;}
+.small { font-size: 9pt; color: #718096;}
+.frac { display: inline-block; vertical-align: middle; text-align: center; font-size: 88%; margin: 0 1px;}
+.frac > span { display: block; padding: 0 3px;}
+.frac .top { border-bottom: 1px solid currentColor;}
+sup, sub { font-size: 72%;}
+</style></head><body>
+
+<div class="cover">
+<div class="brand">408 复习资料 · 补充卡片</div>
+<h1>补充卡片 · 第 9 辑</h1>
+<h2>草稿 · 待 GPT 校验 · 2026-11-06</h2>
+<div class="chips">
+<span class="chip dsb">数据结构 ×1</span>
+<span class="chip cob">组成原理 ×1</span>
+<span class="chip osb">操作系统 ×1</span>
+<span class="chip netb">计算机网络 ×1</span>
+</div>
+<div class="note"><b>本辑说明：</b>按 2026-11-05 新流程：本草稿先送 ChatGPT 置顶对话「408 知识点卡片校验」由 GPT酱校验，按反馈修订、复验无硬伤后才并入正式合辑；未校验不合并。本辑 4 张卡均与正式合辑 v9.1 全部 90 张卡目标题逐项比对、并做关键词全文检索：顺序表与链表（合辑仅附带提及、无对比卡）、CPU 性能指标 CPI / MIPS（全文 0 次）、缓冲管理（仅在生产者-消费者与 SPOOLing 卡中附带出现、无单 / 双缓冲处理时间卡）、DNS 解析与 DHCP 分配过程（仅在《应用层协议对比》中各占一行、无过程卡），均为未覆盖或明显偏薄的高频考点。第 7 辑卡 4《组帧零比特填充》已按裁定搁置，本辑不重推。<br><b>星级说明：</b>4 张均为高频大类的子项或过程项，无子项独立年份统计，统一按上位口径保守定 3★，各卡来源行写明上位口径，不虚标 4–5★。<br><b>验算说明：</b>顺序表平均移动次数经枚举验算；CPU 性能例题经公式重算（两例互相印证 MIPS）；单 / 双缓冲例题按教材公式代入重算；DNS 例题按解析流程逐步计数。<br><b>来源总说明：</b>2027 年 408 考纲对应章节与王道教材口径；未逐条标注王道书页码——手头没有该书电子版可核页码，若某条与书上表述有出入，以书为准。</div>
+<p class="small" style="margin-top:6mm">目录：1. 顺序表与链表对比 · 存取与增删复杂度　2. CPU 性能指标 · CPI / MIPS 与执行时间　3. 缓冲管理 · 单缓冲 / 双缓冲 / 缓冲池　4. DNS 解析与 DHCP 分配过程</p>
+</div>
+
+<div class="section">
+<div class="sec-banner dsb">一、数据结构 <small>（本辑 1 张）</small></div>
+
+<div class="item ds" id="supp9-ds1"><div class="ttl">1. 顺序表与链表对比 · 存取与增删复杂度 <span class="stars">★★★☆☆</span></div><div class="bd">
+<p style="margin:1mm 0">合辑的数据结构卡从栈与队列起步，线性表本身怎么存——顺序表（Sequential List，顺序表）与链表（Linked List，链表）——没有对比卡。这是王道线性表一章的选择题主战场：同一操作的复杂度结论在两种结构里常常正好相反。</p>
+<table class="cmplabel"><tr><th style="width:20%">项目</th><th>顺序表</th><th>单链表</th></tr>
+<tr><td>存储</td><td>一组地址连续的单元依次存放，逻辑相邻 = 物理相邻</td><td>任意存储单元，靠指针指示后继，逻辑相邻 ≠ 物理相邻</td></tr>
+<tr><td>存取方式</td><td><b>随机存取</b>：按下标 O(1) 直达任一元素</td><td><b>顺序存取</b>：找第 i 个元素须从头逐个顺链，O(n)</td></tr>
+<tr><td>按值查找</td><td>O(n)（无序时逐个比；有序才可折半）</td><td>O(n)</td></tr>
+<tr><td>插入 / 删除</td><td>须移动元素腾位 / 补位，平均移动约 n / 2 或 (n − 1) / 2 个，O(n)</td><td>已知操作位置的指针时只改指针，O(1)；但找前驱 / 按序号定位仍是 O(n)</td></tr>
+<tr><td>存储密度</td><td>= 1，无指针开销</td><td>&lt; 1，每个结点多付一个指针域</td></tr>
+<tr><td>扩容</td><td>静态分配满了要整表搬家；动态分配也要重新申请更大空间并复制</td><td>逐结点申请、用完释放，长度天然可变</td></tr></table>
+<div class="f"><b>例题（枚举验算）：</b>长度 n = 10 的顺序表：插入一个元素，合法插入位置共 11 个（第 1 ～ 11 位），各位置须移动的元素个数依次为 10, 9, …, 1, 0，平均 = 55 ÷ 11 = <b>5 = n / 2</b>；删除一个元素，合法位置共 10 个，移动个数依次为 9, 8, …, 0，平均 = 45 ÷ 10 = <b>4.5 = (n − 1) / 2</b> ✓。推广：长度为 n 时插入平均移动 n / 2 个、删除平均移动 (n − 1) / 2 个（均设各位置等概率）。</div>
+<div class="keng"><b>坑：</b>① 「链表插入删除是 O(1)」有前提：已经拿到操作位置（或其前驱）的指针；若题目给的是「在第 i 个位置插入」，定位本身 O(n)，整体仍是 O(n)。② 单链表中删除结点 p 本身（只给 p、不给前驱）不能直接 O(1) 摘除：常规做法须从头找前驱 O(n)；把后继的值拷进 p 再删后继的变通法对尾结点无后继可用、且改变了结点身份，选项若笼统说「只给 p 就能 O(1) 删除」要警惕。③ 顺序表的「随机存取 O(1)」只对按下标 / 按序号成立，按值查找无序时仍是 O(n)。④ 循环链表、双链表能改善找前驱的代价，但改变不了「顺序存取」这一本质，别与顺序表混答。</div>
+<p class="small">来源：2027 考纲数据结构“线性表：顺序存储结构与链式存储结构、基本操作”；王道《数据结构》线性表一章。星级：上位口径为线性表基础大类（合辑中栈与队列 ds-13 相关标签并集 14 年），顺序表与链表对比为其基础子项、无独立年份统计，保守定 3★（非独立统计）。</p>
+</div></div>
+
+</div>
+
+<div class="section">
+<div class="sec-banner cob">二、计算机组成原理 <small>（本辑 1 张）</small></div>
+
+<div class="item co" id="supp9-co1"><div class="ttl">2. CPU 性能指标 · CPI / MIPS 与执行时间 <span class="stars">★★★☆☆</span></div><div class="bd">
+<p style="margin:1mm 0">合辑有流水线、指令格式、数据通路，唯独没有计组第一章的性能计算：一个程序到底跑多久、两种机器谁快——CPI（Cycles Per Instruction，每条指令的时钟周期数）、主频与 MIPS（Million Instructions Per Second，百万条指令每秒）是每年都可能出现的公式计算题，合辑全文 0 覆盖。</p>
+<div class="f"><b>核心公式：</b>CPU 执行时间 = 指令条数 IC × CPI × 时钟周期 T<sub>c</sub> = <span class="frac"><span class="top">IC × CPI</span><span>主频 f</span></span>。加权 CPI = Σ（各类指令 CPI<sub>i</sub> × 该类指令占比）。MIPS = <span class="frac"><span class="top">f</span><span>CPI × 10<sup>6</sup></span></span> = <span class="frac"><span class="top">IC</span><span>执行时间 × 10<sup>6</sup></span></span>（f 以 Hz 计）。三者知二求一：主频管「周期多短」、CPI 管「每条指令占几个周期」、IC 管「一共多少条」。</div>
+<div class="f"><b>例题（公式重算、两式互证）：</b>① 某机主频 2.5 GHz，程序含 5 × 10<sup>8</sup> 条指令，平均 CPI = 2。时钟周期 = 1 ÷ 2.5 GHz = 0.4 ns；执行时间 = 5 × 10<sup>8</sup> × 2 ÷ 2.5 × 10<sup>9</sup> = <b>0.4 s</b>；MIPS = 2500 ÷ 2 = <b>1250</b>，与 IC ÷ 执行时间 = 5 × 10<sup>8</sup> ÷ 0.4 = 1.25 × 10<sup>9</sup> 条 / 秒 = 1250 MIPS 一致 ✓。② 加权 CPI：某程序中算术指令占 60%、CPI = 1，访存指令占 20%、CPI = 4，分支指令占 20%、CPI = 3，则平均 CPI = 0.6 × 1 + 0.2 × 4 + 0.2 × 3 = <b>2.0</b>；该程序若共 10<sup>8</sup> 条指令、在主频 2 GHz 的机器上执行，时间 = 10<sup>8</sup> × 2.0 ÷ 2 × 10<sup>9</sup> = <b>0.1 s</b> ✓。</div>
+<div class="keng"><b>坑：</b>① 主频高 ≠ 一定快：执行时间由 IC、CPI、主频三者共同决定，只比主频是经典错误选项。② MIPS 随指令集与程序构成变化：同一机器跑不同程序 MIPS 不同，不同指令系统的机器之间不能只凭 MIPS 比快慢（一条复杂指令干的活可能顶几条简单指令）。③ 算加权 CPI 用的是各类指令的<b>条数占比</b>，不是时间占比；题目给各类条数时先求总条数再算权重。④ 单位换算：GHz 是 10<sup>9</sup> Hz、MIPS 里的 M 是 10<sup>6</sup>，代公式前先统一到 Hz 与条 / 秒，别在指数上丢分。</div>
+<p class="small">来源：2027 考纲组成原理“计算机系统概述：计算机性能指标”；王道《计算机组成原理》计算机性能指标一节。星级：上位口径「指令执行指标」相关口径约 7 年（合辑 co-12 口径），性能指标计算为其子项、无独立年份统计，保守定 3★（非独立统计）。</p>
+</div></div>
+
+</div>
+
+<div class="section">
+<div class="sec-banner osb">三、操作系统 <small>（本辑 1 张）</small></div>
+
+<div class="item os" id="supp9-os1"><div class="ttl">3. 缓冲管理 · 单缓冲 / 双缓冲 / 缓冲池 <span class="stars">★★★☆☆</span></div><div class="bd">
+<p style="margin:1mm 0">合辑在生产者-消费者与 SPOOLing 卡里都提到缓冲，但缓冲本身——为什么能抹平速度差、单缓冲与双缓冲处理一块数据各要多久——没有卡。缓冲（Buffering，缓冲）是王道输入 / 输出管理一章的计算考点，公式就两条，代错对象整题皆错。</p>
+<p><b>为什么要缓冲：</b>① 缓和 CPU 与设备之间速度不匹配的矛盾；② 减少对 CPU 的中断次数、放宽对中断响应时间的限制；③ 解决数据粒度不匹配（一次产生 / 消费的数据量与设备传输块大小不一致）；④ 提高 CPU 与设备、设备与设备之间的并行性。</p>
+<p><b>记号（王道口径）：</b>T = 设备把一块数据送入缓冲区的时间；M = 缓冲区数据传送到用户区（工作区）的时间；C = CPU 处理（计算）工作区中这块数据的时间。以下均为连续处理多块数据时的<b>稳态平均每块时间</b>（忽略第一块的装入）。</p>
+<table class="cmplabel"><tr><th style="width:20%">方式</th><th>平均每块处理时间</th><th>为什么</th></tr>
+<tr><td>单缓冲</td><td>max(C, T) + M</td><td>缓冲区只有一个：数据在缓冲区与用户区之间传送（M）期间设备不能往里送下一块；但 CPU 计算当前块（C）时设备可同时装入下一块（T），两者取大者，再串上每块都躲不掉的 M</td></tr>
+<tr><td>双缓冲</td><td>max(T, C + M)</td><td>两个缓冲区轮换：设备装一块（T）与用户侧「传送 + 计算」上一块（M + C）可并行，稳态由较慢的一侧决定</td></tr>
+<tr><td>缓冲池</td><td>—（不考公式，考构成）</td><td>系统公用缓冲池由空缓冲队列、装满输入数据的输入队列、装满输出数据的输出队列管理，含输入缓冲、收容输入、提取输入、收容输出四种工作方式，输入进程与输出进程共享使用</td></tr></table>
+<div class="f"><b>例题（公式重算）：</b>设 T = 100 μs、M = 20 μs、C = 80 μs。单缓冲：max(80, 100) + 20 = <b>120 μs / 块</b>；双缓冲：max(100, 80 + 20) = <b>100 μs / 块</b>。即双缓冲把瓶颈压到设备侧的 T 上——当 T ≥ C + M 时再加缓冲区也压不下每块时间，瓶颈在设备本身 ✓。</div>
+<div class="keng"><b>坑：</b>① 两条公式里 M 的位置不同：单缓冲的 M 串在 max 之外（每块必付），双缓冲的 M 在 max 之内（与 T 并行比大小）——记混是头号丢分点。② 双缓冲不是「时间减半」：它只消掉可重叠部分的等待，稳态下限是 max(T, C + M)，设备慢时（T 大）加缓冲无用。③ 缓冲在内存中、SPOOLing 的「井」在外存上：两者目的也不同（缓冲抹速度差，SPOOLing 把独占设备改造成可共享的虚拟设备），别混为一谈。④ 循环缓冲是缓冲区的组织方式（多个缓冲区环形轮转、配 in / out 指针），适合数据流连续到达的场合，与「双缓冲 = 恰好两个」不是一回事。</div>
+<p class="small">来源：2027 考纲操作系统“输入 / 输出管理：I/O 软件层次结构与缓冲管理”；王道《操作系统》缓冲管理一节。星级：上位口径「I/O 方式」6 年（合辑 co-11 口径），缓冲管理为输入 / 输出管理子项、无独立年份统计，保守定 3★（非独立统计）。</p>
+</div></div>
+
+</div>
+
+<div class="section">
+<div class="sec-banner netb">四、计算机网络 <small>（本辑 1 张）</small></div>
+
+<div class="item net" id="supp9-net1"><div class="ttl">4. DNS 解析与 DHCP 分配过程 <span class="stars">★★★☆☆</span></div><div class="bd">
+<p style="margin:1mm 0">合辑《应用层协议对比》里 DNS（Domain Name System，域名系统）与 DHCP（Dynamic Host Configuration Protocol，动态主机配置协议）各只占一行表格，但两者的<b>工作过程</b>是选择题的固定考法：谁问谁、先问谁、用广播还是单播，一步记错整题皆错。本卡把两个过程补齐。</p>
+<p><b>DNS 解析（主机查 www 的 IP 地址为例）：</b>域名空间是分层树：根域名服务器 → 顶级域名服务器 → 权威（权限）域名服务器，主机先问<b>本地 DNS 服务器</b>，本地服务器代它向各级查询，结果层层缓存（缓存有生存时间 TTL，到期失效）。</p>
+<table class="cmplabel"><tr><th style="width:20%">方式</th><th>含义</th><th>用在哪一段</th></tr>
+<tr><td>递归查询</td><td>被问的服务器必须给出最终答案：自己不知道就替询问者继续问下去，最后把结果带回</td><td>主机 → 本地 DNS 服务器</td></tr>
+<tr><td>迭代查询</td><td>被问的服务器不知道就返回「下一级该问谁」，由询问者自己接着问</td><td>本地 DNS 服务器 → 根 / 顶级 / 权威服务器（通常）</td></tr></table>
+<div class="f"><b>例题（流程计数）：</b>主机查一个本地 DNS 服务器与各级服务器均无缓存的域名：主机向本地服务器发 1 次递归查询；本地服务器依次向根、顶级、权威服务器发 <b>3 次迭代查询</b>，拿到地址后答复主机。全程查询报文共 4 次（不计各级之间的答复报文）；若本地服务器缓存命中，则对外查询为 <b>0 次</b>、直接答复 ✓。</div>
+<p><b>DHCP 分配（四步 DORA）：</b>新主机还没有 IP 地址，只能用 0.0.0.0 作源地址、向 255.255.255.255 广播（客户端口 68、服务器端口 67、基于 UDP）：</p>
+<ol><li><b>发现 Discover：</b>客户端广播找服务器；</li><li><b>提供 Offer：</b>服务器（可有多台）各自提出一个待分配的地址等配置；</li><li><b>请求 Request：</b>客户端选定一个后仍以<b>广播</b>形式正式请求——广播是为了让未被选中的服务器知道、收回各自的 Offer；</li><li><b>确认 ACK：</b>被选服务器广播确认，客户端此后才能正式使用该地址（租期到期前要续租）。</li></ol>
+<p>跨子网时客户端广播到不了外网的服务器，由 DHCP 中继代理（通常在路由器上）代为转发。</p>
+<div class="keng"><b>坑：</b>① 递归与迭代的主体别记反：「主机对本地服务器是递归」指本地服务器负全责；本地服务器对根服务器一般是迭代——被问者只指路、不代跑。② DNS 主要用 UDP 53，但区域传送以及响应过大等场合用 TCP 53，「DNS 只用 UDP」是错误选项。③ DHCP 的 Request 还用广播不是失误：此时地址尚未经 ACK 确认、客户端还不能当作自己的单播地址用，且需要通知落选服务器。④ DHCP 分配的不只是 IP 地址，还包括子网掩码、默认网关与 DNS 服务器地址等配置；「自动分配」不等于「永久拥有」，地址有租期。</div>
+<p class="small">来源：2027 考纲计算机网络“应用层：DNS 与 DHCP”；王道《计算机网络》应用层 DNS、DHCP 两节。星级：上位口径「应用层协议」并集 16 年（合辑 net-15 口径，本卡两协议同属其轮考范围），解析与分配过程为其子项、无独立年份统计，保守定 3★（非独立统计）。</p>
+</div></div>
+
+</div>
+
+</body></html>
