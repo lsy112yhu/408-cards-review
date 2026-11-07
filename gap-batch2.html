@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>408 补充卡片 · 缺口批2（新卡）</title>
+<style>
+@page { size: A4; margin: 13mm 12mm 14mm 12mm;
+  @bottom-center { content: "408 复习卡片 · 缺口补卡第二批（草稿）　—　" counter(page) " / " counter(pages); font-size: 8pt; color: #888; } }
+* { box-sizing: border-box; }
+body { font-family: "Noto Sans CJK SC", "Noto Sans CJK JP", sans-serif; font-size: 10pt; line-height: 1.85; color: #1a202c; margin: 0; }
+.cover { text-align: center; padding-top: 34mm; }
+.cover .brand { color: #718096; font-size: 11pt; letter-spacing: 4px; }
+.cover h1 { font-size: 30pt; margin: 8mm 0 3mm 0; color: #1a202c; }
+.cover h2 { font-size: 15pt; font-weight: normal; color: #4a5568; margin: 0 0 10mm 0; }
+.chips { margin: 6mm auto; }
+.chip { display: inline-block; border-radius: 10px; color: #fff; padding: 2.2mm 5mm; margin: 0 1.5mm; font-size: 10.5pt; }
+.cover .note { width: 82%; margin: 10mm auto 0 auto; text-align: left; background: #fffaf0; border: 1px solid #ecc94b; border-radius: 6px; padding: 4mm 5mm; font-size: 9.5pt; color: #744210; }
+.section { page-break-before: always; }
+.sec-banner { border-radius: 6px; color: #fff; padding: 3.2mm 5mm; font-size: 16pt; font-weight: bold; margin-bottom: 4mm; }
+.sec-banner small { font-size: 10.5pt; font-weight: normal; opacity: .85; }
+.item { border: 1.6px solid; border-radius: 6px; margin-bottom: 5mm; break-inside: avoid; page-break-inside: avoid; overflow: hidden; }
+.item .ttl { color: #fff; font-weight: bold; font-size: 11pt; padding: 1.8mm 4mm; }
+.ttl .stars { font-weight: normal; font-size: 9.5pt; letter-spacing: 1.5px; margin-left: 3mm; opacity: .92; }
+.item .bd { padding: 3.6mm 4.6mm 4mm 4.6mm; }
+.ds { border-color: #2b6cb0; } .ds .ttl { background: #2b6cb0; } .dsb { background: #2b6cb0; }
+.co { border-color: #dd6b20; } .co .ttl { background: #dd6b20; } .cob { background: #dd6b20; }
+.os { border-color: #2f855a; } .os .ttl { background: #2f855a; } .osb { background: #2f855a; }
+.net { border-color: #c53030; } .net .ttl { background: #c53030; } .netb { background: #c53030; }
+table { border-collapse: collapse; width: 100%; margin: 1mm 0; font-size: 9.8pt; }
+th, td { border: 1px solid #cbd5e0; padding: 1.9mm 2.6mm; text-align: left; vertical-align: top; }
+th { background: #ebf4fa; font-weight: bold; }
+.cmplabel td:first-child, .cmplabel th:first-child { white-space: nowrap; min-width: 3.4em; }
+.co th { background: #fef3e8; } .os th { background: #e9f7ef; } .net th { background: #fdeeee; }
+ul, ol { margin: 1mm 0 1mm 0; padding-left: 6mm; }
+li { margin: 1.1mm 0; }
+.keng { background: #fff5f5; border-left: 3.5px solid #c53030; border-radius: 3px; padding: 2.6mm 3.6mm; margin-top: 3mm; font-size: 9.8pt; }
+.keng b { color: #c53030; }
+.ji { background: #fffaf0; border-left: 3.5px solid #d69e2e; border-radius: 3px; padding: 2.6mm 3.6mm; margin-top: 3mm; font-size: 9.8pt; }
+.ji b { color: #b7791f; }
+.f { background: #f7fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 2.6mm 3.6mm; margin: 2mm 0; }
+.small { font-size: 9pt; color: #718096; }
+b.k { color: #2b6cb0; }
+sup, sub { font-size: 72%; }
+.steps { list-style: none; padding-left: 0; }
+.steps li { padding-left: 7mm; position: relative; margin: 1.1mm 0; }
+.steps .n { position: absolute; left: 0; top: 0.2mm; width: 5.2mm; height: 5.2mm; border-radius: 50%; color: #fff; text-align: center; font-size: 8.6pt; line-height: 5.2mm; font-weight: bold; }
+.trans { list-style: none; padding-left: 0; }
+.trans li { margin: 1mm 0; }
+.arrow { color: #a0aec0; font-weight: bold; }
+.tag { display: inline-block; background: #edf2f7; border-radius: 3px; padding: 0 1.8mm; font-weight: bold; }
+
+
+.toc-sec { margin-bottom: 4mm; break-inside: avoid; }
+.toc-sec h3 { font-size: 12pt; margin: 0 0 1.5mm 0; padding-bottom: 1mm; border-bottom: 2px solid #4a5568; }
+.toc-sec.ds h3 { color: #2b6cb0; border-color: #2b6cb0; }
+.toc-sec.co h3 { color: #dd6b20; border-color: #dd6b20; }
+.toc-sec.os h3 { color: #2f855a; border-color: #2f855a; }
+.toc-sec.net h3 { color: #c53030; border-color: #c53030; }
+.toc-sec a { display: block; text-decoration: none; color: #1a202c; font-size: 10pt; padding: 0.7mm 0; }
+.toc-sec a::after { content: leader('.') target-counter(attr(href), page); color: #718096; }
+.cover { text-align: center; padding-top: 55mm; }
+.cover .brand { font-size: 11pt; color: #4a5568; letter-spacing: 2px; }
+.cover h1 { font-size: 30pt; margin: 6mm 0 3mm 0; }
+.cover .sub { font-size: 13pt; color: #4a5568; }
+.cover .cnt { margin-top: 10mm; font-size: 11pt; color: #2d3748; }
+.subj-start { break-before: page; }
+.frac{display:inline-block;vertical-align:-0.45em;text-align:center;margin:0 .08em;font-size:.92em}
+.frac>.num{display:block;border-bottom:.7pt solid currentColor;padding:0 .18em;line-height:1.25}
+.frac>.den{display:block;padding:0 .18em;line-height:1.25}
+/* v13 疏朗版式新增结构类 */
+.bd p { margin: 1.5mm 0; }
+.sec { font-weight: bold; font-size: 10.6pt; margin: 3.4mm 0 1.6mm 0; }
+.ds .sec { color: #2b6cb0; } .co .sec { color: #c05621; } .os .sec { color: #276749; } .net .sec { color: #9b2c2c; }
+.ex { background: #eff5fc; border: 1px solid #d9e6f5; border-radius: 4px; padding: 2.6mm 3.6mm; margin: 2mm 0; }
+.ex-title { font-weight: bold; margin-bottom: 1.2mm; }
+.step { padding: 0.9mm 0 0.9mm 2mm; }
+.k-title { color: #c53030; font-weight: bold; margin-bottom: 1mm; }
+.krow { padding: 1.1mm 0; }
+.krow + .krow { border-top: 1px dashed #f0caca; }
+.frow { display: flex; gap: 3mm; padding: 1.2mm 0; align-items: baseline; }
+.frow + .frow { border-top: 1px dashed #d9e2ec; }
+.flabel { flex: 0 0 24mm; font-weight: bold; color: #33507e; }
+.note { font-size: 9pt; color: #718096; margin: 1.6mm 0; line-height: 1.7; }
+.steps li { margin: 1.6mm 0; }
+
+/* v8.2.1 图呈现尺寸（按卡片内容区宽度百分比，高度按 viewBox 比例自动） */
+svg.fig-60 { width: 60%; height: auto; }
+svg.fig-65 { width: 65%; height: auto; }
+svg.fig-72 { width: 72%; height: auto; }
+svg.fig-80 { width: 80%; height: auto; }
+svg.fig-85 { width: 85%; height: auto; }
+
+/* v14.1 连续流排版：卡片可跨页断开，杜绝整卡跳页造成的大空白 */
+.item { break-inside: auto; page-break-inside: auto; }
+.keng, .ji { break-inside: avoid; }
+.item .ttl { break-after: avoid; }
+.sec-banner { break-after: avoid; }
+p, li { orphans: 2; widows: 2; }
+.subj-start { break-before: auto; }
+.toc-sec { break-inside: auto; }
+</style>
+</head>
+<body>
+<div class="cover">
+<div class="brand">408 复习资料 · 缺口补卡</div>
+<h1>缺口批 2 · 新卡</h1>
+<div class="sub">第二批（收尾批）草稿 · 未并入合辑</div>
+<div class="cnt">新卡 7 张：计算机组成原理 5 张 · 操作系统 1 张 · 计算机网络 1 张</div>
+<div class="note">本文件仅供预览与送审。每卡的真题依据年份、章节与验算结论见同批送审 Markdown；卡面格式沿用现行合辑。</div>
+</div>
+<!-- co-28｜CO 第4章 指令系统｜真题依据：2010, 2011, 2014, 2017, 2019, 2021, 2022, 2023, 2024 -->
+<div class="item co" id="co-28"><div class="ttl">1. 程序的机器级代码表示 <span class="stars">★★★★★</span> · 近6年×4</div><div class="bd">
+<p>定位：CO 第 4 章指令系统。合辑已有《指令格式与寻址方式》讲一条指令长什么样，这一卡往前一步：一段 C 代码编译之后在机器级长什么样——参数、局部变量、数组元素到底落在哪个地址。真题的做法通常是给一段短 C 代码（或它的汇编片段），问某个变量 / 成员的地址、某条指令访问的内存单元，或返回之后栈恢复成什么样。读这类题只有一条路：先把栈帧的相对位置钉死，再逐个算地址。</p>
+<div class="f">
+<div class="frow"><div class="flabel">本卡约定</div><div>32 位、按字节编址、栈向<b>低地址</b>生长；<b>call</b> 把返回地址（4B）压栈；被调用函数先 push ebp、再 mov ebp, esp，用帧指针 EBP 定位一切；参数由调用者按<b>从右到左</b>的顺序压栈；int 4B、short 2B、char 1B，结构体按 4B 对齐填充。真题题干另给约定时以题干为准——要练的是这套「先定帧、再算址」的读法，不是背死某一台编译器的分配顺序。</div></div>
+<div class="frow"><div class="flabel">贯穿例子</div><div>全卡只用一个函数：<br>struct Rec { char flag; int score; short delta; };<br>int calc(int x, int y) {<br>　struct Rec r;<br>　int buf[3];<br>　r.score = x;<br>　r.delta = (short)y;<br>　buf[1] = r.score + r.delta;<br>　return buf[1];<br>}</div></div>
+</div>
+<div class="sec">一、结构体先算布局：成员偏移从哪来</div>
+<p>访问 r.score 之前，编译器先把 Rec 的布局定死：成员按声明顺序放，每个成员的起始地址须是其自身对齐的倍数，放不下就先填充。</p>
+<div class="step">flag 是 char，占 1B，放偏移 0。</div>
+<div class="step">score 是 int，须 4 的倍数地址：偏移 1 不合，先填充 3B，score 放偏移 4，占 4B 到偏移 7。</div>
+<div class="step">delta 是 short，须偶数地址：偏移 8 正合，占 2B 到偏移 9。</div>
+<div class="step">结构体总大小须是最大成员对齐（4）的倍数：末尾再填充 2B，<b>sizeof(Rec) = 12B</b>。于是任一 Rec 变量 v 都有：&amp;v.flag = 基址 + 0，&amp;v.score = 基址 + 4，&amp;v.delta = 基址 + 8。</div>
+<div class="sec">二、C 语句怎么落成指令：跟着 calc 走一遍</div>
+<div class="f">push ebp　　　　　　; 保存调用者的帧指针<br>mov ebp, esp　　　　; 立起本函数的帧<br>sub esp, 24　　　　 ; 一次留出局部区：r 占 12B + buf 占 12B<br>mov eax, [ebp+8]　　; 取参数 x（位置见第三节）<br>mov [ebp−8], eax　　; r.score = x：r 基址在 ebp−12，score 偏移 +4 → ebp−8<br>mov eax, [ebp+12]　 ; 取参数 y<br>mov [ebp−4], ax　　 ; r.delta = (short)y：delta 偏移 +8 → ebp−4，只写低 16 位<br>mov eax, [ebp−8]　　; 取回 r.score<br>movsx edx, word [ebp−4]　; 取 r.delta 并符号扩展成 32 位再相加<br>add eax, edx<br>mov [ebp−20], eax　 ; buf[1] = 和：buf 基址在 ebp−24，元素 [1] 偏移 +4 → ebp−20<br>mov eax, [ebp−20]　 ; 返回值按约定放 eax<br>mov esp, ebp；pop ebp；ret　; 拆帧，最后 ret 把返回地址弹进 PC</div>
+<p>看懂这段只需抓住三件事：每条 C 赋值语句都变成「算出右边的值 → 存到左边的地址」；源码里的变量名在机器级全部消失，只剩<b>基址 + 偏移</b>；偏移在编译时就已算死，运行时不再查表。</p>
+<div class="sec">三、数组与结构体访问：地址全是同一条公式</div>
+<p>数组元素：&amp;a[i] = 数组首址 + i × sizeof(元素类型)。int buf[3] 的元素 4B 一个，buf[1] 就是首址 + 4。结构体成员：&amp;v.成员 = v 的基址 + 该成员在布局中的偏移。两者叠起来就是结构体数组：元素先按 sizeof(整个结构体) 跳，成员再加自己的偏移。</p>
+<div class="step">例：struct Rec db[5] 的首址为 0x00404000。求 &amp;db[2].score：先跳 2 个元素 2 × 12 = 24，再加 score 的偏移 4，得 0x00404000 + 28 = <b>0x0040401C</b>；同理 &amp;db[2].delta = 0x00404000 + 24 + 8 = <b>0x00404020</b>（程序验算）。易错点在中间这步：跳元素用的是含填充的 sizeof = 12，不是三个成员裸大小之和 1 + 4 + 2 = 7。</div>
+<div class="sec">四、过程调用的栈帧：谁压栈、何时压、压完在哪</div>
+<div class="step"><span class="n cob">1</span><b>调用者压参数：</b>执行 call calc(…) 前，先按从右到左把 y、x 依次压栈——后压的 x 离栈顶更近，所以第一个参数离返回地址最近。</div>
+<div class="step"><span class="n cob">2</span><b>call 压返回地址：</b>call 把「下一条指令的地址」压栈再跳走。这 4B 是被调用者帧的最高地标，函数最后靠 ret 把它弹回 PC。</div>
+<div class="step"><span class="n cob">3</span><b>被调用者立帧：</b>push ebp 把调用者的旧帧指针存下，mov ebp, esp 让 EBP 钉在本帧的锚点上。此后无论 ESP 因局部区怎么动，参数和局部变量相对 EBP 的位置都不变。</div>
+<div class="step"><span class="n cob">4</span><b>留局部区：</b>sub esp, 24，一次把 r 与 buf 的 24B 留出。按本卡约定，局部变量按声明顺序向低地址排：先声明的 r 紧贴 EBP 下方（基址 ebp−12），buf 在 r 下方（基址 ebp−24），ESP 停在 buf 的最低端。</div>
+<div class="step"><span class="n cob">5</span><b>返回拆帧：</b>返回值放 eax；mov esp, ebp 把 ESP 收回锚点，pop ebp 恢复调用者的帧指针，ret 弹出返回地址。一步错位，后面全盘皆错——真题最爱在这条链上挖坑。</div>
+<div class="f">
+<div class="frow"><div class="flabel">[EBP+12]</div><div>参数 y（第二个参数，离锚点更远）</div></div>
+<div class="frow"><div class="flabel">[EBP+8]</div><div>参数 x（第一个参数）</div></div>
+<div class="frow"><div class="flabel">[EBP+4]</div><div>返回地址（call 压入）</div></div>
+<div class="frow"><div class="flabel">[EBP+0]</div><div>保存的旧 EBP ← EBP 锚点在这里</div></div>
+<div class="frow"><div class="flabel">[EBP−12]</div><div>局部变量 r 的基址（r.score 在 [EBP−8]，r.delta 在 [EBP−4]）</div></div>
+<div class="frow"><div class="flabel">[EBP−24]</div><div>局部数组 buf 的基址 ← ESP 停在这里（buf[1] 在 [EBP−20]）</div></div>
+</div>
+<div class="sec">例题</div>
+<div class="ex">
+<div class="ex-title">例 · 栈帧地址全家福（真题风格，程序验算）</div>
+<div class="step">承贯穿例子：calc 执行期间 EBP = 0x0012FF80。求：(1) 返回地址、参数 x、参数 y 各存在哪个地址；(2) r.score、r.delta、buf[1] 的地址；(3) 此时 ESP 的值。</div>
+<div class="step"><b>推导：</b>锚点之上按 +4 一格一跳：保存的旧 EBP 在 0x0012FF80，返回地址在 [EBP+4] = <b>0x0012FF84</b>，x 在 [EBP+8] = <b>0x0012FF88</b>，y 在 [EBP+12] = <b>0x0012FF8C</b>。</div>
+<div class="step">锚点之下先落 r：r 基址 = EBP − 12 = 0x0012FF74，r.score = 基址 + 4 = <b>0x0012FF78</b>（即 [EBP−8]），r.delta = 基址 + 8 = <b>0x0012FF7C</b>（即 [EBP−4]）。</div>
+<div class="step">再落 buf：buf 基址 = EBP − 24 = 0x0012FF68，buf[1] = 基址 + 1 × 4 = <b>0x0012FF6C</b>（即 [EBP−20]）。</div>
+<div class="step">局部区共 12 + 12 = 24B，ESP 停在最低端 = <b>0x0012FF68</b>，恰与 buf 基址相同 ✓（以上地址与偏移均经脚本逐项验算，含 ctypes 对结构体布局的交叉核对）。</div>
+</div>
+<div class="keng"><b>坑：</b>
+<div class="krow">① 返回地址不是 [EBP] 也不是 [EBP+8]：[EBP] 存的是<b>旧 EBP</b>，返回地址在它上面一格 [EBP+4]，第一个参数还要再上一格才是 [EBP+8]。把旧 EBP 忘了，整条链全错位 4B。</div>
+<div class="krow">② 参数相对位置由<b>压栈顺序</b>定：从右到左压栈 ⇒ 第一个参数离返回地址最近。题目若改成从左到右压栈，x、y 的位置立刻对调，先看题干约定再套。</div>
+<div class="krow">③ 结构体跳元素用含填充的 sizeof：Rec 三个成员裸大小共 7B，但 sizeof = 12B，db[2] 要跳 24B 不是 14B；成员偏移同理，score 在 +4 不是 +1。</div>
+<div class="krow">④ 栈向低地址生长：局部变量的地址比 EBP <b>小</b>、参数比 EBP 大。方向画反，[EBP−8] 会写成 [EBP+8]，正好和参数 x 撞车。</div>
+<div class="krow">⑤ short 成员只占 2B：mov [ebp−4], ax 只写低 16 位，别按 int 的 4B 去推相邻成员的位置；读出参与 32 位运算时还要先符号扩展。</div>
+</div>
+</div></div>
+<!-- co-29｜CO 第1章 系统概述｜真题依据：2015, 2016, 2018, 2019, 2021, 2026 -->
+<div class="item co" id="co-29"><div class="ttl">2. 计算机系统层次结构 <span class="stars">★★★★☆</span> · 近6年×2</div><div class="bd">
+<p>定位：CO 第 1 章系统概述（薄卡）。这一考点只考三件事：层次怎么分、同一功能为什么软硬件都能做、几个「字长」为什么不能混。题量不大，但每个都是送分与丢分只差一个概念的判断题。下面用同一条语句从顶层一路沉到底层，把三件事一次带出。</p>
+<div class="sec">一、一条语句的下沉之旅：z = x + y 经过的每一层</div>
+<p>设 int x、y、z 是内存中的三个整型变量，C 语句 z = x + y; 在每一层眼里长得完全不同——每一层都是一个「虚拟机器」：只认本层的语言，靠翻译或解释把本层程序变成下一层能执行的动作。</p>
+<div class="f">
+<div class="frow"><div class="flabel">高级语言级</div><div>你看到的是 z = x + y; ——变量有名字、类型。靠<b>编译</b>：编译程序把整个源程序一次译成汇编 / 机器语言程序，再执行。</div></div>
+<div class="frow"><div class="flabel">汇编语言级</div><div>变成三条符号指令：LOAD R1, x（取 x 进寄存器）；ADD R1, y（与 y 相加）；STORE R1, z（存回 z）。靠<b>汇编</b>：汇编程序把符号指令逐条译成二进制机器指令。</div></div>
+<div class="frow"><div class="flabel">操作系统级</div><div>介于汇编与机器级之间的一层：程序要用输入输出、文件等资源时不直接碰硬件，而是发<b>系统调用</b>由操作系统代办。本例纯算术不经过它，但它在层次图里有正式位置，别漏画。</div></div>
+<div class="frow"><div class="flabel">传统机器级</div><div>只剩二进制机器指令：操作码指明「加」，地址码指明操作数在哪。CPU 取指、译码、执行，一条指令一个指令周期——这一层的语言就是<b>指令系统</b>。</div></div>
+<div class="frow"><div class="flabel">微程序机器级</div><div>一条机器指令再被拆成一串<b>微指令</b>：每条微指令发出一组微命令，直接开合数据通路上的门电路，把寄存器和 ALU 接通一次。这一层不必展开过深，只需知道：机器指令是被「更小的程序」解释执行的，这是微程序控制器的地盘（详见《控制器对比》卡）。</div></div>
+</div>
+<p>往下再沉就是数字逻辑电路，没有新的「语言层」了。各层之间只有两种衔接方式：<b>翻译</b>（先把高层程序整体译成低层程序再执行，如编译、汇编）和<b>解释</b>（逐条把高层指令译成低层动作并立即执行，不生成完整译本，如微指令解释机器指令）。</p>
+<div class="sec">二、软硬件逻辑等价：同一件事，谁做都行</div>
+<p>还是这条加法链里的「相加」：乘法运算可以交给硬件——CPU 里放一个乘法器，一条乘法指令直接出结果；也可以不放乘法器，改用软件——写一段「移位 + 相加」的循环，用已有的加法和移位指令凑出乘法。两种实现对上层程序员<b>逻辑上完全等价</b>，程序照样算出积，区别只在速度与成本。</p>
+<p>这就是软硬件逻辑等价：任何操作都能由软件实现，也能由硬件实现，软硬件的分界不是逻辑分界、而是<b>性能与成本的分界</b>，并且可以上下移动——常用功能往硬件沉（快），少用功能留给软件（省）。固件就是这条界线上的中间态：把软件固化进只读存储器，形态是程序、干活像硬件。</p>
+<div class="sec">三、字长四兄弟：只有一个由寄存器位数定</div>
+<div class="f">
+<div class="frow"><div class="flabel">机器字长（= 字长）</div><div>CPU 一次能并行处理的二进制位数，由<b>通用寄存器位数 / ALU 位数</b>决定。说「32 位机」指的就是它。</div></div>
+<div class="frow"><div class="flabel">数据通路宽度</div><div>CPU 内部数据总线一次能传送的位数。内部通路通常与机器字长相等；但<b>外部</b>数据总线可以更窄——字还是 32 位，只是要分两拍送出（见例题）。</div></div>
+<div class="frow"><div class="flabel">指令字长</div><div>一条指令占的位数，由指令格式定，与机器字长彼此独立：32 位机完全可以用 16 位的定长指令。</div></div>
+<div class="frow"><div class="flabel">存储字长</div><div>一个存储单元存放的位数，由存储器组织定，同样独立：它决定取一个存储字拿到几位，不决定 CPU 一次算几位。</div></div>
+</div>
+<div class="sec">例题</div>
+<div class="ex">
+<div class="ex-title">例 · 字长认亲（真题风格，程序验算）</div>
+<div class="step">某机：通用寄存器 32 位、ALU 32 位、内部数据通路 32 位；外部数据总线 16 位、指令字长 16 位、存储字长 16 位。问：(1) 该机机器字长是多少位、合多少字节；(2) 把一个机器字经外部数据总线送到外设要几拍；(3) 一个 64 位数据在 CPU 内部处理算几个机器字、经外部总线送出要几拍。</div>
+<div class="step"><b>推导：</b>(1) 机器字长看通用寄存器 / ALU 位数 = <b>32 位 = 4 字节</b>。题干里的三个 16 位全是干扰：外部总线、指令字长、存储字长都不参与定字长。</div>
+<div class="step">(2) 一个机器字 32 位，外部总线一拍只送 16 位：32 ÷ 16 = <b>2 拍</b>。字长没变，只是传送被拆开——这正是「外部通路可以窄于字长」的含义。</div>
+<div class="step">(3) 64 ÷ 32 = <b>2 个机器字</b>，内部通路两拍处理完；经外部总线则要 64 ÷ 16 = <b>4 拍</b>（以上除法均经脚本验算）。</div>
+</div>
+<div class="keng"><b>坑：</b>
+<div class="krow">① 「多少位机」只认机器字长（寄存器 / ALU 位数）。选项拿指令字长、存储字长或外部总线宽度冒充字长，是本考点最固定的干扰设计。</div>
+<div class="krow">② 层次是<b>逻辑上的虚拟机器</b>，不是把机器物理拆成五层：除了微程序级与电路，下面的层大多是软件。「某功能只能由硬件实现」这类说法错在违背软硬件逻辑等价。</div>
+<div class="krow">③ 翻译与解释别混：编译、汇编是翻译（先生成低层程序）；微指令执行机器指令是解释（逐条译、立即做）。问「哪种方式不生成目标程序」选解释。</div>
+<div class="krow">④ 操作系统级有正式位置（在传统机器级之上、汇编级之下），画层次图漏掉它，或把它排到高级语言之上，都是常见错位。</div>
+</div>
+</div></div>
+<!-- co-30｜CO 第2章 数据的表示和运算｜真题依据：2009, 2010, 2012, 2016, 2017, 2019, 2024, 2025 -->
+<div class="item co" id="co-30"><div class="ttl">3. 数据类型转换 <span class="stars">★★★★★</span> · 近6年×2</div><div class="bd">
+<p>C 表达式算出什么，不只看数值，还看每个数在计算的哪一步被换成了什么类型。转换发生在三个关口：运算前先把小整型抬上来、混算时按高位一方看齐、赋值时再把结果塞进目标类型的格子——本卡每条都跟着一个数实际走一遍。</p>
+<div class="sec">先跟一遍：两个 char 相加的旅程</div>
+<div class="step">设 <span class="tag">char a = 100, b = 100;</span> 求 a + b。a、b 在参与运算之前先被<b>整型提升</b>为 int，于是加法是在 int 里做的：100 + 100 = <b>200</b>，中间过程根本没溢出。</div>
+<div class="step">把结果存回 int，得到 200；存回 char，赋值那一刻才截断：200 超出 char 的 −128～127，只留低 8 位，200 − 256 = <b>−56</b>。</div>
+<div class="step">乘法同理：a × b 先按 int 算得 <b>10000</b>，存进 int 安然无恙；存进 char 则只留低 8 位，10000 mod 256 = <b>16</b>。</div>
+<div class="step">所以「char 运算会先溢出」是假象——溢出只可能发生在最后赋值回小类型的那一步。</div>
+<div class="sec">整型提升：小整型一运算就先升格</div>
+<div class="step">设 <span class="tag">unsigned char uc = 255;</span>，uc + 1 里 uc 先提升为 int，算得 <b>256</b>，并不回绕成 0；只有把 256 再赋回 unsigned char 变量时，才按 mod 256 变成 <b>0</b>。</div>
+<div class="step">提升去向看 int 装不装得下：unsigned short 的取值（0～65535）int 全装得下，所以 <span class="tag">unsigned short us = 65535;</span> 的 us + 1 是按<b>有符号 int</b> 算的，得 <b>65536</b>，不是无符号回绕。</div>
+<div class="step">char、short（无论有无符号）参与运算、做函数实参时都走这一步，表达式的类型从 int 起步。</div>
+<div class="sec">混进一个无符号数：有符号一方整体看齐</div>
+<div class="step">设 <span class="tag">int x = −1; unsigned int u = 1;</span> 比较 x &gt; u：两者同为 4 字节、级别相同，按<b>通常算术转换</b>，x 被换成 unsigned int 再比——−1 的补码一位不变地读作 <b>4294967295</b>，于是 x &gt; u 的结果是<b>真</b>，与数学直觉正好相反。</div>
+<div class="step">同一个 x 和 u 相加：4294967295 + 1 按 2<sup>32</sup> 取模，得 <b>0</b>，且表达式的类型是 unsigned int，之后再参与比较或赋值都按无符号解释。</div>
+<div class="step">再看 −20 与 10u：−20 换成无符号是 4294967276，比 10 大得多；两者相加得 4294967286（仍是无符号数），若题目把它赋给 int 再打印，才会重新按补码读回 −10——读法取决于最后落进哪种类型。</div>
+<div class="step">判断口诀落到过程上：同级别混算时，先把有符号数「按补码原样改读」成无符号数，再做运算，全程不再回头。</div>
+<div class="sec">赋值截断：结果没变，是格子太小</div>
+<div class="step"><span class="tag">int n = 300; char c = n;</span>——300 的低 8 位是 0010 1100，即 <b>44</b>，c 得到 44；赋给 unsigned char 也是 44（300 mod 256）。</div>
+<div class="step"><span class="tag">int m = 70000; short s = m;</span>——70000 mod 65536 = <b>4464</b>，s 得到 4464，正负看截断后最高位：本例落在正区间，若余数 ≥ 32768 还要再减 65536 读作负数（前面的 200 → −56 就是这么来的）。</div>
+<div class="step">强制转换 (char)n 与赋值给 char 变量走的是同一条截断路；表达式本身在 int 里算出的值不受影响。</div>
+<div class="sec">整型与浮点互转：精度在哪一步丢</div>
+<div class="step">float 的有效位只有 24 位（含隐含位），能精确表示的最大连续整数到 2<sup>24</sup> = 16777216 为止。<span class="tag">int big = 16777217; float f = big;</span> 存入时 2<sup>24</sup> + 1 无处安放，舍入为 16777216，再转回 int 也是 <b>16777216</b>，丢了 1；同样的数存进 double（有效位 53 位）则原样保留。</div>
+<div class="step">反方向浮点转整型是<b>截尾</b>不是四舍五入：(int)3.99 = <b>3</b>，(int)(−3.99) = <b>−3</b>，小数部分整段丢弃。</div>
+<div class="step">最常埋伏的一处：<span class="tag">float r = 5 / 2;</span> 右边两个操作数都是 int，先做整除得 2，之后才转成 float，r = <b>2.0</b>；写成 5.0 / 2，一方是 double，另一方被抬成 double 做浮点除法，才得 <b>2.5</b>。转换发生的先后，决定了除法按谁的规则做。</div>
+<div class="sec">例题</div>
+<div class="ex">
+<div class="ex-title">例 · 一组表达式逐项判真假（C 程序实测）</div>
+<div class="step">设 char a = 100, b = 100；int x = −1；unsigned int u = 1；float f。下列说法正确的有（　）。</div>
+<div class="step">I. a + b 的值是 200，赋给 char 变量后是 −56　II. x &gt; u 为真　III. x + u 的值（按 unsigned int）是 0　IV. f = 16777217 后，(int)f 仍等于 16777217</div>
+<div class="step">A. 仅 I、II　B. 仅 II、III　C. 仅 I、III　D. 仅 I、II、III</div>
+<div class="step">逐项推：I——a、b 先提升为 int 相加得 200 ✓，赋值截断 200 − 256 = −56 ✓；II——x 转 unsigned 得 4294967295 &gt; 1 ✓；III——4294967295 + 1 对 2<sup>32</sup> 取模得 0 ✓；IV——float 只有 24 位有效位，16777217 舍入为 16777216，转回 int 是 16777216 ✗。</div>
+<div class="step">答案 <b>D</b>（四项数值已用 gcc 编译 C 程序逐项实测，含 sizeof 前提核对）。</div>
+</div>
+<div class="keng">
+<div class="krow">以为 char、short 运算就在原地算、会当场溢出——实际先提升为 int，溢出只发生在赋回小类型时。</div>
+<div class="krow">−1 &gt; 1 想当然判假：只要对方是同级别无符号数，−1 先变 4294967295，比较结果反转。</div>
+<div class="krow">float r = 5 / 2 写出 2.5：整除在赋值转换之前就已完成，r 只能是 2.0。</div>
+<div class="krow">浮点转整型当四舍五入：是向零截尾，−3.99 转得 −3，不是 −4。</div>
+<div class="krow">把大整数转 float 当无损：超过 2<sup>24</sup> 的整数先丢精度，之后转回 int 也找不回来。</div>
+<div class="krow">截断只记「取余」忘了读符号：余数落在目标类型负区间时还要减去模数按负数读（200 → −56）。</div>
+</div>
+</div></div>
+<!-- co-31｜CO 第2章 数据的表示和运算｜真题依据：2012, 2016, 2018, 2019, 2020, 2025 -->
+<div class="item co" id="co-31"><div class="ttl">4. 数据的大小端与对齐存储 <span class="stars">★★★★☆</span> · 近6年×1</div><div class="bd">
+<p>同一个多字节数放进内存，字节的先后有两种排法；同一组结构体成员住进内存，中间会不会留空洞——这两件事决定了从内存里读回来的到底是什么数。本卡都用具体字节和具体偏移量走一遍。</p>
+<div class="sec">一个数拆成字节：0x12345678 住进内存</div>
+<div class="step">int 值 0x12345678 占 4 个字节：最高字节 12、次高 34、次低 56、最低 78。设它存放在地址 100～103。</div>
+<div class="step"><b>大端</b>排法：高字节住低地址——100 放 12、101 放 34、102 放 56、103 放 78，顺着地址读下去正好是数的书写顺序。</div>
+<div class="step"><b>小端</b>排法：低字节住低地址——100 放 78、101 放 56、102 放 34、103 放 12，整个倒过来。</div>
+<div class="step">判机器是哪一端，不用背：取这个 int 首地址处的那一个字节，是 78 就是小端，是 12 就是大端。用联合体 <span class="tag">union { int i; char c[4]; }</span> 令 i = 0x12345678，小端机上 c[0]（最低地址字节）读得 <b>0x78</b>，大端机上读得 0x12——真题最爱用这一手设问。</div>
+<div class="step">两点边界：大小端管的是<b>字节</b>之间的顺序，不管字节内部的位序；单字节的 char、以及字符串里逐个存放的字符，不受大小端影响。short 值 0x1234 同理：小端机内存里先 34 后 12。</div>
+<div class="sec">结构体里为什么有空洞：成员各就各位的过程</div>
+<div class="step">看 <span class="tag">struct S1 { char a; int b; char c; };</span> 逐个安放：a 是 char，随便落座，占地址 0。</div>
+<div class="step">b 是 int，要求起始地址是 4 的倍数——地址 1 不合格，只能跳到 4，地址 1～3 空出来，这就是<b>内部填充</b> 3 个字节；b 占 4～7。</div>
+<div class="step">c 是 char，落在 8。成员到此放完共 9 个字节，但结构体总大小还须是其对齐值（成员中最大的对齐值，这里是 int 的 4）的倍数，于是尾部再补 3 个字节，sizeof(S1) = <b>12</b>——尾填充是为了让这种结构体排成数组时，每个元素的 b 都仍然对齐。</div>
+<div class="step">同一组数值的成员换序 <span class="tag">struct S2 { int b; char a; char c; };</span>：b 占 0～3，a 落 4，c 落 5，只剩尾填充 2，sizeof(S2) = <b>8</b>。成员一个没少，只因大成员排在前面省掉了中间的空洞。</div>
+<div class="step">对齐值随成员走：含 double 的 <span class="tag">struct { char c; double d; int i; }</span> 中，d 要求 8 的倍数地址——c 占 0 后要填 7 个字节 d 才落 8，i 落 16，尾填充 4，sizeof = <b>24</b>，整个结构体的对齐值被 double 抬到了 8。数组成员按单个元素看：char a[3] 只占 3 个字节、对齐值仍是 1，后接 int 时只填 1 个字节。</div>
+<div class="sec">例题</div>
+<div class="ex">
+<div class="ex-title">例 1 · 结构体偏移与总大小（C 程序 offsetof 实测）</div>
+<div class="step">struct Node { char x; int y; short z; char w; }，求各成员偏移量与 sizeof；若成员可任意重排，最小 sizeof 是多少？</div>
+<div class="step">逐个放：x 落 0；y 要求 4 的倍数，填 3 后落 <b>4</b>，占 4～7；z 是 short，要求 2 的倍数，落 <b>8</b>，占 8～9；w 落 <b>10</b>。已用 11 字节，结构体对齐值为 4（int 最大），尾填充 1 → sizeof = <b>12</b>。</div>
+<div class="step">重排为 { int y; short z; char x; char w; }：y 占 0～3，z 落 4，x 落 6，w 落 7，正好 8 字节、无任何填充 → 最小 sizeof = <b>8</b>。</div>
+<div class="step">偏移 0 / 4 / 8 / 10 与两个 sizeof 已用 gcc 的 offsetof / sizeof 逐项实测一致。</div>
+</div>
+<div class="ex">
+<div class="ex-title">例 2 · 按字节读回一个数</div>
+<div class="step">小端机内存地址 200～203 依次存放 78、56、34、12（十六进制），把这 4 个字节作为一个 int 读出，其值是（　）。</div>
+<div class="step">小端＝低地址放低字节：地址 200 的 78 是最低字节，203 的 12 是最高字节，自高到低拼得 <b>0x12345678</b>。</div>
+<div class="step">若同一串字节出现在大端机上，低地址字节即最高字节，读出的是 0x78563412——同一片内存，两台机器读出两个数，这正是跨机传二进制数据要先约定字节序的原因。</div>
+</div>
+<div class="keng">
+<div class="krow">把大小端说成「位序颠倒」：颠倒的是字节在地址上的次序，字节内部 8 位不动。</div>
+<div class="krow">算 sizeof 只加成员大小：S1 成员共 6 字节，实际 12——内部填充与尾填充都要算进去。</div>
+<div class="krow">漏掉尾填充：成员末尾停在 9 字节就报 9，对齐值是 4 时必须向上圆到 12；数组里下一个元素才对得齐。</div>
+<div class="krow">以为填充只发生在成员之间：char 后接 double 填 7、末尾 int 后填 4，两处都可能出现。</div>
+<div class="krow">联合体判端时把 c[0] 当最高字节：c[0] 对应最低地址，小端机上它恰是最低字节 0x78。</div>
+<div class="krow">重排成员只按大小降序背口诀却不复核尾长：排完仍要按对齐值圆整总大小（本例恰满 8，纯属放得齐）。</div>
+</div>
+</div></div>
+<!-- co-32｜CO 第3章 存储系统｜真题依据：2011, 2012, 2013, 2015, 2019, 2022 -->
+<div class="item co" id="co-32"><div class="ttl">5. 外部存储器 <span class="stars">★★★★☆</span> · 近6年×1</div><div class="bd">
+<p>主存之外的存储器只看三家：磁盘、闪存、由磁盘组成的 RAID。本卡只讲存储器本身——结构、地址怎么编、性能参数怎么算、坏了怎么办；给定一批盘块请求先服务谁（磁盘调度算法）是 OS 侧 os-6 / os-7 的口径，本卡不讲；光盘已删除出考纲，不收。</p>
+<div class="sec">磁盘：跟着一次定位走完结构与地址</div>
+<div class="step">一张盘片双面涂磁层，两个面各是一个<b>记录面</b>，每个记录面上有一圈圈同心<b>磁道</b>，每条磁道又切成若干<b>扇区</b>，扇区是磁盘读写的最小单位（常为 512 B 或 4 KB）。多张盘片同轴叠放，所有记录面上半径相同的磁道合称一个<b>柱面</b>。</div>
+<div class="step">定位一个扇区走三步：磁头组先整体移动到目标<b>柱面</b>（各记录面同时到位，所以地址里写柱面号而不是磁道号）→ 再选通目标<b>盘面</b>对应的磁头 → 盘片转起来，等目标<b>扇区</b>转到磁头下方。</div>
+<div class="step">于是磁盘地址就是三段：<b>柱面号 ＋ 盘面号 ＋ 扇区号</b>（有的编址把盘面号排在前，字段构成不变）。</div>
+<div class="step">算一本账：某磁盘组 10 个记录面、每面 1000 条磁道、每道 100 个扇区、每扇区 512 B。总容量 = 10 × 1000 × 100 × 512 = <b>512,000,000 B</b>（约 512 MB 按 10<sup>6</sup> 计，约 488 MiB）。</div>
+<div class="step">地址位数按每段的取值个数向上取整：柱面 1000 个需 10 位（2<sup>10</sup> = 1024 才够），盘面 10 个需 4 位，扇区 100 个需 7 位，地址共 <b>21 位</b>。</div>
+<div class="sec">磁盘性能参数：存取时间拆成三段（设备本身口径）</div>
+<div class="step">承接上面的定位过程，读一个扇区的时间天然分三段：磁头移到柱面的<b>寻道时间</b>、盘面转半圈等扇区到来的<b>旋转延迟</b>、扇区从磁头下通过的<b>传输时间</b>。题目给出平均寻道时间时直接取用，那是设备参数，不是调度算出来的。</div>
+<div class="step">代入具体数：转速 7200 转/分 → 每转 60 ÷ 7200 s ≈ 8.33 ms，平均旋转延迟取半转 ≈ <b>4.17 ms</b>。每磁道 64 个扇区，则数据传输率 = 64 × 512 B × 120 转/s = <b>3,932,160 B/s</b>（约 3.93 MB/s），传一个扇区用 8.33 ÷ 64 ≈ 0.13 ms。</div>
+<div class="step">平均寻道时间给 5 ms 时，读一个扇区的平均存取时间 = 5 + 4.17 + 0.13 ≈ <b>9.30 ms</b>——三段里旋转与寻道是大头，传输时间常可忽略，但题目问到就得算全。</div>
+<div class="sec">闪存：按页读写、按块擦除</div>
+<div class="step">闪存（NAND）内部按<b>页</b>组织（常为 4 KB），若干页（此例 64 页）合成一个<b>块</b>（256 KB）。读、写都以页为单位进行，唯独擦除只能整块来。</div>
+<div class="step">跟着改一个数走：某页要改写，但闪存的存储单元只能由 1 写成 0、不能原地把 0 改回 1，所以不能就地覆盖。实际过程是把整块 64 页先读出暂存 → 整块擦除 → 把修改后的 64 页重新写回——改 4 KB 的一个页，背后动的是 256 KB 的整块，粒度相差 <b>64 倍</b>。</div>
+<div class="step">每个块能承受的擦除次数有限（反复擦写会磨损），所以固态盘要靠<b>磨损均衡</b>把擦写摊到各个块上，并预留一部分空间做替换；这也是闪存与磁盘最本质的差别：磁盘可任意次原地重写，闪存先擦后写、擦写有寿命。</div>
+<div class="sec">RAID：同一批盘，四种搭法</div>
+<div class="step">拿 6 块 1 TB 盘各搭一遍，可用容量与坏盘后果当场见分晓：</div>
+<div class="frow"><div class="flabel">RAID 0 条带</div><div>数据切块轮流放 6 块盘，可用 <b>6 TB</b>、读写可并行最快；无任何冗余，坏任意 1 块，条带断裂、<b>全部数据丢失</b>。</div></div>
+<div class="frow"><div class="flabel">RAID 1 镜像</div><div>两两成组、同组写同一份数据，3 组共可用 <b>3 TB</b>（利用率 50%）；每组坏 1 块可由镜像恢复，同组 2 块全坏才丢那一组的数据。</div></div>
+<div class="frow"><div class="flabel">RAID 5 分布校验</div><div>数据条带化，奇偶校验块轮流分布在各盘（不是独占一块校验盘），可用 (6 − 1) × 1 = <b>5 TB</b>；坏任意 1 块可由其余盘的校验重构，同时坏 2 块则丢失。</div></div>
+<div class="frow"><div class="flabel">RAID 10 镜像＋条带</div><div>先两两镜像成 3 组、再在组间条带，可用 <b>3 TB</b>；至少坏 1 块不丢数据，最多可坏 3 块（每组各坏 1 块），兼得镜像的可靠与条带的速度。</div></div>
+<div class="step">小例复核口径：4 块 2 TB 盘做 RAID 5，可用 (4 − 1) × 2 = <b>6 TB</b>——公式里的「−1」是校验等效占用一块盘的容量，与盘数无关地恒减一块。</div>
+<div class="sec">例题</div>
+<div class="ex">
+<div class="ex-title">例 1 · 存取时间三段合成</div>
+<div class="step">某磁盘转速 7200 转/分，每磁道 64 个扇区，每扇区 512 B，平均寻道时间 5 ms。读一个扇区的平均存取时间约为（　）。</div>
+<div class="step">A. 5.13 ms　B. 9.30 ms　C. 13.33 ms　D. 17.50 ms</div>
+<div class="step">逐段算：每转 8.33 ms，平均旋转延迟取半转 4.17 ms；传输一个扇区 8.33 ÷ 64 ≈ 0.13 ms；合计 5 + 4.17 + 0.13 ≈ <b>9.30 ms</b>。A 只加了传输段漏了旋转，C 误把整转当旋转延迟，D 三段之外又重复计入寻道。</div>
+<div class="step">答案 <b>B</b>（三段数值已用程序复算）。</div>
+</div>
+<div class="ex">
+<div class="ex-title">例 2 · RAID 选型与容量</div>
+<div class="step">6 块 1 TB 磁盘组建阵列，要求可用容量尽量大且能容忍任意 1 块盘损坏，应选（　），可用容量为（　）。</div>
+<div class="step">A. RAID 0，6 TB　B. RAID 1，3 TB　C. RAID 5，5 TB　D. RAID 10，3 TB</div>
+<div class="step">逐项判：A 容量最大但坏 1 块全丢，不满足容忍要求；B、D 能容忍坏盘但只用一半容量；C 可用 (6 − 1) × 1 = 5 TB 且坏任意 1 块可重构，两条都满足。</div>
+<div class="step">答案 <b>C</b>（各级容量已用程序复算）。</div>
+</div>
+<div class="keng">
+<div class="krow">盘片数当记录面数：地址与容量算的是记录面，盘片双面记录时面数是盘片数的 2 倍（本卡例题直接给面数，按给的数算）。</div>
+<div class="krow">平均旋转延迟取一整转：等扇区到来平均只等半转，7200 转/分是 4.17 ms 不是 8.33 ms。</div>
+<div class="krow">说 RAID 5 有一块专门的校验盘：校验块是轮流分布在各盘的，只是容量上等效占一块；独占校验盘是 RAID 3 / 4 的做法。</div>
+<div class="krow">RAID 0 的「0」记成零故障：恰恰是零冗余，坏一块盘整个阵列的数据都读不回来。</div>
+<div class="krow">把闪存当磁盘原地改写：闪存必须先整块擦除再写，擦除按块不按页，且次数有限、要磨损均衡。</div>
+<div class="krow">在本卡里套磁盘调度算法：存取时间三段是设备参数口径，题目给平均寻道时间就直接用，先服务哪个请求是 OS 调度卡的事。</div>
+</div>
+</div></div>
+<!-- os-26｜OS 第5章 输入输出管理｜真题依据：I/O设备与控制方式：2010, 2012, 2017, 2019, 2022, 2023, 2024, 2026；设备独立性软件：2009, 2011, 2012, 2013, 2020, 2026 -->
+<div class="item os" id="os-26"><div class="ttl">6. I/O 设备与控制方式（OS 侧） <span class="stars">★★★★★</span> · 近6年×4</div><div class="bd">
+<p>定位：OS 第 5 章输入输出管理。合辑 co-11／co-20 讲的是计组口径——中断响应的硬件时序、DMA 怎样访存，那些本卡不重复；本卡只回答 OS 这一侧的问题：设备怎么分类、四种控制方式下 OS 如何组织一次 I/O、一次请求在 I/O 软件的各层之间怎样分工。第二节把 A1 点「设备独立性软件」并入本卡。</p>
+
+<div class="sec">一、I/O 设备与控制方式</div>
+<p>先摆一个场景：一台机器上同时挂着键盘、行式打印机和磁盘，三个进程分别要用它们。OS 管理设备的第一步，是先按三个维度认清每台设备是什么脾气——分类不是背表，每个维度都直接决定后面怎么管。</p>
+<div class="frow"><span class="flabel">按传输速率</span><span>键盘、鼠标是<b>低速</b>设备（每秒几个到几百字节）；行式打印机是<b>中速</b>设备；磁盘是<b>高速</b>设备（每秒兆字节量级）。考题只认典型设备所属的量级，不抠精确边界。</span></div>
+<div class="frow"><span class="flabel">按交换单位</span><span>磁盘是<b>块设备</b>：数据以固定大小的数据块为单位交换，块可按地址寻址、随机存取。键盘、打印机是<b>字符设备</b>：数据像水流一样逐字符进出，不能寻址，来了就得及时接，所以天然适合中断方式。</span></div>
+<div class="frow"><span class="flabel">按共享属性</span><span>打印机是<b>独占设备</b>：一段时间内只能分给一个进程，否则两份作业的输出会交错成一团。磁盘是<b>共享设备</b>：多个进程交替访问同一盘面互不干扰。独占设备经 SPOOLing 可以改造成逻辑上可排队共享的虚拟设备（见《SPOOLing 假脱机技术》卡）。</span></div>
+<p>认清设备之后，OS 要决定「一次传送由谁盯着」。同样是读入数据，四种控制方式下 CPU 和进程的状态完全不同：</p>
+<div class="frow"><span class="flabel">程序查询</span><span>驱动发出读命令后，CPU 反复读控制器的状态寄存器问「好了没」，进程<b>忙等</b>不让出 CPU，设备没就绪就一直空转。CPU 与设备严格串行，只适合极简单、慢速的场合。</span></div>
+<div class="frow"><span class="flabel">中断驱动</span><span>进程发出请求后就<b>阻塞</b>、让出 CPU 去跑别的进程；设备传完一个数据单位就发一次中断，中断处理把它接走、再唤醒或继续喂下一个单位。键盘敲一个字中断一次，正合适；但单位一多，中断就频繁。</span></div>
+<div class="frow"><span class="flabel">DMA</span><span>进程要整块读盘时，驱动把内存首址、字节数写进 DMA 控制器就阻塞等待；DMA 控制器自己管着把整批数据在内存与设备之间搬完，<b>全部完成才中断一次</b>。为高速块设备而生（搬运细节与访存计算在计组卡里，本卡只记 OS 的分工）。</span></div>
+<div class="frow"><span class="flabel">通道</span><span>设备很多的大型系统里，CPU 把一串 I/O 操作写成存放在内存中的<b>通道程序</b>，只发一条启动指令把首址交给通道；通道是一个独立的 I/O 处理机，自己取通道指令执行、管着一组控制器和设备，整串活干完才向 CPU 发一次中断。</span></div>
+<p class="note">通道再分三种（了解即可）：字节多路通道轮流为多台低速设备按字节交叉服务；数组选择通道独占通路伺候一台高速设备、一批传完才换人；数组多路通道让多台高速设备按数据块交叉传送。</p>
+<p>OS 眼中的设备从来不是设备本体。进程要读盘，OS 碰的全是<b>设备控制器</b>的寄存器：往控制寄存器写命令、从状态寄存器读「忙／就绪／出错」、从数据寄存器取数据——机械与电气的脏活被控制器挡在下面，一台控制器还可以挂多台同类设备。再往上，<b>通道</b>在 OS 眼中是一个能代管一串 I/O 的下级处理机：CPU 只下「启动」，通道负责盯着它那组控制器把活干完。一条链记清：CPU — 通道 — 控制器 — 设备，OS 的命令逐级向下、完成报告逐级向上。</p>
+<div class="ex">
+<div class="ex-title">例题 1（真题风格，程序验算）</div>
+<div class="step">某系统有键盘、行式打印机、磁盘各一台。① 给三台设备分别按传输速率、交换单位、共享属性分类；② 进程要从磁盘一次读入 8 个数据块，按「每传完一个数据单位就打扰 CPU 一次」的模型，比较中断方式与 DMA 方式打扰 CPU 的次数；③ 磁盘这次读应选哪种控制方式？</div>
+<div class="step"><b>推导 ①：</b>键盘——低速、字符设备；行式打印机——中速、字符设备、独占设备；磁盘——高速、块设备、共享设备。三个维度互相独立，一台设备要在每个维度上各落一个格。</div>
+<div class="step"><b>推导 ②：</b>中断方式每传 1 个块中断 1 次，8 个块共 <b>8 次</b>；DMA 方式只有启动时 CPU 设置 1 次、整批完成中断 1 次，共 <b>2 次</b>。作对照：程序查询每块至少轮询 1 次（未就绪的空转另算），下限也是 8 次；通道与 DMA 同为 2 次，且能同时管多台设备。单位数涨到 800 时，查询／中断涨到 800 次，DMA／通道仍是 2 次——差距随批量放大。</div>
+<div class="step"><b>推导 ③：</b>磁盘是高速块设备、批量大，选 <b>DMA</b>：整批搬运、只在头尾麻烦 CPU。若误用中断方式，8 次中断还只是小数目，大批量读盘时 CPU 会被中断淹没。</div>
+<div class="step"><b>结论：分类抓「典型设备落格」，选型抓「批量越大、越要选打扰少的」。</b></div>
+</div>
+
+<div class="sec">二、设备独立性软件（I/O 软件层次）</div>
+<p>一次 I/O 请求要穿过四层软件，记住方向：<b>请求自上而下提交，完成自下而上唤醒</b>。</p>
+<p>用户进程 → <b>用户层 I/O 软件</b> → <b>设备独立性软件</b> → <b>设备驱动程序</b> → <b>中断处理程序</b> → 硬件（控制器／设备）</p>
+<div class="frow"><span class="flabel">用户层</span><span>离进程最近：提供库函数，把请求先加工成标准格式——如 <span class="small">printf</span> 先把整数、浮点数拼成字符串，才发出系统调用。SPOOLing 的排队守护进程也住在这一层。</span></div>
+<div class="frow"><span class="flabel">独立性层</span><span>本节主角，对上给出<b>统一接口</b>：不管底下是磁盘还是打印机，进程用的都是同一套读／写调用，硬件细节被屏蔽。所有设备共有的公共活也都在这层干：<b>逻辑设备名到物理设备的映射、独占设备的分配与回收、公共缓冲管理、差错处理与报告、按权限做设备保护</b>。</span></div>
+<div class="frow"><span class="flabel">驱动层</span><span>与硬件直接绑定，<b>一类设备一个驱动程序</b>（同类不同型号也可各有驱动）：把上层抽象的「读第 k 块」翻译成往这台控制器的哪个寄存器写什么命令，并负责设置、检查寄存器状态。它只听独立性层的抽象命令，不负责分配和命名。</span></div>
+<div class="frow"><span class="flabel">中断处理层</span><span>离硬件最近的软件层：中断一到，先保存被中断进程的现场、辨认中断源，把最急的处理做完，再<b>唤醒</b>等待这次 I/O 的进程；中断的细节被它挡住，上层软件感觉不到。</span></div>
+<p>映射具体怎么走一遍：进程用逻辑名 <b>printer1</b> 发起打印，独立性层查<b>逻辑设备表</b>，得到实际是哪台物理打印机、该用哪个驱动；再查设备状态，空闲就把这台独占打印机<b>分配</b>给该进程（正忙则让进程排队等待），随后把请求交给对应驱动去操作控制器；打印完成、逐层返回后，独立性层再<b>回收</b>设备给下一个进程。正因为映射在独立性层，临时把 printer1 改指另一台同型号打印机，进程的代码一个字都不用改——这就是「设备独立性」四个字的落点。</p>
+<div class="ex">
+<div class="ex-title">例题 2（真题风格，程序验算）</div>
+<div class="step">下列工作各属哪一层？I. <span class="small">printf</span> 把待输出的整数格式化为字符串；II. 把逻辑设备名 printer1 映射到 2 号物理打印机；III. 为打印请求分配公共缓冲区并在出错时向上报告；IV. 向打印机控制器的寄存器写入启动命令；V. 中断到达时保存现场并唤醒等待打印的进程。</div>
+<div class="step"><b>推导：</b>I 发生在进程调用库函数、还没进内核的阶段 → <b>用户层</b>。II、III 都是所有设备共有的公共事务、与具体硬件无关 → <b>设备独立性层</b>（映射、缓冲、差错正是独立性层的三件标志性工作）。IV 直接摆弄寄存器、话里全是这台设备的细节 → <b>设备驱动程序</b>。V 是中断现场的第一手处理 → <b>中断处理程序</b>。</div>
+<div class="step"><b>结论：I 用户层；II、III 设备独立性层；IV 驱动层；V 中断处理层。判题口诀：沾寄存器的是驱动，管公共事务的是独立性层。</b></div>
+</div>
+<div class="keng"><b>坑：</b>
+<div class="krow">① 查询方式下进程是<b>忙等</b>、不让出 CPU；中断方式下才是发完请求就<b>阻塞</b>。把两者状态说反是本节头号坑。</div>
+<div class="krow">② DMA 不是「全程不用 CPU」：启动时设参数、完成时处理中断都要 CPU，它省的是<b>搬运途中</b>的干预。</div>
+<div class="krow">③ 通道不是一种设备、也不是控制器：它是能执行通道程序的 I/O 处理机，站在控制器之上。</div>
+<div class="krow">④ 块设备／字符设备看的是<b>交换单位</b>不是快慢：打印机再快也是字符设备，磁盘的立身之本是「以块为单位、可寻址」。</div>
+<div class="krow">⑤ 设备独立性靠的是独立性层的统一接口，不是驱动通用——恰恰相反，驱动是<b>每类设备专用</b>的，正因为驱动各异，才需要独立性层来屏蔽差异。</div>
+<div class="krow">⑥ 缓冲、差错、分配三件公共事都在<b>设备独立性层</b>：别把设备分配安到驱动头上，驱动只负责把分到手的设备操作起来（缓冲的单／双／池细节见《缓冲管理》卡）。</div>
+<div class="krow">⑦ 层次顺序别倒：自上而下是用户层 → 独立性层 → 驱动层 → 中断处理层；中断处理层在<b>最底</b>，不是最上。</div>
+</div>
+<p class="small">来源：王道《操作系统》第 5 章输入输出管理（设备分类与控制方式、I/O 软件层次与设备独立性）。真题依据：I/O 设备与控制方式 A 类正考 2010、2012、2017、2019、2022、2023、2024、2026；设备独立性软件 A 类正考 2009、2011、2012、2013、2020、2026（两点合并一卡两节）。例题经脚本状态／归属断言验算。与 co-11／co-20 分工：硬件中断时序、DMA 访存计算不在本卡。</p>
+</div></div>
+<!-- net-29｜NET 第4章 网络层｜真题依据：2010, 2020, 2022, 2024 -->
+<div class="item net" id="net-29"><div class="ttl">7. 网络层的功能 <span class="stars">★★★☆☆</span> · 近6年×2</div><div class="bd">
+<p>定位：NET 第 4 章网络层的总纲。后面各卡分别细讲 IP、子网、分片、路由协议，本卡先立框架：网络层一共管哪几件事、每件事由谁做。用一个分组的旅程贯穿全卡：主机 A（以太网，10.0.1.2）要把一个 IP 分组送给另一个以太网里的主机 B（10.0.3.9），途中依次经过路由器 R1、一段广域网 PPP 链路、路由器 R2。</p>
+
+<div class="sec">转发 vs 路由选择：查表与建表是两件事</div>
+<p>分组到达 R1 时，R1 做的事只有一件：看分组的目的 IP，查本机的<b>转发表</b>，决定从哪个端口送出去——这叫<b>转发</b>。它逐分组发生、只看自己手里这张表、只管眼前这一步。那张表从哪来？平时没有分组要送的时候，路由器之间互相交换路由信息，运行路由算法（如 RIP、OSPF，细则见《RIP 与 OSPF 对比》卡）算出到各个网络该走哪条路，生成并更新转发表——这叫<b>路由选择</b>。一句话记牢：<b>路由选择负责建表（控制层面，面向全网），转发负责查表（数据层面，面向单个分组）</b>；考题最爱把两者的定义对调。</p>
+
+<div class="sec">网络互联：把异构网络缝成一个网络</div>
+<p>这趟旅程的三段路并不相同：两段以太网用的是一种帧格式，中间 PPP 链路是另一种，地址格式、最大帧长也各不一样。分组每到一台路由器，就被<b>剥掉旧的帧头、换上当前链路的新帧头</b>再送出，帧头里的 MAC 地址只在当前这一段链路内有效；而 IP 首部是端到端的：没有 NAT 时，源 IP 与目的 IP 全程不变，只有 TTL 每经一台路由器减 1。网络层的核心本事，就是用统一的 IP 协议把这些物理上异构的网络屏蔽成<b>一个逻辑网络</b>；承担互联的设备是<b>路由器</b>——中继器只放大信号（物理层），网桥与二层交换机只认 MAC、在同种局域网内转发（数据链路层），都缝不了异构网络。途经小 MTU 链路时的分片处理见《IP 数据报分片》卡。</p>
+
+<div class="sec">拥塞控制在网络层的定位：辅助位，不是主角</div>
+<p>假设旅程中 PPP 链路突然被大量分组挤满、路由器队列溢出，这就是<b>拥塞</b>：整个网络的负载超过了它的处理能力，是全局问题（区别于流量控制——那是收发双方点对点的事）。定位要记准：根据拥塞反馈真正调小发送速率的主体在<b>传输层</b>，即 TCP 的慢开始与拥塞避免（见《TCP 拥塞控制四阶段》卡）；网络层站在<b>辅助位</b>：路由选择时绕开拥塞热点，路由器通过队列调度、丢弃或标记分组，把「堵了」的信号递给端系统。所以「拥塞控制完全由网络层负责」和「拥塞与网络层无关」两种说法都错。</p>
+
+<div class="sec">SDN：把「建表」从路由器里搬出来</div>
+<p>传统网络里，转发和路由选择挤在同一台路由器中。SDN（软件定义网络）把两者拆开：<b>数据平面</b>只剩下交换机，按<b>流表</b>做匹配—转发，相当于纯粹的转发员；<b>控制平面</b>是一个逻辑集中的<b>控制器</b>，掌握全网视图，集中算好流表再下发给各交换机。两类接口别记反：控制器与交换机之间是<b>南向接口</b>（典型协议 OpenFlow），管的是「向下发流表」；上层网络应用与控制器之间是<b>北向接口</b>（一组 API），管的是「向上供应用调用」。</p>
+
+<div class="ex">
+<div class="ex-title">例题（真题风格，程序验算）</div>
+<div class="step">沿上面的旅程回答：① 分组离开 A 时 TTL＝64，到达 B 时 TTL 是多少？② 下列说法正确的有哪几项？I. R1 查转发表把分组送往 R2 方向的端口，属于转发；II. 各路由器运行 OSPF 更新转发表，属于路由选择；III. SDN 控制器通过北向接口向交换机下发流表；IV. 拥塞控制完全由网络层负责，传输层不参与。</div>
+<div class="step"><b>推导 ①：</b>TTL 只在被<b>路由器转发</b>时减 1，主机发出和二层设备转发都不减。这趟旅程只有 R1、R2 两台路由器：64 → 经 R1 得 63 → 经 R2 得 <b>62</b>。</div>
+<div class="step"><b>推导 ②：</b>I ✓——查现成的表、送单个分组，正是转发的定义。II ✓——运行路由协议算路建表，正是路由选择。III ✗——向交换机下发流表走的是<b>南向</b>接口，北向接口朝上服务应用，方向反了。IV ✗——拥塞控制的主体是传输层的 TCP，网络层只是辅助，「完全由网络层负责」错。</div>
+<div class="step"><b>结论：① 62；② 只有 I、II 正确。</b></div>
+</div>
+<div class="keng"><b>坑：</b>
+<div class="krow">① 转发≠路由选择：一个查表送分组、一个算路建表，定义对调是本点头号出题法。</div>
+<div class="krow">② 逐跳变的只有帧头（MAC 地址）；IP 源／目的不变的前提是<b>无 NAT</b>，TTL 则每经一台路由器必减 1——经交换机不减，它根本不看 IP 首部。</div>
+<div class="krow">③ 能互联异构网络的只有<b>路由器</b>：中继器／集线器在物理层，网桥／交换机在链路层，层数不够就缝不了。</div>
+<div class="krow">④ SDN 接口方向：南向朝下对交换机（OpenFlow），北向朝上对应用（API）——按「向下／向上」的画面记，别按字母记。</div>
+<div class="krow">⑤ 拥塞控制（全网、主体在传输层、网络层辅助）≠流量控制（点对点、收发双方之间），两个概念的范围和楼层都不同。</div>
+</div>
+<p class="small">来源：王道《计算机网络》第 4 章网络层（网络层功能、转发与路由选择、网络互联、SDN）。真题依据：网络层的功能 A 类正考 2010、2020、2022、2024，近六年命中 2 年。例题经脚本逐跳模拟与归属断言验算。本卡为薄卡，只立总纲：IP／分片／路由协议／TCP 拥塞的细节在各自专卡。</p>
+</div></div>
+</body>
+</html>
