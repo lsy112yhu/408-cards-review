@@ -1,0 +1,244 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><title>408 卡片例题化修订稿（14 张）</title>
+<style>
+@page { size: A4; margin: 13mm 12mm 14mm 12mm;
+  @bottom-center { content: "408 复习卡片 · 完整合辑 v11　—　" counter(page) " / " counter(pages); font-size: 8pt; color: #888; } }
+* { box-sizing: border-box; }
+body { font-family: "Noto Sans CJK SC", "Noto Sans CJK JP", sans-serif; font-size: 10pt; line-height: 1.5; color: #1a202c; margin: 0; }
+.cover { text-align: center; padding-top: 34mm; }
+.cover .brand { color: #718096; font-size: 11pt; letter-spacing: 4px; }
+.cover h1 { font-size: 30pt; margin: 8mm 0 3mm 0; color: #1a202c; }
+.cover h2 { font-size: 15pt; font-weight: normal; color: #4a5568; margin: 0 0 10mm 0; }
+.chips { margin: 6mm auto; }
+.chip { display: inline-block; border-radius: 10px; color: #fff; padding: 2.2mm 5mm; margin: 0 1.5mm; font-size: 10.5pt; }
+.cover .note { width: 82%; margin: 10mm auto 0 auto; text-align: left; background: #fffaf0; border: 1px solid #ecc94b; border-radius: 6px; padding: 4mm 5mm; font-size: 9.5pt; color: #744210; }
+.section { page-break-before: always; }
+.sec-banner { border-radius: 6px; color: #fff; padding: 3.2mm 5mm; font-size: 16pt; font-weight: bold; margin-bottom: 4mm; }
+.sec-banner small { font-size: 10.5pt; font-weight: normal; opacity: .85; }
+.item { border: 1.6px solid; border-radius: 6px; margin-bottom: 3.6mm; break-inside: avoid; page-break-inside: avoid; overflow: hidden; }
+.item .ttl { color: #fff; font-weight: bold; font-size: 11pt; padding: 1.8mm 4mm; }
+.ttl .stars { font-weight: normal; font-size: 9.5pt; letter-spacing: 1.5px; margin-left: 3mm; opacity: .92; }
+.item .bd { padding: 2.6mm 4mm 3mm 4mm; }
+.ds { border-color: #2b6cb0; } .ds .ttl { background: #2b6cb0; } .dsb { background: #2b6cb0; }
+.co { border-color: #dd6b20; } .co .ttl { background: #dd6b20; } .cob { background: #dd6b20; }
+.os { border-color: #2f855a; } .os .ttl { background: #2f855a; } .osb { background: #2f855a; }
+.net { border-color: #c53030; } .net .ttl { background: #c53030; } .netb { background: #c53030; }
+table { border-collapse: collapse; width: 100%; margin: 1mm 0; font-size: 9.8pt; }
+th, td { border: 1px solid #cbd5e0; padding: 1.3mm 2.4mm; text-align: left; vertical-align: top; }
+th { background: #ebf4fa; font-weight: bold; }
+.cmplabel td:first-child, .cmplabel th:first-child { white-space: nowrap; min-width: 3.4em; }
+.co th { background: #fef3e8; } .os th { background: #e9f7ef; } .net th { background: #fdeeee; }
+ul, ol { margin: 1mm 0 1mm 0; padding-left: 6mm; }
+li { margin: 0.6mm 0; }
+.keng { background: #fff5f5; border-left: 3.5px solid #c53030; border-radius: 3px; padding: 1.8mm 3mm; margin-top: 2mm; font-size: 9.8pt; }
+.keng b { color: #c53030; }
+.ji { background: #fffaf0; border-left: 3.5px solid #d69e2e; border-radius: 3px; padding: 1.8mm 3mm; margin-top: 2mm; font-size: 9.8pt; }
+.ji b { color: #b7791f; }
+.f { background: #f7fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 1.8mm 3mm; margin: 1.2mm 0; }
+.small { font-size: 9pt; color: #718096; }
+b.k { color: #2b6cb0; }
+sup, sub { font-size: 72%; }
+.steps { list-style: none; padding-left: 0; }
+.steps li { padding-left: 7mm; position: relative; margin: 1.1mm 0; }
+.steps .n { position: absolute; left: 0; top: 0.2mm; width: 5.2mm; height: 5.2mm; border-radius: 50%; color: #fff; text-align: center; font-size: 8.6pt; line-height: 5.2mm; font-weight: bold; }
+.trans { list-style: none; padding-left: 0; }
+.trans li { margin: 1mm 0; }
+.arrow { color: #a0aec0; font-weight: bold; }
+.tag { display: inline-block; background: #edf2f7; border-radius: 3px; padding: 0 1.8mm; font-weight: bold; }
+
+
+.toc-sec { margin-bottom: 4mm; break-inside: avoid; }
+.toc-sec h3 { font-size: 12pt; margin: 0 0 1.5mm 0; padding-bottom: 1mm; border-bottom: 2px solid #4a5568; }
+.toc-sec.ds h3 { color: #2b6cb0; border-color: #2b6cb0; }
+.toc-sec.co h3 { color: #dd6b20; border-color: #dd6b20; }
+.toc-sec.os h3 { color: #2f855a; border-color: #2f855a; }
+.toc-sec.net h3 { color: #c53030; border-color: #c53030; }
+.toc-sec a { display: block; text-decoration: none; color: #1a202c; font-size: 10pt; padding: 0.7mm 0; }
+.toc-sec a::after { content: leader('.') target-counter(attr(href), page); color: #718096; }
+.cover { text-align: center; padding-top: 55mm; }
+.cover .brand { font-size: 11pt; color: #4a5568; letter-spacing: 2px; }
+.cover h1 { font-size: 30pt; margin: 6mm 0 3mm 0; }
+.cover .sub { font-size: 13pt; color: #4a5568; }
+.cover .cnt { margin-top: 10mm; font-size: 11pt; color: #2d3748; }
+.subj-start { break-before: page; }
+.frac{display:inline-block;vertical-align:-0.45em;text-align:center;margin:0 .08em;font-size:.92em}
+.frac>.num{display:block;border-bottom:.7pt solid currentColor;padding:0 .18em;line-height:1.25}
+.frac>.den{display:block;padding:0 .18em;line-height:1.25}
+
+/* v8.2.1 图呈现尺寸（按卡片内容区宽度百分比，高度按 viewBox 比例自动） */
+svg.fig-60 { width: 60%; height: auto; }
+svg.fig-65 { width: 65%; height: auto; }
+svg.fig-72 { width: 72%; height: auto; }
+svg.fig-80 { width: 80%; height: auto; }
+svg.fig-85 { width: 85%; height: auto; }
+</style>
+</head><body>
+<h1>408 卡片「例题化」修订稿 · 共 14 张</h1><p>修订原则：抽象知识点改由具体例子承载——用例子讲清操作过程，原规则删除或折进例子里。每张卡的标题、星级与原有真题保持不变。涉及的数值例子均已由整理者用程序独立验算。</p>
+<div class="item co" id="co-21"><div class="ttl">5. 浮点数加减运算 · 五步法 <span class="stars">★☆☆☆☆</span></div><div class="bd">
+<p style="margin:1mm 0">五步法光背步骤没用，跟着一个例子走一遍就会了。设阶码、尾数均用补码（尾数双符号位、6 位数值位），算 X + Y，其中 X = 2<sup>3</sup> × 0.1010（= 5），Y = 2<sup>4</sup> × 0.1101（= 13）。</p>
+<ol class="steps">
+<li><span class="n cob">1</span><b>对阶</b>（小阶向大阶看齐，阶差几位、尾数右移几位）：X 的阶 3 &lt; Y 的阶 4，差 1 → [X]<sub>尾补</sub> = 00.101000 算术右移 1 位，得 00.010100，阶变为 4。移出的位是 0，本次不丢精度。</li>
+<li><span class="n cob">2</span><b>尾数加减</b>（按补码相加）：00.110100 + 00.010100 = <b>01.001000</b>。双符号位出现 01，是尾数溢出的形态——先别慌，这不是运算溢出，看第 3 步。</li>
+<li><span class="n cob">3</span><b>规格化</b>：补码规格化形式是正数 00.1×××××、负数 11.0×××××。现在是 01.×××，尾数溢出 → <b>右规</b>：尾数右移 1 位得 00.100100，阶码 4 + 1 = 5。若结果形如 00.0××× 或 11.1×××（首数值位与符号位相同），则反过来<b>左规</b>：尾数每左移 1 位、阶码减 1，直到达标。</li>
+<li><span class="n cob">4</span><b>舍入</b>：对阶、右规时被移掉的位要处理。看一小段：尾数 00.100100 对阶右移 3 位，移出位恰为 100（正好半个单位）→ 按「0 舍 1 入」末位进 1，得 00.000101；若右移 4 位，移出位为 0100（不足半个单位）→ 直接舍去，得 00.000010。本例对阶、右规都没移出有效位，无舍入。（注：这是教学简化舍入；IEEE 754 默认是就近舍入、遇半取偶，不同。）</li>
+<li><span class="n cob">5</span><b>溢出判断</b>（只看阶码）：阶码 5 在可表示范围内 → 无溢出。阶码上溢才是真溢出；阶码下溢按机器零处理（408 教学简化口径；IEEE 754 实际用次正规数平缓下溢，不会直接变 0）。</li>
+</ol>
+<p><b>结果</b>：2<sup>5</sup> × 0.100100 = 18。十进制验算：5 + 13 = 18 ✓。</p>
+<div class="f"><b>真题 · 2009 年第 13 题</b>：浮点数加减运算包括对阶、尾数运算、规格化、舍入和判溢出等步骤。设浮点数的阶码和尾数均采用补码表示，位数分别为 5 位和 7 位（均含 2 位符号位）。若 X = 2<sup>7</sup> × 29/32，Y = 2<sup>5</sup> × 5/8，则用浮点加法计算 X + Y 的最终结果是（　）。A. 00111 1100010　B. 00111 0100010　C. 01000 0010001　D. 发生溢出<br><b>解</b>：对阶（小阶向大阶看齐）：Y 尾数右移 2 位；尾数相加得 01,00010，符号位 01 需右规：尾数 00,10001、阶码 + 1 变为 8。阶码数值位只有 3 位、最大可表示 7，阶码 8 超出范围 → 判溢出 → D。（速算验证：X + Y = 2<sup>7</sup> × (29/32 + 5/32) = 2<sup>8</sup> × 17/32，阶 8 同样超限。）</div>
+<div class="keng"><b>易错</b>：尾数溢出 ≠ 运算溢出——尾数溢出只需右规；只有阶码上溢才算溢出。尾数「双符号位判溢出」是定点数那套，别搬到浮点数上。</div>
+</div></div>
+<div class="item co" id="co-1"><div class="ttl">4. IEEE 754 浮点数【必背】 <span class="stars">★★★★★</span></div><div class="bd">
+<table class="cmplabel"><tr><th>类型</th><th>总位数</th><th>符号位</th><th>阶码</th><th>尾数</th><th>偏置值</th></tr>
+<tr><td>单精度 float</td><td>32 位</td><td>1 位</td><td>8 位</td><td>23 位</td><td>127</td></tr>
+<tr><td>双精度 double</td><td>64 位</td><td>1 位</td><td>11 位</td><td>52 位</td><td>1023</td></tr></table>
+<p>规格化尾数隐含最高位 1（即实际尾数是 1.×××，存的只是小数部分）。</p>
+<div class="f"><b>例（十进制 → 单精度）</b>：把 −18.625 写成 IEEE 754 单精度。四步：① 符号位：负数 → <b>1</b>。② 把数值写成 1.××× × 2<sup>e</sup> 形式：18.625 = 10010.101<sub>2</sub> = 1.0010101 × 2<sup>4</sup>，故 e = 4。③ 阶码 = e + 偏置 127 = 131 = <b>10000011</b>。④ 尾数存小数部分 0010101，后补 0 凑满 23 位：<b>00101010000000000000000</b>。拼起来：1 10000011 00101010000000000000000（十六进制 C1950000）。反过来读一个数也一样：先拆三段，阶码减 127 得真阶，尾数前面补回隐含的 1。</div>
+<div class="keng"><b>坑</b>：阶码全 0 或全 1 有特殊含义（0、无穷大、NaN 不是普通数）；尾数存的是去掉隐含 1 之后的小数部分，别把 1 也写进去占位。</div>
+</div></div>
+<div class="item co" id="co-3"><div class="ttl">2. 补码运算规则 <span class="stars">★★★★★</span></div><div class="bd">
+<p><b>求 [−X]<sub>补</sub></b>：[X]<sub>补</sub> 连同符号位取反加 1。</p>
+<p><b>溢出判断（双符号位法）</b>：00 正确（正）、11 正确（负）、01 正溢出、10 负溢出。如 +11 与 +13 用双符号位相加：001011 + 001101 = 011000，双符号位 01 → 正溢出（一眼可判，不用看数值位）。</p>
+<p><b>Booth 算法（补码一位乘）</b>：[X×Y]<sub>补</sub> 不能由 [X]<sub>补</sub> 与 [Y]<sub>补</sub> 直接相乘得到，要走部分积递推：看乘数相邻两位之差决定加 [X]<sub>补</sub>、加 [−X]<sub>补</sub> 还是加 0，再把（部分积， 乘数）整体算术右移一位；符号位全程参与运算。下面用定点整数完整走一遍（小数版机制相同，只是小数点位置不同）：</p>
+<div class="f"><b>例（Booth 全过程）</b>：X = −13（[X]<sub>补</sub> = 10011，[−X]<sub>补</sub> = 01101），Y = +11（[Y]<sub>补</sub> = 01011）。部分积 A 初值 00000，附加位 Q<sub>−1</sub> = 0；每步看（Q 最低位， Q<sub>−1</sub>）这一对：(1,0) 加 [−X]<sub>补</sub>，(0,1) 加 [X]<sub>补</sub>，(0,0)/(1,1) 加 0，随后（A, Q）算术右移。
+<table class="cmplabel"><tr><th>步</th><th>判断位</th><th>操作</th><th>右移后 A</th><th>右移后 Q</th><th>Q<sub>−1</sub></th></tr>
+<tr><td>1</td><td>(1, 0)</td><td>A += [−X]<sub>补</sub> → 01101</td><td>00110</td><td>10101</td><td>1</td></tr>
+<tr><td>2</td><td>(1, 1)</td><td>A += 0</td><td>00011</td><td>01010</td><td>1</td></tr>
+<tr><td>3</td><td>(0, 1)</td><td>A += [X]<sub>补</sub> → 10110</td><td>11011</td><td>00101</td><td>0</td></tr>
+<tr><td>4</td><td>(1, 0)</td><td>A += [−X]<sub>补</sub> → 01000</td><td>00100</td><td>00010</td><td>1</td></tr>
+<tr><td>5</td><td>(0, 1)</td><td>A += [X]<sub>补</sub> → 10111</td><td>11011</td><td>10001</td><td>0</td></tr></table>
+乘数 5 位就走 5 步。结果 = A 拼 Q = 11011 10001 = [−143]<sub>补</sub>。验算：−13 × 11 = −143 ✓。注意最后一步在小数版教材里常说「不移位」，差别只在结果的读法口径，判断与加法过程完全一样。</div>
+</div></div>
+<div class="item co" id="co-14"><div class="ttl">8. Cache 替换算法与写策略 <span class="stars">★★☆☆☆</span></div><div class="bd">
+<p style="margin:1mm 0">替换算法只在组相联 / 全相联才需要，直接映射每块只对应一行，无需替换。</p>
+<table class="cmplabel"><tr><th>替换算法</th><th>换出对象</th><th>特点</th></tr>
+<tr><td>FIFO（先进先出）</td><td>最先进入 Cache 的块</td><td>实现简单，不看实际使用情况</td></tr>
+<tr><td>LRU（最近最久未使用）</td><td>最久未被访问的块</td><td>命中率较高，实现代价较大</td></tr>
+<tr><td>LFU（最不经常使用）</td><td>访问次数最少的块</td><td>需维护计数；曾高频的旧块计数居高难被换出，对访问模式变化适应差</td></tr>
+<tr><td>随机替换</td><td>随机选一块</td><td>实现最简单，命中率略低</td></tr></table>
+<div class="f"><b>例（同一访问串，两种算法）</b>：Cache 共 3 行，块访问串 2, 1, 3, 2, 4, 2, 5, 1, 2, 3。
+<br><b>FIFO</b>（只看进场先后）：2✗、1✗、3✗ 装满；2✓；4✗ 换出最老的 2；2✗ 换出 1；5✗ 换出 3；1✗ 换出 4；2✓；3✗ 换出 2 → <b>缺失 8 次</b>。
+<br><b>LRU</b>（看最近使用）：2✗、1✗、3✗ 装满；2✓（2 变最新）；4✗ 换出最久未用的 1；2✓；5✗ 换出 3；1✗ 换出 4；2✓；3✗ 换出 5 → <b>缺失 7 次</b>。
+<br>差别就在第 5 步：2 刚被访问过，LRU 保它、FIFO 照样按进场顺序把它换出——这就是 LRU 命中率更高的直观来源。</div>
+<table class="cmplabel"><tr><th>写策略（写命中时）</th><th>代价 / 注意</th></tr>
+<tr><td>写直通</td><td>同时写 Cache 和主存：主存始终一致，写操作慢；无需脏位；常配非写分配</td></tr>
+<tr><td>写回</td><td>只写 Cache 并置脏位，换出时才写回主存：写得快，需脏位，一致性处理更复杂；常配写分配</td></tr></table>
+<p>写直通 / 写回说的是「写命中」；写不命中是另配一对策略（写分配 / 非写分配），两对不要混成一对答。</p>
+<p class="small">星级注：本卡星级依据弱——「Cache 写策略」标签仅 2 年（2015、2021）且替换算法无独立标签，多随 Cache 综合题附带考查，2★ 为保守定档，待更细的逐题统计校准。</p>
+</div></div>
+<div class="item ds" id="ds-15"><div class="ttl">2. KMP（克努特–莫里斯–普拉特模式匹配算法） 串模式匹配 · next 数组与 nextval <span class="stars">★★☆☆☆</span></div><div class="bd">
+<p style="margin:1mm 0"><b>核心思想</b>：匹配失配时主串指针 i 不回退，只按 next 数组回退模式串指针，跳过已知不可能匹配的位置。复杂度：求 next 为 O(m)，匹配为 O(n)，总计 O(n + m)，空间 O(m)；朴素 BF 最坏 O(n·m)。</p>
+<div class="f"><b>例（next 与 nextval 全计算）</b>：模式串 P = ABABAC，用 408 / 王道口径（下标 1 起）：next[1] = 0，next[j] = 「P 前 j − 1 个字符的最长相等真前缀与真后缀长度」+ 1。逐位算：
+<table class="cmplabel"><tr><th>j</th><th>1 (A)</th><th>2 (B)</th><th>3 (A)</th><th>4 (B)</th><th>5 (A)</th><th>6 (C)</th></tr>
+<tr><td>考察串</td><td>—</td><td>A</td><td>AB</td><td>ABA</td><td>ABAB</td><td>ABABA</td></tr>
+<tr><td>最长相等前后缀</td><td>—</td><td>0</td><td>0</td><td>1 (A)</td><td>2 (AB)</td><td>3 (ABA)</td></tr>
+<tr><td>next[j]</td><td>0</td><td>1</td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+<tr><td>nextval[j]</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>4</td></tr></table>
+nextval 是 next 的「防白比」优化：若 P[j] = P[next[j]]，失配跳过去还会再失配，索性一步跳到底，nextval[j] = nextval[next[j]]；不同则 nextval[j] = next[j]。如 j = 5：P[5] = A，P[next[5]] = P[3] = A，相同 → nextval[5] = nextval[3]；而 P[3] = A = P[1]，nextval[3] = nextval[1] = 0，故 nextval[5] = 0。j = 6：P[6] = C ≠ P[4] = B → nextval[6] = next[6] = 4。
+<br>手算口诀：在失配位置之前划一条分界线，将模式串逐步后退，直到分界线之前的前缀能与刚划过的后缀对齐，此时 j 指向哪里，next 值就是多少。滑动规则：失配时主串指针 i 不动，模式串右移 j − next[j] 位。</div>
+<p class="small">另有「长度定义」（下标 0 起）：next 值即最长相等真前后缀长度本身，如 ABABAC 依次为 0, 0, 1, 2, 3, 0。两套口径数值整体差 1，做题先认题干给的定义。</p>
+<div class="f"><b>真题 · 2019 年第 9 题</b>：设主串 T = “abaabaabcabaabc”，模式串 S = “abaabc”，采用 KMP 算法进行模式匹配，到匹配成功时为止，单个字符间的比较次数是（　）。A. 9　B. 10　C. 12　D. 15<br><b>解</b>：S 的 next 数组（下标 0 起口径）为 −1, 0, 0, 1, 1, 2。第一趟从 T[0] 起连比 6 次，在 T[5] = a 与 S[5] = c 处失配；按 next[5] = 2 回退，S[2] 与 T[5] 对齐继续，连比 4 次（T[5..8] 依次对 S[2..5]）匹配成功。共 6 + 4 = 10 次 → B。</div>
+<div class="keng"><b>坑</b>：不同教材下标起点不同（0 起 / 1 起），next 数值会整体差 1。做题先认题干给的 next 定义，不要硬背一组数字。</div>
+</div></div>
+<div class="item ds" id="ds-8"><div class="ttl">10. 图的遍历与生成树 <span class="stars">★★★★☆</span></div><div class="bd">
+<p style="margin:1mm 0">DFS（深度优先）一路走到底再回头，得到深度优先生成树 / 森林；BFS（广度优先）按层推进，得到广度优先生成树 / 森林。连通图遍历一次得生成树，非连通图得生成森林。序列怎么来，看例子：</p>
+<div class="f"><b>例（同一张图跑 DFS 与 BFS）</b>：无向图邻接表（邻接点按编号从小到大）：V1: V2, V3；V2: V1, V4, V5；V3: V1, V5；V4: V2, V6；V5: V2, V3, V6；V6: V4, V5。从 V1 出发。
+<br><b>DFS</b>：访问 V1 → 钻 V2 → 钻 V4 → 钻 V6 → V6 的邻居只剩 V5 未访，钻 V5 → V5 的邻居只剩 V3，钻 V3 → 全部访问完回溯。序列：<b>V1, V2, V4, V6, V5, V3</b>。
+<br><b>BFS</b>：访问 V1，V2、V3 入队；出队 V2，V4、V5 入队；出队 V3（邻居都已在队中）；出队 V4，V6 入队；再依次出队 V5、V6。序列：<b>V1, V2, V3, V4, V5, V6</b>。</div>
+<div class="f"><b>真题 · 2020 年第 6 题</b>：修改递归实现的 DFS 算法，将输出顶点信息的语句移到退出递归前（递归返回时才输出）。用修改后的算法遍历有向无环图 G，若输出结果包含 G 中的全部顶点，则输出的顶点序列是 G 的（　）。A. 拓扑有序序列　B. 逆拓扑有序序列　C. 广度优先搜索序列　D. 深度优先搜索序列<br><b>解</b>：任取一条边 ⟨v<sub>i</sub>, v<sub>j</sub>⟩：v<sub>i</sub> 入栈后必须先递归遍历完其后继 v<sub>j</sub> 才会返回输出，故 v<sub>j</sub> 总在 v<sub>i</sub> 之前输出——每条边都是终点在前、起点在后，正是逆拓扑序 → B。</div>
+<div class="keng"><b>坑</b>：邻接表存储时，遍历序列不唯一（取决于边的存储顺序）。</div>
+</div></div>
+<div class="item ds" id="ds-23"><div class="ttl">11. 最小生成树对比 · Prim vs Kruskal <span class="stars">★★★☆☆</span></div><div class="bd">
+<table class="cmplabel"><tr><th>项目</th><th>Prim（点出发）</th><th>Kruskal（边出发）</th></tr>
+<tr><td>做法</td><td>从任一顶点长出一棵树，每步加「树内—树外」最小边</td><td>边按权从小到大排序，依次加不成环的边（并查集判环）</td></tr>
+<tr><td>时间复杂度</td><td>邻接矩阵 O(V<sup>2</sup>)；邻接表 + 堆 O(E log V)</td><td>排序主导 O(E log E) = O(E log V)</td></tr>
+<tr><td>适合图</td><td>稠密图</td><td>稀疏图</td></tr>
+<tr><td>停止条件</td><td colspan="2">连通图：共加 V − 1 条边；非连通图只能得到最小生成森林</td></tr></table>
+<div class="f"><b>例（同一张图，两种算法）</b>：无向图边（端点，权）：(1,2)6、(1,3)1、(1,4)5、(2,3)5、(2,5)3、(3,4)5、(3,5)6、(3,6)4、(4,6)2、(5,6)6。
+<br><b>Prim</b>（从 1 出发，每步在「已收顶点 ↔ 未收顶点」的边里挑最小）：先收 (1,3)=1；候选里最小是 (3,6)=4；再 (6,4)=2；再 (3,2)=5；最后 (2,5)=3。选中顺序 1、4、2、5、3，总权 <b>15</b>。
+<br><b>Kruskal</b>（边按权从小到大，能连不同集合就要）：(1,3)=1 ✓、(4,6)=2 ✓、(2,5)=3 ✓、(3,6)=4 ✓（合并两组）、(1,4)=5 ✗（已在同一集合，加了成环，跳过）、(2,3)=5 ✓。共 5 条边，总权 <b>15</b>。
+<br>两条路线选边顺序不同，得到的树可以不同，但总权同为 15——最小生成树的<b>权和唯一，树本身可以不唯一</b>（等权边多时）。另：Prim 要求图连通，Kruskal 不要求。</div>
+</div></div>
+<div class="item ds" id="ds-9"><div class="ttl">12. 最短路径算法对比 <span class="stars">★★★☆☆</span></div><div class="bd">
+<table class="cmplabel"><tr><th>算法</th><th>适用范围</th><th>时间复杂度</th><th>负权边</th></tr>
+<tr><td>Dijkstra</td><td>单源</td><td>O(n<sup>2</sup>) / 堆优化 O(e log n)</td><td>不可</td></tr>
+<tr><td>Bellman-Ford</td><td>单源</td><td>O(ne)</td><td>可以</td></tr>
+<tr><td>Floyd</td><td>多源</td><td>O(n<sup>3</sup>)</td><td>可以</td></tr></table>
+<div class="f"><b>例（Dijkstra 全过程）</b>：有向图：1→2 (10)、1→4 (30)、1→5 (100)、2→3 (50)、4→3 (20)、4→5 (60)、3→5 (10)。求 1 到各点的最短路径。每轮做两件事：从未定点里取 dist 最小者「定下来」，再拿它当跳板更新邻居。
+<table class="cmplabel"><tr><th>轮次</th><th>定下</th><th>dist：2</th><th>3</th><th>4</th><th>5</th></tr>
+<tr><td>初始</td><td>1 (0)</td><td>10</td><td>∞</td><td>30</td><td>100</td></tr>
+<tr><td>1</td><td>2 (10)</td><td>—</td><td>60</td><td>30</td><td>100</td></tr>
+<tr><td>2</td><td>4 (30)</td><td>—</td><td><b>50</b>（经 4 改小）</td><td>—</td><td>90</td></tr>
+<tr><td>3</td><td>3 (50)</td><td>—</td><td>—</td><td>—</td><td><b>60</b>（经 3 改小）</td></tr>
+<tr><td>4</td><td>5 (60)</td><td>—</td><td>—</td><td>—</td><td>—</td></tr></table>
+结果：1→3 最短 50（走 1→4→3，不是直觉的 1→2→3 = 60）；1→5 最短 60（走 1→4→3→5，标价 100 的直达边反而最贵）。「定下来」的点 dist 不再变，这是 Dijkstra 的贪心核心；图里只要有负权边，这一步就可能定错，所以负权禁用。</div>
+<div class="keng"><b>坑</b>：Floyd 可以处理负权边，但图中不能存在负权回路（有负权回路时最短路径不存在）；Dijkstra 不能处理负权边，遇到负权边考虑 Bellman-Ford。</div>
+</div></div>
+<div class="item ds" id="ds-17"><div class="ttl">13. 拓扑排序（AOV 网：顶点活动网） <span class="stars">★★★☆☆</span></div><div class="bd">
+<p style="margin:1mm 0">做法只有三步：① 选一个入度为 0 的顶点输出；② 删掉它和它的全部出边（邻接点入度减 1）；③ 重复，直到输出全部顶点，或无入度为 0 的顶点可选（说明有环）。跟着例子走：</p>
+<div class="f"><b>例（拓扑排序全过程）</b>：有向边：1→3、2→3、2→4、3→5、4→5、5→6、1→2。初始入度：1: 0、2: 1、3: 2、4: 1、5: 2、6: 1。
+<br>输出 <b>1</b> → 2、3 入度减 1（2 变 0）；输出 <b>2</b> → 3、4 入度减 1（都变 0）；输出 <b>3</b> → 5 入度变 1；输出 <b>4</b> → 5 入度变 0；输出 <b>5</b> → 6 入度变 0；输出 <b>6</b>。
+<br>得到序列 1, 2, 3, 4, 5, 6。第 3 步时 3、4 同时可选，先输出 4 也合法（1, 2, 4, 3, 5, 6）——<b>拓扑序列一般不唯一</b>。若中途输出数 &lt; 顶点总数就无点可选，说明网中有环、工程不可行。</div>
+<div class="f"><b>真题 · 2012 年第 6 题</b>：若用邻接矩阵存储有向图，矩阵中主对角线以下的元素均为零，则关于该图拓扑序列的结论是（　）。A. 存在，且唯一　B. 存在，且不唯一　C. 存在，可能不唯一　D. 无法确定是否存在<br><b>解</b>：下三角全零 ⇒ 边只可能由小编号顶点指向大编号顶点（i → j 蕴含 i &lt; j），图必无环，拓扑序列一定存在（1, 2, …, n 本身就是一个）；但唯一性不能保证，如无边图的任意排列都是拓扑序列 → C。</div>
+</div></div>
+<div class="item ds" id="ds-18"><div class="ttl">14. 关键路径（AOE 网：边活动网） <span class="stars">★★★☆☆</span></div><div class="bd">
+<p style="margin:1mm 0">关键路径 = 源点到汇点的<b>最长</b>路径，其长度 = 完成工程的最短时间。四个量都要会算：ve（事件最早发生时间）、vl（事件最迟发生时间）、活动的 e / l（最早 / 最迟开始时间）。直接跟着例子算一遍：</p>
+<div class="f"><b>例（AOE 网全计算）</b>：活动：a1: 1→2 (6)、a2: 1→3 (4)、a3: 1→4 (5)、a4: 2→5 (1)、a5: 3→5 (1)、a6: 4→6 (2)、a7: 5→6 (4)、a8: 3→6 (8)。
+<br><b>求 ve</b>（按拓扑序，取大）：ve(1) = 0；ve(2) = 6；ve(3) = 4；ve(4) = 5；ve(5) = max(6+1, 4+1) = 7；ve(6) = max(5+2, 7+4, 4+8) = <b>12</b>（工期）。
+<br><b>求 vl</b>（逆拓扑序，取小）：vl(6) = 12；vl(5) = 12 − 4 = 8；vl(4) = 12 − 2 = 10；vl(3) = min(8 − 1, 12 − 8) = 4；vl(2) = 8 − 1 = 7；vl(1) = min(7 − 6, 4 − 4, 10 − 5) = 0。
+<table class="cmplabel"><tr><th>活动</th><th>e = ve(起点)</th><th>l = vl(终点) − dut</th><th>余量 d = l − e</th></tr>
+<tr><td>a1 (1→2, 6)</td><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>a2 (1→3, 4)</td><td>0</td><td>0</td><td><b>0 ★</b></td></tr>
+<tr><td>a3 (1→4, 5)</td><td>0</td><td>5</td><td>5</td></tr>
+<tr><td>a4 (2→5, 1)</td><td>6</td><td>7</td><td>1</td></tr>
+<tr><td>a5 (3→5, 1)</td><td>4</td><td>7</td><td>3</td></tr>
+<tr><td>a6 (4→6, 2)</td><td>5</td><td>10</td><td>5</td></tr>
+<tr><td>a7 (5→6, 4)</td><td>7</td><td>8</td><td>1</td></tr>
+<tr><td>a8 (3→6, 8)</td><td>4</td><td>4</td><td><b>0 ★</b></td></tr></table>
+d = 0 的活动连起来就是关键路径：<b>1 → 3 → 6</b>（a2 + a8 = 4 + 8 = 12 = 工期）。其余活动都有余量，如 a3 拖 5 天以内不误工期。</div>
+<div class="f"><b>真题 · 2020 年第 8 题</b>：若用 AOE 网估算工程进度，则下列叙述中正确的是（　）。A. 关键路径是从源点到汇点边数最多的一条路径　B. 关键路径是从源点到汇点路径长度最长的路径　C. 增加任一关键活动的时间不会延长工程的工期　D. 缩短任一关键活动的时间将会缩短工程的工期<br><b>解</b>：关键路径按路径长度（权值之和）最大界定，与边数无关，A 错、B 对；关键活动的时间余量为 0，增时会延长工期，C 错；存在多条关键路径时，只缩短其中一条路径上的活动不一定能缩短工期，D 错 → B。</div>
+<div class="keng"><b>坑</b>：关键路径可能不唯一；缩短工期要求每条关键路径都被缩短——加快所有关键路径共有的关键活动最直接，也可分别加快每条关键路径上的活动；只加快某一条路径上的活动、其他关键路径不缩短，工期不变；关键活动缩过头会变成非关键活动（新关键路径出现），工期不再减少；但延长任一关键活动必延长工期。</div>
+</div></div>
+<div class="item os" id="os-3"><div class="ttl">5. 信号量 PV 操作 <span class="stars">★★★★★</span></div><div class="bd">
+<p style="margin:1mm 0"><b>P(S)</b>：S = S − 1；若 S &lt; 0，阻塞当前进程。<b>V(S)</b>：S = S + 1；若 S ≤ 0，唤醒一个等待进程。互斥信号量初值 = 1；同步信号量初值 = 资源数量或 0。S 的读法跟着例子走一遍就懂：</p>
+<div class="f"><b>例（信号量值全程追踪）</b>：某资源共 2 台，信号量 S 初值 2。
+<table class="cmplabel"><tr><th>时刻</th><th>动作</th><th>S</th><th>发生了什么</th></tr>
+<tr><td>t1</td><td>P1 执行 P(S)</td><td>1</td><td>P1 占用 1 台，剩 1 台空闲</td></tr>
+<tr><td>t2</td><td>P2 执行 P(S)</td><td>0</td><td>P2 占用最后 1 台，无空闲</td></tr>
+<tr><td>t3</td><td>P3 执行 P(S)</td><td>−1</td><td>无资源，P3 阻塞等待；等待进程数 = |S| = 1</td></tr>
+<tr><td>t4</td><td>P1 执行 V(S)</td><td>0</td><td>S ≤ 0 → 唤醒 P3，P3 接手那台资源</td></tr>
+<tr><td>t5</td><td>P2 执行 V(S)</td><td>1</td><td>无人等待，空闲资源回到 1 台</td></tr></table>
+读法就此立住：<b>S &gt; 0 时 S 就是空闲资源数；S &lt; 0 时 |S| 就是等待进程数；S = 0 表示资源刚好占满、无人等待</b>。</div>
+<div class="f"><b>真题 · 2010 年第 25 题</b>：设与某资源关联的信号量初值为 3，当前值为 1。若 M 表示该资源的可用个数，N 表示等待该资源的进程数，则 M、N 分别是（　）。A. 0、1　B. 1、0　C. 1、2　D. 2、0<br><b>解</b>：信号量当前值 &gt; 0 时，其值就是可用资源个数，M = 1；此时没有进程在等待，N = 0（只有当前值为负时，等待进程数才等于其绝对值）→ B。</div>
+<div class="keng"><b>坑</b>：生产者—消费者问题中，P 操作顺序不能换（先 P 同步，后 P 互斥）。</div>
+</div></div>
+<div class="item os" id="os-17"><div class="ttl">9. 连续内存分配算法对比 <span class="stars">★★☆☆☆</span></div><div class="bd">
+<table class="cmplabel"><tr><th>算法</th><th>选哪块</th><th>效果 / 代价</th></tr>
+<tr><td>首次适应</td><td>从低地址起第一个够大的空闲区</td><td>最快、实现简单；低地址碎片多，但高地址常保留大块</td></tr>
+<tr><td>最佳适应</td><td>够大空闲区中最小的那块</td><td>利用率高，但留下大量难以利用的小碎片，需遍历全部空闲区</td></tr>
+<tr><td>最坏适应</td><td>最大的那块空闲区</td><td>剩下的碎片较大、较可能再用；大块被快速切碎</td></tr>
+<tr><td>邻接适应（循环首次）</td><td>从上次分配处往后找第一个够大的空闲区</td><td>分布均匀；大空闲区匮乏</td></tr></table>
+<div class="f"><b>例（同一内存、同一请求序列，三种算法）</b>：空闲区按地址从低到高为 100K、500K、200K、300K、600K；请求依次为 212K、417K、112K、426K。
+<br><b>首次适应</b>：212 → 500K 块（余 288K）；417 → 600K 块（余 183K）；112 → 288K 余块（余 176K）；426 → <b>无块可容，失败</b>（空闲总量还剩 935K，却没有一块 ≥ 426K——这就是外部碎片）。
+<br><b>最佳适应</b>：212 → 300K 块（余 88K）；417 → 500K 块（余 83K）；112 → 200K 块（余 88K）；426 → 600K 块（余 174K）→ <b>全部装下</b>，代价是留下三个几十 K 的小碎片。
+<br><b>最坏适应</b>：212 → 600K 块（余 388K）；417 → 500K 块（余 83K）；112 → 388K 余块（余 276K）；426 → <b>失败</b>。</div>
+<p>碎片：外部碎片 = 空闲区总量够、单块都不够；内部碎片 = 已分配区内用不上的零头。紧凑（拼接）能消除外部碎片，但要移动进程、代价大。</p>
+<div class="f"><b>真题 · 2019 年第 32 题</b>：在下列动态分区分配算法中，最容易产生内存碎片的是（　）。A. 首次适应算法　B. 最坏适应算法　C. 最佳适应算法　D. 循环首次适应算法<br><b>解</b>：最佳适应每次选取与需求大小最接近的空闲分区，剩余部分往往是难以再利用的微小空闲块，外碎片最多 → C。</div>
+</div></div>
+<div class="item os" id="os-6"><div class="ttl">16. 磁盘调度算法 <span class="stars">★★★☆☆</span></div><div class="bd">
+<p style="margin:1mm 0">FCFS（先来先服务）：按请求到达顺序服务，简单但效率低。SSTF（最短寻道时间优先）：每次选离磁头最近的请求，可能饥饿。SCAN（电梯）：磁头单向移动服务沿途请求，到端点再反向。C-SCAN：到端点后直接返回起点、只单向服务。LOOK / C-LOOK：不用到端点，到本方向最远请求即返回。</p>
+<div class="f"><b>例（同一请求队列，四种算法）</b>：磁道 0 ~ 199，磁头在 53，请求队列依次为 98, 183, 37, 122, 14, 124, 65, 67。
+<table class="cmplabel"><tr><th>算法</th><th>服务顺序</th><th>总移动距离</th></tr>
+<tr><td>FCFS</td><td>98, 183, 37, 122, 14, 124, 65, 67（原序）</td><td>640</td></tr>
+<tr><td>SSTF</td><td>65, 67, 37, 14, 98, 122, 124, 183</td><td>236</td></tr>
+<tr><td>SCAN（先向大号）</td><td>65, 67, 98, 122, 124, 183,（到 199 后反向）37, 14</td><td>331</td></tr>
+<tr><td>C-SCAN（先向大号）</td><td>65, 67, 98, 122, 124, 183,（到 199 后直接回 0）14, 37</td><td>382</td></tr></table>
+FCFS 的 640 几乎全浪费在来回横跳上；SSTF 贪心就近最省路，但远处请求可能一直等；SCAN 多走「到端点」的路，换来公平、无饥饿。</div>
+<div class="f"><b>真题 · 2021 年第 26 题</b>：某系统中磁盘的磁道数为 200（0 ~ 199），磁头当前在 184 号磁道上。用户进程提出的磁盘访问请求对应的磁道号依次为 184, 187, 176, 182, 199。若采用最短寻道时间优先（SSTF）调度算法完成磁盘访问，则磁头移动的距离（磁道数）是（　）。A. 37　B. 38　C. 41　D. 42<br><b>解</b>：184 就地服务（移动 0）；当前最近的是 182（2）；再选 187（5）；再选 176（11）；最后 199（23）。总移动距离 = 0 + 2 + 5 + 11 + 23 = 41 → C。</div>
+</div></div>
+<div class="item net" id="net-7"><div class="ttl">6. GBN（后退 N 帧协议） 与 SR（选择重传协议） 窗口大小 <span class="stars">★★★★☆</span></div><div class="bd">
+<p style="margin:1mm 0">设序号位数为 n 位，序号范围 0 ～ 2<sup>n</sup> − 1。GBN（后退 N 帧）：发送窗口 W<sub>T</sub> ≤ 2<sup>n</sup> − 1，接收窗口 W<sub>R</sub> = 1。SR（选择重传）：发送窗口 + 接收窗口 ≤ 2<sup>n</sup>，通常各取 2<sup>n−1</sup>。为什么 GBN 的接收窗口只能是 1、代价是什么，看例子：</p>
+<div class="f"><b>例（一帧丢失，两种协议的反应）</b>：序号 3 bit，发送窗口取 4。发送方连发 0、1、2、3 号帧，其中 <b>1 号帧在途中丢失</b>。
+<br><b>GBN</b>：接收方只按序接收——0 号收下；2、3 号到达时，它期待的是 1 号，乱序帧<b>直接丢弃</b>（只重复确认 0 号）。发送方超时后从 1 号起<b>重传 1、2、3 三帧</b>：2、3 明明已经到过一次，还得白传一遍，这就是「后退 N 帧」的代价。接收窗口 = 1 的根源就在这：它不缓存乱序帧。
+<br><b>SR</b>：接收窗口同样是 4，2、3 号先<b>缓存</b>下来；发送方只需<b>单独重传 1 号</b>；1 号一到，1、2、3 按序一起交付。只补缺口、不传冤枉路，代价是接收方要有缓存、双方窗口都要受「和 ≤ 2<sup>n</sup>」约束。</div>
+<div class="f"><b>真题 · 2023 年第 35 题</b>：假设通过同一信道，数据链路层分别采用停等协议、GBN 协议和 SR 协议（发送窗口和接收窗口相等）传输数据，三个协议数据帧长相同，忽略确认帧长度，帧序号位数为 3 bit。若三个协议的发送方最大信道利用率分别是 U<sub>1</sub>、U<sub>2</sub>、U<sub>3</sub>，则它们满足的关系是（　）。A. U<sub>1</sub> ≤ U<sub>2</sub> ≤ U<sub>3</sub>　B. U<sub>1</sub> ≤ U<sub>3</sub> ≤ U<sub>2</sub>　C. U<sub>2</sub> ≤ U<sub>3</sub> ≤ U<sub>1</sub>　D. U<sub>3</sub> ≤ U<sub>2</sub> ≤ U<sub>1</sub><br><b>解</b>：利用率与发送窗口大小成正比：停等窗口为 1，最小；GBN 发送窗口最大 2<sup>3</sup> − 1 = 7；SR 发送窗口最大 2<sup>3−1</sup> = 4。故 U<sub>1</sub> ≤ U<sub>3</sub> ≤ U<sub>2</sub> → B。</div>
+</div></div>
+</body></html>
