@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <!-- rev2（GPT 第一轮审核定点修订）改动清单：co-28 卡首前提与赋值措辞；co-29 字长例题改为理想传送次数/至少传输次数口径；co-30 平台前提与整型提升、值变化措辞；co-31 对齐前提与 unsigned char；co-32 RAID 1/10 拆分与闪存异地更新；os-26 完成中断与启动开销分列、I/O 请求/完成两条路径及阻塞限定；net-29 逐跳变化、异构互联与路由协议表述。 -->
+<!-- rev3（GPT 复验后最后 6 处定点修订）：本文件含 3 处——① co-30 卡尾易错项改整型提升与值变化口径；② co-32 卡尾易错项改 NAND 异地写入口径；③ co-32 例题 2 补 D 选项（RAID 10，5 TB，容量误算干扰项），解析同步点名 D、答案仍为 B。其余 3 处（④ os-8 硬链接删除语义与例题第四步注、⑤ co-18 卡尾易混项、⑥ net-19 例题 D 解析）在补节文件中同步修订。 -->
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
@@ -234,7 +235,7 @@ p, li { orphans: 2; widows: 2; }
 <div class="step">答案 <b>D</b>（四项数值已用 gcc 编译 C 程序逐项实测，含 sizeof 前提核对）。</div>
 </div>
 <div class="keng">
-<div class="krow">以为 char、short 运算就在原地算、会当场溢出——实际先提升为 int，溢出只发生在赋回小类型时。</div>
+<div class="krow">以为 char、short 运算就在原地算、会当场溢出——char、short 通常先进行整型提升；本例的中间 int 运算未溢出，结果转换为较窄类型时才发生值变化。</div>
 <div class="krow">−1 &gt; 1 想当然判假：只要对方是同级别无符号数，−1 先变 4294967295，比较结果反转。</div>
 <div class="krow">float r = 5 / 2 写出 2.5：整除在赋值转换之前就已完成，r 只能是 2.0。</div>
 <div class="krow">浮点转整型当四舍五入：是向零截尾，−3.99 转得 −3，不是 −4。</div>
@@ -316,8 +317,8 @@ p, li { orphans: 2; widows: 2; }
 <div class="ex">
 <div class="ex-title">例 2 · RAID 选型与容量</div>
 <div class="step">6 块 1 TB 磁盘组建阵列，要求可用容量尽量大且能容忍任意 1 块盘损坏，应选（　），可用容量为（　）。</div>
-<div class="step">A. RAID 0，6 TB　B. RAID 5，5 TB　C. RAID 10，3 TB</div>
-<div class="step">逐项判：A 容量最大但坏 1 块全丢，不满足容忍要求；C 能容忍坏盘但只用一半容量；B 可用 (6 − 1) × 1 = 5 TB 且坏任意 1 块可重构，两条都满足。</div>
+<div class="step">A. RAID 0，6 TB　B. RAID 5，5 TB　C. RAID 10，3 TB　D. RAID 10，5 TB</div>
+<div class="step">逐项判：A 容量最大但坏 1 块全丢，不满足容忍要求；C 能容忍坏盘但只用一半容量；D 与 C 同为 RAID 10，可用容量应为 3 TB，写 5 TB 是误算；B 可用 (6 − 1) × 1 = 5 TB 且坏任意 1 块可重构，两条都满足。</div>
 <div class="step">答案 <b>B</b>（所选仍为 RAID 5、5 TB；各级容量已按 rev2 口径用程序复算）。</div>
 </div>
 <div class="keng">
@@ -325,7 +326,7 @@ p, li { orphans: 2; widows: 2; }
 <div class="krow">平均旋转延迟取一整转：等扇区到来平均只等半转，7200 转/分是 4.17 ms 不是 8.33 ms。</div>
 <div class="krow">说 RAID 5 有一块专门的校验盘：校验块是轮流分布在各盘的，只是容量上等效占一块；独占校验盘是 RAID 3 / 4 的做法。</div>
 <div class="krow">RAID 0 的「0」记成零故障：恰恰是零冗余，坏一块盘整个阵列的数据都读不回来。</div>
-<div class="krow">把闪存当磁盘原地改写：闪存必须先整块擦除再写，擦除按块不按页，且次数有限、要磨损均衡。</div>
+<div class="krow">把闪存当磁盘原地改写：NAND 闪存按页读写、按块擦除；SSD 更新数据通常采用异地写入，旧页失效后由垃圾回收统一处理，不能直接像磁盘一样原地覆盖。</div>
 <div class="krow">在本卡里套磁盘调度算法：存取时间三段是设备参数口径，题目给平均寻道时间就直接用，先服务哪个请求是 OS 调度卡的事。</div>
 </div>
 </div></div>
