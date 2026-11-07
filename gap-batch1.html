@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<title>408 补充卡片 · 缺口批 1（草稿 · 待 GPT 校验）</title>
+<style>
+
+@page { size: A4; margin: 13mm 12mm 14mm 12mm;
+  @bottom-center { content: "408 复习卡片 · 补充卡片 · 缺口批 1（草稿 · 待校验）　—　" counter(page) " / " counter(pages); font-size: 8pt; color: #888; } }
+* { box-sizing: border-box; }
+body { font-family: "Noto Sans CJK SC", "Noto Sans CJK JP", sans-serif; font-size: 10pt; line-height: 1.85; color: #1a202c; margin: 0; }
+.cover { text-align: center; padding-top: 34mm; }
+.cover .brand { color: #718096; font-size: 11pt; letter-spacing: 4px; }
+.cover h1 { font-size: 30pt; margin: 8mm 0 3mm 0; color: #1a202c; }
+.cover h2 { font-size: 15pt; font-weight: normal; color: #4a5568; margin: 0 0 10mm 0; }
+.chips { margin: 6mm auto; }
+.chip { display: inline-block; border-radius: 10px; color: #fff; padding: 2.2mm 5mm; margin: 0 1.5mm; font-size: 10.5pt; }
+.cover .note { width: 82%; margin: 10mm auto 0 auto; text-align: left; background: #fffaf0; border: 1px solid #ecc94b; border-radius: 6px; padding: 4mm 5mm; font-size: 9.5pt; color: #744210; }
+.section { page-break-before: always; }
+.sec-banner { border-radius: 6px; color: #fff; padding: 3.2mm 5mm; font-size: 16pt; font-weight: bold; margin-bottom: 4mm; }
+.sec-banner small { font-size: 10.5pt; font-weight: normal; opacity: .85; }
+.item { border: 1.6px solid; border-radius: 6px; margin-bottom: 5mm; break-inside: avoid; page-break-inside: avoid; overflow: hidden; }
+.item .ttl { color: #fff; font-weight: bold; font-size: 11pt; padding: 1.8mm 4mm; }
+.ttl .stars { font-weight: normal; font-size: 9.5pt; letter-spacing: 1.5px; margin-left: 3mm; opacity: .92; }
+.item .bd { padding: 3.6mm 4.6mm 4mm 4.6mm; }
+.ds { border-color: #2b6cb0; } .ds .ttl { background: #2b6cb0; } .dsb { background: #2b6cb0; }
+.co { border-color: #dd6b20; } .co .ttl { background: #dd6b20; } .cob { background: #dd6b20; }
+.os { border-color: #2f855a; } .os .ttl { background: #2f855a; } .osb { background: #2f855a; }
+.net { border-color: #c53030; } .net .ttl { background: #c53030; } .netb { background: #c53030; }
+table { border-collapse: collapse; width: 100%; margin: 1mm 0; font-size: 9.8pt; }
+th, td { border: 1px solid #cbd5e0; padding: 1.9mm 2.6mm; text-align: left; vertical-align: top; }
+th { background: #ebf4fa; font-weight: bold; }
+.cmplabel td:first-child, .cmplabel th:first-child { white-space: nowrap; min-width: 3.4em; }
+.co th { background: #fef3e8; } .os th { background: #e9f7ef; } .net th { background: #fdeeee; }
+ul, ol { margin: 1mm 0 1mm 0; padding-left: 6mm; }
+li { margin: 1.1mm 0; }
+.keng { background: #fff5f5; border-left: 3.5px solid #c53030; border-radius: 3px; padding: 2.6mm 3.6mm; margin-top: 3mm; font-size: 9.8pt; }
+.keng b { color: #c53030; }
+.ji { background: #fffaf0; border-left: 3.5px solid #d69e2e; border-radius: 3px; padding: 2.6mm 3.6mm; margin-top: 3mm; font-size: 9.8pt; }
+.ji b { color: #b7791f; }
+.f { background: #f7fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 2.6mm 3.6mm; margin: 2mm 0; }
+.small { font-size: 9pt; color: #718096; }
+b.k { color: #2b6cb0; }
+sup, sub { font-size: 72%; }
+.steps { list-style: none; padding-left: 0; }
+.steps li { padding-left: 7mm; position: relative; margin: 1.1mm 0; }
+.steps .n { position: absolute; left: 0; top: 0.2mm; width: 5.2mm; height: 5.2mm; border-radius: 50%; color: #fff; text-align: center; font-size: 8.6pt; line-height: 5.2mm; font-weight: bold; }
+.trans { list-style: none; padding-left: 0; }
+.trans li { margin: 1mm 0; }
+.arrow { color: #a0aec0; font-weight: bold; }
+.tag { display: inline-block; background: #edf2f7; border-radius: 3px; padding: 0 1.8mm; font-weight: bold; }
+
+
+.toc-sec { margin-bottom: 4mm; break-inside: avoid; }
+.toc-sec h3 { font-size: 12pt; margin: 0 0 1.5mm 0; padding-bottom: 1mm; border-bottom: 2px solid #4a5568; }
+.toc-sec.ds h3 { color: #2b6cb0; border-color: #2b6cb0; }
+.toc-sec.co h3 { color: #dd6b20; border-color: #dd6b20; }
+.toc-sec.os h3 { color: #2f855a; border-color: #2f855a; }
+.toc-sec.net h3 { color: #c53030; border-color: #c53030; }
+.toc-sec a { display: block; text-decoration: none; color: #1a202c; font-size: 10pt; padding: 0.7mm 0; }
+.toc-sec a::after { content: leader('.') target-counter(attr(href), page); color: #718096; }
+.cover { text-align: center; padding-top: 55mm; }
+.cover .brand { font-size: 11pt; color: #4a5568; letter-spacing: 2px; }
+.cover h1 { font-size: 30pt; margin: 6mm 0 3mm 0; }
+.cover .sub { font-size: 13pt; color: #4a5568; }
+.cover .cnt { margin-top: 10mm; font-size: 11pt; color: #2d3748; }
+.subj-start { break-before: page; }
+.frac{display:inline-block;vertical-align:-0.45em;text-align:center;margin:0 .08em;font-size:.92em}
+.frac>.num{display:block;border-bottom:.7pt solid currentColor;padding:0 .18em;line-height:1.25}
+.frac>.den{display:block;padding:0 .18em;line-height:1.25}
+/* v13 疏朗版式新增结构类 */
+.bd p { margin: 1.5mm 0; }
+.sec { font-weight: bold; font-size: 10.6pt; margin: 3.4mm 0 1.6mm 0; }
+.ds .sec { color: #2b6cb0; } .co .sec { color: #c05621; } .os .sec { color: #276749; } .net .sec { color: #9b2c2c; }
+.ex { background: #eff5fc; border: 1px solid #d9e6f5; border-radius: 4px; padding: 2.6mm 3.6mm; margin: 2mm 0; }
+.ex-title { font-weight: bold; margin-bottom: 1.2mm; }
+.step { padding: 0.9mm 0 0.9mm 2mm; }
+.k-title { color: #c53030; font-weight: bold; margin-bottom: 1mm; }
+.krow { padding: 1.1mm 0; }
+.krow + .krow { border-top: 1px dashed #f0caca; }
+.frow { display: flex; gap: 3mm; padding: 1.2mm 0; align-items: baseline; }
+.frow + .frow { border-top: 1px dashed #d9e2ec; }
+.flabel { flex: 0 0 24mm; font-weight: bold; color: #33507e; }
+.note { font-size: 9pt; color: #718096; margin: 1.6mm 0; line-height: 1.7; }
+.steps li { margin: 1.6mm 0; }
+
+/* v8.2.1 图呈现尺寸（按卡片内容区宽度百分比，高度按 viewBox 比例自动） */
+svg.fig-60 { width: 60%; height: auto; }
+svg.fig-65 { width: 65%; height: auto; }
+svg.fig-72 { width: 72%; height: auto; }
+svg.fig-80 { width: 80%; height: auto; }
+svg.fig-85 { width: 85%; height: auto; }
+
+/* v14.1 连续流排版：卡片可跨页断开，杜绝整卡跳页造成的大空白 */
+.item { break-inside: auto; page-break-inside: auto; }
+.keng, .ji { break-inside: avoid; }
+.item .ttl { break-after: avoid; }
+.sec-banner { break-after: avoid; }
+p, li { orphans: 2; widows: 2; }
+.subj-start { break-before: auto; }
+.toc-sec { break-inside: auto; }
+
+</style></head><body>
+<div class="item os" id="os-24"><div class="ttl">24. 操作系统的运行环境 · 内核态 / 用户态与态切换 <span class="stars">★★★★★ · 近6年×5</span></div><div class="bd">
+<p>一个程序跑起来时 CPU 处在什么态、哪些指令它能碰、态在什么时候翻面——这张卡讲清。只讲 OS 侧的态与特权级；中断的硬件响应过程（压栈、查向量表）是计组 co-20 的口径，本卡不重复。</p>
+<div class="sec">先看一个过程：用户程序想在屏幕上打印一句话</div>
+<div class="step">① 程序在<b>用户态</b>执行普通指令，先把要打印的字符串算好、放进自己的数组。</div>
+<div class="step">② 它调用库函数 printf——这一步仍在用户态，库函数只是把参数整理好。</div>
+<div class="step">③ 库函数执行一条<b>系统调用</b>（trap / 访管指令）请求写设备——执行到这条指令的那一刻，硬件把 CPU 切到<b>内核态</b>并保存现场。</div>
+<div class="step">④ 内核按调用号找到写设备的服务程序，在内核态驱动设备把字符送出去。</div>
+<div class="step">⑤ 服务完成，内核恢复刚才保存的现场、切回<b>用户态</b>，程序从 trap 的下一条接着跑。</div>
+<div class="step">整个过程只有「陷入—服务—返回」这一段在内核态，用户程序自己从头到尾没碰过 I/O 指令。</div>
+<div class="sec">两种态与特权指令</div>
+<ul>
+<li><b>内核态</b>（管态 / 核心态）：能执行全部指令、访问全部软硬件资源；操作系统运行在此态。</li>
+<li><b>用户态</b>（目态）：只能执行非特权指令、只能访问本进程的地址空间；用户程序运行在此态。</li>
+<li>CPU 里程序状态字（PSW）有一位专门记当前处于哪一态，态切换时由硬件改写。</li>
+<li><b>特权指令</b>（只能在内核态执行）：I/O 指令、开 / 关中断指令、置时钟、修改 PSW 与访存保护寄存器、停机指令。</li>
+<li><b>非特权指令</b>（用户态可执行）：算术逻辑运算、在本进程空间内的取数存数、用户空间内的转移指令。</li>
+<li>用户态一旦执行特权指令，硬件立刻触发<b>异常</b>，控制权交内核处理（通常终止该进程）。</li>
+</ul>
+<div class="sec">态翻面的三种入口（都从用户态进内核态）</div>
+<ul>
+<li><b>系统调用</b>：程序<b>主动</b>请求服务，靠 trap 指令自愿陷入——如请求读写文件、创建进程。</li>
+<li><b>异常</b>（内中断）：当前指令<b>被动</b>引发，与指令同步——缺页、除零、访存越界、在用户态用特权指令。</li>
+<li><b>外部中断</b>：与当前指令无关的外部事件，<b>异步</b>到达——时钟中断、I/O 操作完成中断。</li>
+<li>三者共同点：响应时硬件自动保存 PSW 与 PC 并切到内核态；处理结束按保存的现场恢复、回到原来的态。</li>
+</ul>
+<div class="sec">例题</div>
+<div class="ex">
+<div class="ex-title">例 · 哪些事件会引起用户态 → 内核态（状态机模拟）</div>
+<div class="step">下列事件中，会引起 CPU 由用户态转为内核态的是（　）。</div>
+<div class="step">I. 用户程序执行系统调用　II. 时钟中断发生　III. 用户程序在用户态执行一条特权指令　IV. 用户程序访问数组越界</div>
+<div class="step">A. 仅 I、II　B. 仅 I、III　C. 仅 II、III、IV　D. I、II、III、IV</div>
+<div class="step">逐条判：I 是 trap 自愿陷入 ✓；II 外中断响应必须进内核处理 ✓；III 特权指令在用户态执行触发异常 ✓；IV 越界触发异常 ✓。</div>
+<div class="step">四条全中 → <b>D</b>（已用 CPU 态状态机脚本逐事件模拟验证）。</div>
+</div>
+<div class="keng">
+<div class="krow"><b></b>态切换 ≠ 进程切换：进内核处理完中断可以原样返回原进程，进程并没换；别一看到「进内核」就选「发生进程切换」。</div>
+<div class="krow">调用库函数不切换——只有真正执行到 trap 指令那一刻才陷入内核，printf 前面一大半工作都在用户态。</div>
+<div class="krow">系统调用的「请求」动作发生在用户态、「服务」执行在内核态；说「系统调用运行在用户态」是把两段混成一段。</div>
+<div class="krow">关中断是特权指令：用户程序想「关上中断独占 CPU」做不到，这是分时系统能抢占的根基。</div>
+</div>
+</div></div>
+
+<div class="item ds" id="ds-33"><div class="ttl">33. 算法时空复杂度 · 量级判定与递归式求解 <span class="stars">★★★★★ · 近6年×3</span></div><div class="bd">
+<p>给一段代码判量级、给一个递归式求解、算法设计大题最后一问写复杂度——三件事都看这张卡。此点几乎每道 DS 算法大题都带一问，答法本身就是采分点。</p>
+<div class="sec">量级判定：只数基本操作执行的次数</div>
+<div class="step">片段一（三角循环）：<span class="tag">for (i = 1; i &lt;= n; i++) for (j = 1; j &lt;= i; j++) x++;</span>——内层总次数 = 1 + 2 + … + n = n(n + 1) / 2 → <b>Θ(n<sup>2</sup>)</b>。</div>
+<div class="step">片段二（外层翻倍）：<span class="tag">i = 1; while (i &lt;= n) i = i * 2;</span>——i 依次取 1, 2, 4, …, 2<sup>k</sup>，2<sup>k</sup> ≈ n 时停，循环体执行约 log<sub>2</sub>n 次 → <b>Θ(log n)</b>。</div>
+<div class="step">收口：找重复执行的那条基本操作（比较、赋值、访问结点……），数它执行的次数；只留最高阶项，丢掉低阶项和常数系数。</div>
+<div class="sec">递归式求解：主方法先行，套不进再展开</div>
+<div class="f">
+<div class="frow"><div class="flabel">T(n) = 2T(n/2) + n</div><div>f(n) 与 n<sup>log<sub>2</sub>2</sup> = n 同量级 → <b>Θ(n log n)</b>（归并排序）</div></div>
+<div class="frow"><div class="flabel">T(n) = 2T(n/2) + n<sup>2</sup></div><div>f(n) 主导 → <b>Θ(n<sup>2</sup>)</b></div></div>
+<div class="frow"><div class="flabel">T(n) = T(n/2) + 1</div><div>Θ(<b>log n</b>)（折半查找）</div></div>
+<div class="frow"><div class="flabel">展开法例</div><div>T(n) = T(n − 1) + n 逐层展开 = n + (n − 1) + … + 1 = n(n + 1) / 2 → <b>Θ(n<sup>2</sup>)</b>（直接插入最坏）</div></div>
+</div>
+<div class="sec">最好 / 最坏 / 平均：题目没点明时看哪个</div>
+<ul>
+<li>一般口径：题目未指明时按<b>最坏情况</b>作答（保底）；最好、平均须题目点明或给出概率分布才评。</li>
+<li>直接插入排序：最好 Θ(n)（已有序）、最坏与平均 Θ(n<sup>2</sup>)。</li>
+<li>快速排序：平均 Θ(n log n)、最坏 Θ(n<sup>2</sup>)（枢轴每趟都落在端点时）。</li>
+</ul>
+<div class="sec">空间复杂度：别忘递归栈</div>
+<ul>
+<li>只开固定几个变量的原地算法：辅助空间 <b>O(1)</b>。</li>
+<li>递归算法的空间 = 递归深度（每层一帧栈）＋额外辅助空间，两者取主导。</li>
+<li>归并排序：辅助数组 Θ(n)，递归栈 O(log n)，合计 <b>Θ(n)</b>。</li>
+<li>快速排序：空间主要来自递归栈，平均 O(log n)、最坏 O(n)。</li>
+</ul>
+<div class="sec">大题作答规范（照此写不丢分）</div>
+<ul>
+<li>① 先指明基本操作是什么；② 写出执行次数的求和式再化简，不直接蹦结论；③ 结论给紧界 Θ（题目明确问 O 才写 O）；④ 时间、空间分开各写一句；⑤ 要分最好 / 最坏时，把各自的触发条件一并交代。</li>
+</ul>
+<div class="sec">例题</div>
+<div class="ex">
+<div class="ex-title">例 · 看着像 n log n，其实是 n（程序模拟）</div>
+<div class="step"><span class="tag">count = 0; for (i = 1; i &lt;= n; i *= 2) for (j = 1; j &lt;= i; j++) count++;</span> 求 count 的增长量级。</div>
+<div class="step">外层 i 依次取 1, 2, 4, …, 2<sup>k</sup>，其中 2<sup>k</sup> ≤ n &lt; 2<sup>k+1</sup>；内层执行次数恰等于当趟的 i。</div>
+<div class="step">count = 1 + 2 + 4 + … + 2<sup>k</sup> = 2<sup>k+1</sup> − 1。</div>
+<div class="step">由 2<sup>k</sup> ≤ n 得 2<sup>k+1</sup> ≤ 2n，所以 count 不超过 2n − 1；取 n = 2<sup>k</sup> 程序实测：n = 1024 时 count = 2047 = 2n − 1，分毫不差。</div>
+<div class="step">结论：时间复杂度 <b>Θ(n)</b>——总和由最后一项主导，不是「外层 log n 趟 × 内层 n 次」。</div>
+</div>
+<div class="keng">
+<div class="krow"><b></b>只数循环层数、不数每层实际次数：「外层翻倍」型是最爱挖的坑，内层次数跟着外层涨，总和看末项。</div>
+<div class="krow">主方法有套不进的间隙（如 f(n) = n log n 卡在两档之间），别硬套——老老实实展开或分层求和。</div>
+<div class="krow">空间复杂度只写辅助数组、漏掉递归栈：递归深度经常就是答案的主项。</div>
+<div class="krow">把平均情况当默认答案：题目没点明先按最坏答；要报平均，先看题目有没有给分布。</div>
+</div>
+</div></div>
+
+<div class="item net" id="net-28"><div class="ttl">28. OSI 与 TCP/IP 参考模型 · 分层与功能归属 <span class="stars">★★★★★ · 近6年×3</span></div><div class="bd">
+<p>分层、各层干什么、一个功能该归哪层追责——这张卡讲清。选择题最爱在「功能归属」上设套。</p>
+<div class="sec">跟着一封邮件下楼：OSI 七层各干一件事</div>
+<ul>
+<li><b>应用层</b>：直接为用户进程提供服务，HTTP、FTP、SMTP 在这里产生数据。</li>
+<li><b>表示层</b>：管数据的「长相」——编码格式转换、加密解密、压缩解压。</li>
+<li><b>会话层</b>：建立、管理、终止进程间的对话（会话）。</li>
+<li><b>传输层</b>：把数据分段、加端口号，负责<b>端到端</b>的可靠传输与流量控制。</li>
+<li><b>网络层</b>：给分组选路——路由选择与转发，靠 IP 地址跨网络送达。</li>
+<li><b>数据链路层</b>：成帧、MAC 寻址、CRC 检错，管<b>相邻结点之间</b>这一段的流量控制。</li>
+<li><b>物理层</b>：在介质上传比特流，规定接口与信号特性，不管比特的含义。</li>
+<li>封装路线：数据 →（传输层）<b>段</b> →（网络层）<b>分组 / 数据报</b> →（链路层）<b>帧</b> →（物理层）<b>比特</b>；每往下一层添一段本层首部，链路层还加尾部。</li>
+</ul>
+<div class="sec">TCP/IP 四层与对照</div>
+<table><tr><th>OSI</th><th>TCP/IP</th><th>典型协议 / 内容</th></tr>
+<tr><td>应用层 ＋ 表示层 ＋ 会话层</td><td>应用层</td><td>HTTP、FTP、DNS、SMTP</td></tr>
+<tr><td>传输层</td><td>传输层</td><td>TCP、UDP</td></tr>
+<tr><td>网络层</td><td>网际层</td><td>IP</td></tr>
+<tr><td>数据链路层 ＋ 物理层</td><td>网络接口层</td><td>各种局域网 / 广域网接口</td></tr></table>
+<ul>
+<li>OSI 是先行制定的<b>理论</b>模型，结构全但没成为事实主流；TCP/IP 是先在实践中跑出来、再总结成的<b>事实标准</b>。</li>
+</ul>
+<div class="sec">协议与服务：一个水平、一个垂直</div>
+<ul>
+<li><b>协议</b>：同层对等实体之间通信的约定，是<b>水平</b>方向的——两台机器的传输层按 TCP 说话。</li>
+<li><b>服务</b>：下层通过接口向上层提供的能力，是<b>垂直</b>方向的——传输层用网络层的分组投递服务，再向应用层提供可靠字节流服务。</li>
+<li>一句收：上层 = 用下层的服务 ＋ 本层的协议，实现本层功能，再向上提供更强的服务。</li>
+</ul>
+<div class="sec">高频辨析：功能到底归哪层</div>
+<div class="f">
+<div class="frow"><div class="flabel">路由选择、转发</div><div>网络层</div></div>
+<div class="frow"><div class="flabel">端到端流量控制</div><div>传输层（发送方主机对接收方主机）</div></div>
+<div class="frow"><div class="flabel">相邻结点流量控制</div><div>数据链路层（一段链路的两端）</div></div>
+<div class="frow"><div class="flabel">检错</div><div>链路层用 CRC 查帧；传输层 TCP 有校验和并确认重传；IP 只校验首部、不保可靠</div></div>
+<div class="frow"><div class="flabel">设备归层</div><div>中继器 / 集线器 → 物理层；网桥 / 交换机 → 数据链路层；路由器 → 网络层</div></div>
+</div>
+<div class="sec">例题</div>
+<div class="ex">
+<div class="ex-title">例 · 功能归属辨析（归属断言表核对）</div>
+<div class="step">在 OSI 参考模型中，下列功能由传输层实现的是（　）。</div>
+<div class="step">A. 路由选择　B. 数据加密　C. 端到端的流量控制　D. 帧的差错检测</div>
+<div class="step">逐项归层：A 是网络层的活；B 是表示层（数据表示与加密）；C 正是传输层对两端主机的流控 ✓；D 的 CRC 检错在数据链路层。</div>
+<div class="step">答案 <b>C</b>（卡内全部层归属已编成断言表逐条核对）。</div>
+</div>
+<div class="keng">
+<div class="krow"><b></b>流量控制不是传输层的专利：链路层管相邻一段、传输层管端到端，题目只说「流量控制」时先看范围词。</div>
+<div class="krow">TCP/IP 的网络接口层对应 OSI 的下面<b>两层</b>，不是只对应物理层。</div>
+<div class="krow">会话层、表示层在 TCP/IP 里并进应用层，是「合并」不是「功能消失」。</div>
+<div class="krow">别把 TCP 的确认重传记到 IP 头上：网络层（IP）无连接、不可靠，可靠是传输层补的。</div>
+</div>
+</div></div>
+
+<div class="item os" id="os-25"><div class="ttl">25. 操作系统的结构与引导 · 附概念与功能 <span class="stars">★★★★ · 近6年×4</span></div><div class="bd">
+<p>操作系统自己怎么搭起来、开机后怎么被装进内存跑起来、它对外提供哪些本事——这张卡讲清（后半并入「概念与功能」一节）。</p>
+<div class="sec">先定性：OS 是什么、管什么</div>
+<ul>
+<li>OS 是最基本的<b>系统软件</b>：控制和管理整个计算机的软硬件资源，合理组织调度工作与资源分配，并提供用户与应用程序的接口。</li>
+<li><b>处理机管理</b>：以进程为单位分配 CPU（进程的创建、调度、同步都在此）。</li>
+<li><b>存储器管理</b>：内存的分配回收、地址变换与保护。</li>
+<li><b>文件管理</b>：文件的存储、目录、共享与保护。</li>
+<li><b>设备管理</b>：I/O 设备的分配、驱动与缓冲。</li>
+<li><b>用户接口</b>：命令接口（敲命令）、程序接口（就是系统调用，见 os-24）、图形接口。</li>
+<li><b>多道程序设计</b>：内存里同时放多道程序，一道等 I/O 时 CPU 转去跑另一道——宏观上并行、微观上串行，换来 CPU 利用率与系统吞吐量的提高。</li>
+</ul>
+<div class="sec">结构：一部拆分史</div>
+<ul>
+<li><b>无结构</b>：一堆过程互相乱调用，快而乱，不可维护——起点。</li>
+<li><b>模块化</b>：按功能切成模块、定好接口，模块间按规定调用；结构清晰，但接口一乱仍会牵一发动全身。</li>
+<li><b>分层式</b>：自底向上分层，每层只能调用相邻低层：易调试、易验证，代价是层层调用<b>效率低</b>、层次边界难划清。</li>
+<li><b>宏内核</b>（单体内核）：进程、文件、网络、驱动等全部服务都挤在内核态运行——调用快，但内核庞大、一处崩全盘崩。</li>
+<li><b>微内核</b>：内核只留最基本的功能——进程间通信、低级地址空间管理、中断处理、原语；文件系统、驱动、网络等做成<b>用户态</b>的服务进程——可靠、易扩展易移植，代价是服务之间频繁通信与态切换、<b>性能开销大</b>。</li>
+<li><b>外核</b>：不做抽象，直接把硬件资源安全地复用分给应用程序、让应用自己管——知道这个概念即可。</li>
+</ul>
+<div class="sec">虚拟化与 VMM</div>
+<ul>
+<li><b>VMM</b>（虚拟机监控器 / Hypervisor）在一台物理机上虚拟出多台「裸机」，每台虚拟机可装不同的 OS 同时运行。</li>
+<li><b>第一类 VMM</b>：直接运行在硬件之上，自己就是最底层。</li>
+<li><b>第二类 VMM</b>：运行在宿主 OS 之上，是一个普通应用程序，靠宿主调度硬件。</li>
+<li>VMM 的活：虚拟 CPU 的调度、虚拟内存的映射截获、虚拟 I/O 设备的模拟与转发。</li>
+</ul>
+<div class="sec">系统引导：从按下电源到内核接管</div>
+<div class="step">① 固件（BIOS / UEFI）上电<b>自检</b>、初始化硬件。</div>
+<div class="step">② 固件按设定顺序找到启动磁盘，读入引导扇区（主引导记录）里的<b>引导程序</b>到内存并执行它。</div>
+<div class="step">③ 引导程序把 <b>OS 内核</b>从磁盘装入内存，把控制权移交内核。</div>
+<div class="step">④ 内核自初始化：建中断向量表，初始化内存、进程、文件等各个管理器。</div>
+<div class="step">⑤ 内核创建第一个进程（如 init），此后进入登录界面 / 图形界面，系统才算「起来了」。</div>
+<div class="step">一句话收：先有引导程序，才有内核——内核不是自己走进内存的。</div>
+<div class="sec">例题</div>
+<div class="ex">
+<div class="ex-title">例 1 · 多道程序设计的利用率（时间轴程序模拟）</div>
+<div class="step">两道相同的程序，每道都是「计算 10 ms → I/O 30 ms → 计算 10 ms」，各自使用独立的 I/O 设备。求单道与多道下的总完成时间和 CPU 利用率。</div>
+<div class="step">单道：两道串行跑完，总时间 = 2 × 50 = <b>100 ms</b>，CPU 忙 40 ms → 利用率 <b>40%</b>，其余 60 ms CPU 在干等 I/O。</div>
+<div class="step">多道：画时间轴——A 先算（0–10），A 去做 I/O（10–40），B 顶上算（10–20），B 去做 I/O（20–50）；40 时 A 的 I/O 完成、续算（40–50）；50 时 B 续算（50–60）→ 全部完成 <b>60 ms</b>。</div>
+<div class="step">CPU 忙的时间仍是 40 ms，利用率 = 40 / 60 ≈ <b>66.7%</b>（时间轴已用事件模拟程序验证）。</div>
+<div class="step">收口：多道没让任何一道程序变快，它让的是 CPU 别闲着——总吞吐上去了。</div>
+</div>
+<div class="ex">
+<div class="ex-title">例 2 · 微内核辨析</div>
+<div class="step">关于微内核结构的操作系统，下列说法正确的是（　）。</div>
+<div class="step">A. 文件系统运行在内核态　B. 其性能开销主要来自进程间通信与频繁的态切换　C. 把所有系统服务都放进内核以提高可靠性　D. 微内核只负责进程调度</div>
+<div class="step">逐项判：A 错——文件系统是用户态服务进程；B ✓——服务拆到用户态后，请求要靠消息传递来回切态；C 说的恰是宏内核；D 漏了通信、地址空间管理、中断处理等基本功能。</div>
+<div class="step">答案 <b>B</b>。</div>
+</div>
+<div class="keng">
+<div class="krow"><b></b>微内核的服务跑在<b>用户态</b>——把「服务放进内核」记到微内核头上，恰好记反，那是宏内核。</div>
+<div class="krow">多道提高的是利用率与吞吐量；单看某一道程序，它的周转时间反而可能变长（要和别人分 CPU）。</div>
+<div class="krow">引导顺序别倒背：固件自检 → 引导程序进内存 → 内核进内存，内核排在引导程序之后。</div>
+<div class="krow">「跑在宿主 OS 上」的是第二类 VMM；第一类直接在硬件上，别混。</div>
+<div class="krow">分层结构效率低是因为层层调用的开销，不是因为「层数多占内存」。</div>
+</div>
+</div></div>
+</body></html>
