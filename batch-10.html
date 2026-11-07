@@ -144,7 +144,7 @@ svg.fig-85 { width: 85%; height: auto; }
 <div class="sec">两种编址先分清</div>
 <table class="cmplabel"><tr><th>编址</th><th>模块号来自</th><th>连续地址落在哪</th><th>效果</th></tr>
 <tr><td>低位交叉</td><td>地址的<b>低位</b></td><td>轮流分布到各个模块</td><td>连续访问正好轮转，适合流水提带宽</td></tr>
-<tr><td>高位交叉</td><td>地址的<b>高位</b></td><td>连续一大片落在同一模块</td><td>本质是扩容拼接，连续访问撞同一模块、提不了带宽</td></tr></table>
+<tr><td>高位交叉</td><td>地址的<b>高位</b></td><td>连续一大片落在同一模块</td><td>本质是扩容拼接；通常的连续地址访问会撞同一模块、形不成流水（本行按连续访问场景说）</td></tr></table>
 <div class="sec">核心公式</div>
 <div class="f">
 <div class="frow"><div class="flabel">存取周期 T</div><div>一个模块从启动一次存取到能再次启动的间隔</div></div>
@@ -164,7 +164,7 @@ svg.fig-85 { width: 85%; height: auto; }
 </div>
 <div class="keng">
 <div class="k-title">坑</div>
-<div class="krow">① 带宽提升只对<b>连续访问</b>成立：访问地址若全撞在同一模块（比如步长正好是 m 的倍数），每次都得等满 T，退化回单体速度。</div>
+<div class="krow">① 带宽提升的关键是访存请求能<b>分散到不同模块、形成流水</b>，不是地址必须连续：连续地址是低位交叉最典型的有利场景，地址不连续也可以——如 4 体时依次访问 0、5、10、15，落到的模块仍依次是 M0、M1、M2、M3。怕的是请求总撞同一模块：步长为 m 的整数倍时（如 0、4、8、12 全在 M0），每次都得等满 T，退化回单体速度。</div>
 <div class="krow">② 第一个字仍要等满一个 T 才能出来，连续读 n 字是 T + (n − 1)r，别图省事写成 n × r。</div>
 <div class="krow">③ 别与《存储器容量计算》卡 2022 年真题里的交叉编址混为一谈：那是同一地址下多芯片并行凑满 64 位总线宽度；本卡是不同地址在各模块间轮转启动，目的和机制都不同。</div>
 <div class="krow">④ m 大于 T ÷ r 之后再堆模块，带宽也不涨：瓶颈转到总线周期 r 上，每 r 才能送出一个字。</div>
@@ -181,6 +181,7 @@ svg.fig-85 { width: 85%; height: auto; }
 <div class="f">
 <div class="frow"><div class="flabel">盘块大小</div><div>4 KB</div></div>
 <div class="frow"><div class="flabel">盘块号大小</div><div>4 B → 每个索引块能放 4 KB ÷ 4 B = <b>1024</b> 个块号</div></div>
+<div class="frow"><div class="flabel">单位口径</div><div>本卡 KB / MB / GB / TB 均按 <b>1024 进位</b>（1 KB = 2<sup>10</sup> B）</div></div>
 <div class="frow"><div class="flabel">inode 地址项</div><div>共 13 个：<b>10 个直接</b> + 1 个一级间接 + 1 个二级间接 + 1 个三级间接</div></div>
 </div>
 <div class="sec">例题</div>
@@ -200,7 +201,7 @@ svg.fig-85 { width: 85%; height: auto; }
 <div class="step">二级索引下的第一个一级索引块就能放 1024 个块号 ≥ 246 → 这部分只占二级索引里的 <b>1 个</b>一级索引块 ✓</div>
 </div>
 <div class="sec">顺带记：读一个数据块要几次访盘</div>
-<p>设 inode 已在内存：直接块 1 次（直达数据块）；一级 2 次（先读索引块）；二级 3 次；三级 4 次。这就是小文件用直接地址的原因——不只是省空间，更是少跑磁盘。</p>
+<p>假设 inode 已在内存、且所需间接索引块尚未被缓存：直接块 1 次（直达数据块）；一级 2 次（先读索引块）；二级 3 次；三级 4 次。若索引块已经在缓存里，实际读盘次数还会更少。这就是小文件用直接地址的原因——不只是省空间，更是少跑磁盘。</p>
 <div class="keng">
 <div class="k-title">坑</div>
 <div class="krow">① 索引块里存的是块号、不是文件数据：算最大文件长度时只累加<b>数据块</b>，别把索引块本身算进文件长度。</div>
