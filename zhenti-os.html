@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>408 真题实战 · 操作系统（未并入合辑）</title>
+<style>
+@page { margin: 16mm 15mm; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: "Source Serif 4", "Noto Serif CJK SC", serif; font-size:10.5pt; line-height:1.65; color:#1a1a1a; }
+h1 { font-size:17pt; margin-bottom:2mm; }
+.note { font-size:9.5pt; color:#555; border:1px dashed #bbb; border-radius:2mm; padding:3mm 4mm; margin-bottom:8mm; }
+.cardhd { font-size:12.5pt; font-weight:700; border-bottom:1.2pt solid #333; padding-bottom:1.2mm; margin:9mm 0 3mm 0; }
+.ex { border:1pt solid #999; border-radius:2.5mm; padding:4mm 5mm 3mm 5mm; margin-bottom:6mm; }
+.ex-title { font-size:11pt; font-weight:700; margin-bottom:2mm; }
+.ex .step { margin:1.2mm 0; }
+.ex .step.code { white-space:pre-wrap; font-family:"DejaVu Sans Mono", monospace; font-size:9.5pt; background:#f5f5f5; border-radius:1.5mm; padding:2mm 3mm; }
+table.pt { border-collapse:collapse; margin:2.5mm 0; font-size:10pt; }
+table.pt th, table.pt td { border:0.6pt solid #888; padding:1mm 3mm; text-align:center; }
+table.pt th { background:#f0f0f0; }
+</style>
+</head>
+<body>
+<h1>408 真题实战 · 操作系统（试点后续 · 未并入合辑）</h1>
+<div class="note">23 张 OS 卡中 22 张各配一道真题（os-21 未配，原因见该卡）。题干与选项照录原卷文本，以 neville-studio/408-exam-paper 重构版原卷为准、zhaoyang51/cs408-notes 结构化题库互校；答案以官方答案键为准；本轮未选 2023 年题，不涉及该年第三方答案键。10 张卡在合辑中已内嵌一道真题的，本轮另配新题、不重复；解析中的计算与模拟均已先经程序复算。</div>
+
+<div class="cardhd">os-1 · 操作系统的运行环境 · 内核态 / 用户态与态切换</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2026 年第 23 题（选择题）</div>
+<div class="step">下列程序中，在内核模式执行的是（　）。</div>
+<div class="step">A. 编译程序</div>
+<div class="step">B. 链接程序</div>
+<div class="step">C. 装入程序</div>
+<div class="step">D. 命令解释程序</div>
+<div class="step"><b>解析 · 答案：C</b></div>
+<div class="step">逐项定性：编译程序、链接程序都是把源代码加工成可执行文件的工具程序，运行时就是普通的用户进程；命令解释程序（shell）更是典型的用户态程序——它读入命令、再请求内核提供服务，自己从不执行特权操作。这三者虽属系统软件，却都在用户模式下运行。</div>
+<div class="step">装入程序不同：它负责把可执行文件装入主存、完成地址重定位并建立进程的内存映像，装入过程要直接支配内存分配与地址空间，由操作系统在内核模式下完成 → C。</div>
+<div class="step">自查：判据不是「是不是系统软件」，而是「运行时是否要执行特权操作、是否为内核的功能组成」——系统程序 ≠ 内核程序，正是本卡的分界。</div>
+</div>
+
+<div class="cardhd">os-2 · 操作系统的结构与引导 · 附概念与功能</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2025 年第 24 题（选择题）</div>
+<div class="step">下列关于虚拟化技术的叙述中，错误的是（　）。</div>
+<div class="step">A. 操作系统可以运行在虚拟机上</div>
+<div class="step">B. 虚拟化技术支持在一台计算机上构建多个虚拟机</div>
+<div class="step">C. 虚拟机监控程序（VMM）与操作系统的特权级相同</div>
+<div class="step">D. 虚拟化技术支持在一台计算机上模拟不同的指令集体系结构</div>
+<div class="step"><b>解析 · 答案：C</b></div>
+<div class="step">C 错在特权级关系：VMM 永远处于比操作系统更底层、特权级更高的位置——第一类 VMM 直接运行在硬件之上，本来跑在最高特权级的操作系统被降到次一等特权级运行，其特权指令由 VMM 截获并模拟。若两者特权级相同，VMM 就无从截获、仲裁客体 OS 的特权操作，虚拟化根本不成立。</div>
+<div class="step">其余三项均正确：一台物理机可虚拟出多台虚拟机（B），每台虚拟机上运行一个操作系统（A），还可以模拟与宿主机不同的指令集体系结构（D）。</div>
+<div class="step">自查：对回本卡两类 VMM 的位置——直接在硬件上也好、寄居在宿主 OS 上也好，VMM 始终在客体 OS 的下面一层，特权级只高不低。</div>
+</div>
+
+<div class="cardhd">os-3 · 进程状态转换</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2022 年第 28 题（选择题）</div>
+<div class="step">下列事件或操作中，可能导致进程 P 由执行态变为阻塞态的是（　）。</div>
+<div class="step">I. 进程 P 读文件</div>
+<div class="step">II. 进程 P 的时间片用完</div>
+<div class="step">III. 进程 P 申请外设</div>
+<div class="step">IV. 进程 P 执行信号量的 wait() 操作</div>
+<div class="step">A. 仅 I、IV</div>
+<div class="step">B. 仅 II、III</div>
+<div class="step">C. 仅 III、IV</div>
+<div class="step">D. 仅 I、III、IV</div>
+<div class="step"><b>解析 · 答案：D</b></div>
+<div class="step">逐项判去向：I 读文件须等磁盘 I/O 完成，P 主动让出 CPU 进阻塞态 ✓；II 时间片用完是被抢占，去向是就绪态而非阻塞态 ✗——这是本题最常见的误选；III 申请外设须等待设备分配与 I/O 完成，进阻塞态 ✓；IV wait() 在资源不可用（信号量值 ≤ 0）时把 P 阻塞在等待队列上，题面「可能」二字正覆盖这种情形 ✓。故为 I、III、IV → D。</div>
+<div class="step">自查：执行态只有两个出口——「主动等事件」去阻塞态、「被抢占」去就绪态；阻塞态也不能直达运行态（本卡坑条）。</div>
+</div>
+
+<div class="cardhd">os-4 · 进程与线程对比</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2026 年第 25 题（选择题）</div>
+<div class="step">下列关于线程的叙述中，正确的是（　）。</div>
+<div class="step">A. 用户级线程和内核级线程均由操作系统创建</div>
+<div class="step">B. 多个内核级线程可以映射到同一个用户级线程</div>
+<div class="step">C. 同一进程的不同内核级线程共用该进程的内核栈</div>
+<div class="step">D. 同一进程的不同线程共享该进程虚拟地址空间中的堆</div>
+<div class="step"><b>解析 · 答案：D</b></div>
+<div class="step">D 对：同进程的线程共享整个进程地址空间——代码、全局数据、堆、打开的文件都在共享之列，线程私有的只是自己的栈与寄存器等执行现场，正与本卡对比表一致。</div>
+<div class="step">逐项驳其余：A 用户级线程由用户级线程库创建和管理，内核根本不知道它们的存在，并非由操作系统创建；B 映射方向说反——多对一模型是多个用户级线程映射到一个内核级线程，不存在多个内核级线程映射到同一个用户级线程；C 每个内核级线程都有自己独立的内核栈（用户栈同理），若共用一份，系统调用的现场会互相覆盖。</div>
+<div class="step">自查：判线程题先分两筐——进程级资源（地址空间、堆、文件）共享，线程级现场（栈、寄存器、程序计数器）私有，本题四项正好各落一筐。</div>
+</div>
+
+<div class="cardhd">os-5 · 进程调度算法对比</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2024 年第 30 题（选择题）</div>
+<div class="step">假设某系统使用时间片轮转调度算法进行 CPU 调度，时间片大小为 5 ms，系统共有 10 个进程，初始时均处于就绪队列，执行结束前仅处于执行态或就绪态。若队尾的进程 P 所需 CPU 时间最短，时间为 25 ms，在不考虑系统开销的情况下，则进程 P 的周转时间为（　）。</div>
+<div class="step">A. 200 ms</div>
+<div class="step">B. 205 ms</div>
+<div class="step">C. 250 ms</div>
+<div class="step">D. 295 ms</div>
+<div class="step"><b>解析 · 答案：C</b></div>
+<div class="step">P 需要 25 ms，恰为 5 个时间片，它要跑满 5 轮才结束。关键先判前 4 轮有没有人提前离场：其余 9 个进程所需时间都 ≥ P 的 25 ms，前 4 轮各用掉 20 ms 后仍剩 ≥ 5 ms，所以第 1~5 轮每轮都是 10 个进程各跑 5 ms、一轮整 50 ms。</div>
+<div class="step">P 每轮排在队尾：第 5 轮轮到它时是 200 + 9 × 5 = 245 ms，它用最后一个时间片跑完剩余 5 ms，周转时间 = 250 ms → C。A 的 200 相当于只算了 4 轮（把 P 的 5 个时间片数成 4 个）；D 的 295 接近多算一整轮。</div>
+<div class="step">自查：程序按「其余进程同为 25 ms」与「其余进程更长（30 ms）」两种情形模拟，P 的完成时刻均为 250 ms——因为决定它的是自己的第 5 个时间片排在第 5 轮队尾，前面进程只要不提前退出就不影响（已程序复核）。</div>
+</div>
+
+<div class="cardhd">os-6 · 临界区管理原则</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2020 年第 32 题（选择题）</div>
+<div class="step">下列准则中，实现临界区互斥机制必须遵循的是（　）。</div>
+<div class="step">I. 两个进程不能同时进入临界区</div>
+<div class="step">II. 允许进程访问空闲的临界资源</div>
+<div class="step">III. 进程等待进入临界区的时间是有限的</div>
+<div class="step">IV. 不能进入临界区的执行态进程立即放弃 CPU</div>
+<div class="step">A. 仅 I、IV</div>
+<div class="step">B. 仅 II、III</div>
+<div class="step">C. 仅 I、II、III</div>
+<div class="step">D. 仅 I、III、IV</div>
+<div class="step"><b>解析 · 答案：C</b></div>
+<div class="step">对回本卡四条原则逐项核：I 就是互斥，必须 ✓；II 是空闲让进，必须 ✓；III 是有限等待，必须 ✓；IV 说的是让权等待——它只是「应当」而非「必须」：自旋等待的硬件方法（TSL、swap 指令）不让权也照样能正确实现互斥，本卡卡尾正有这条记。故必须遵循的只有 I、II、III → C。A、D 都误把 IV 抬进「必须」之列；B 漏掉了最根本的 I。</div>
+<div class="step">自查：四原则里前三条管「正确与公平」，第四条只管「省不省 CPU」；题目问「必须」时独排 IV。</div>
+</div>
+
+<div class="cardhd">os-7 · 信号量 PV 操作</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2026 年第 26 题（选择题）</div>
+<div class="step">某系统中有 8 个进程均会执行如右图所示的代码片段，其中信号量 S 的初值为 5。若某时刻 S 的值为 −2，已执行到代码 Q 中的进程有 m 个，因执行 wait(S) 而被阻塞的进程有 n 个，则 m 和 n 的值分别是（　）。</div>
+<div class="step">题面图即如下代码片段（照录）：</div>
+<div class="step code">wait(S);
+代码 Q;
+signal(S);</div>
+<div class="step">A. 5、2</div>
+<div class="step">B. 5、3</div>
+<div class="step">C. 6、2</div>
+<div class="step">D. 7、1</div>
+<div class="step"><b>解析 · 答案：A</b></div>
+<div class="step">先定 n：记录型信号量为负时，|S| 就是阻塞队列中的进程数，n = |−2| = 2。</div>
+<div class="step">再定 m，用计数关系而不是直觉：设至今共有 W 次 wait 递减、G 次 signal 递增，则 S = 5 − W + G = −2，即 W − G = 7。另一方面，执行过 wait 的进程只分布在三处：阻塞中的 n 个、正在 Q 中的 m 个、已 signal 离开的 G 个，故 W = n + m + G。代回得 n + m = 7，m = 7 − 2 = 5 → A。B 的 n = 3 混淆了「S 的变化量 7」与阻塞数；C、D 的 m 把已经离开 Q 的进程也数了进去。</div>
+<div class="step">自查：m 与 signal 次数无关——离开 Q 的人同时把名额让回计数，两边在算式里恰好抵消；已用状态空间程序遍历全部可达快照，S = −2 时 (m, n) 恒为 (5, 2)（已程序复核）。</div>
+</div>
+
+<div class="cardhd">os-8 · 经典同步问题 · 生产者-消费者 / 读者-写者</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2024 年第 46 题第（2）问（综合题节选）</div>
+<div class="step">节选上下文（原题面）：计算机系统中的进程之间往往需要相互协作以完成一个任务。在某网络系统中，缓冲区 B 用于存放一个数据分组，对 B 的操作有 C1、C2 和 C3。C1 将一个数据分组写入 B 中，C2 从 B 中读出一个数据分组，C3 对 B 中的数据分组进行修改。要求 B 为空时才能执行 C1，B 非空时才能执行 C2 和 C3。</div>
+<div class="step">第（2）问：假设 B 初始为空，进程 P1 执行 C1 一次，进程 P2 执行 C2 一次。请定义尽可能少的信号量，并用 wait()、signal() 操作描述进程 P1、P2 之间的同步或互斥关系，说明所用信号量的作用及其初值。</div>
+<div class="step"><b>解析 · 参考答案</b></div>
+<div class="step">只需两个信号量：empty——表示 B 是否为空（可写），初值 1；full——表示 B 中是否有数据分组（可读），初值 0。</div>
+<div class="step code">P1：wait(empty);  执行 C1（写入分组）;  signal(full);
+P2：wait(full);   执行 C2（读出分组）;  signal(empty);</div>
+<div class="step">为什么不用 mutex：B 只能存放一个分组，empty/full 已把「写」与「读」严格串行化——B 空时只有写者能通过 wait(empty)，B 满时只有读者能通过 wait(full)，C1 与 C2 不可能同时进行，互斥已由同步本身保证，再加 mutex 纯属多余。这正是「尽可能少」四字的考点。</div>
+<div class="step">对回本卡：本题就是生产者—消费者的容量 n = 1 特例——empty 初值 1、full 初值 0，与卡面公式完全同构；且此处没有 mutex，「先同步后互斥」的次序问题自然消解。等容量大于 1 或多生产者、多消费者时，才需要另加 mutex 保护对缓冲区的操作本身。</div>
+<div class="step">自查：已用状态探索程序验证该方案无死锁、P1 与 P2 都能完成、C1 与 C2 从不重叠（已程序复核）。</div>
+</div>
+
+<div class="cardhd">os-9 · 死锁四个必要条件</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2019 年第 30 题（选择题）</div>
+<div class="step">下列关于死锁的叙述中，正确的是（　）。</div>
+<div class="step">I. 可以通过剥夺进程资源解除死锁</div>
+<div class="step">II. 死锁的预防方法能确保系统不发生死锁</div>
+<div class="step">III. 银行家算法可以判断系统是否处于死锁状态</div>
+<div class="step">IV. 当系统出现死锁时，必然有两个或两个以上的进程处于阻塞态</div>
+<div class="step">A. 仅 II、III</div>
+<div class="step">B. 仅 I、II、IV</div>
+<div class="step">C. 仅 I、II、III</div>
+<div class="step">D. 仅 I、III、IV</div>
+<div class="step"><b>解析 · 答案：B</b></div>
+<div class="step">逐项判：I ✓——死锁处理可以剥夺（抢占）部分进程已占的资源来打破循环等待，是解除死锁的常规手段；II ✓——预防的本质就是破坏四个必要条件中的任意一个，从源头确保死锁不可能发生；III ✗——银行家算法属于死锁<b>避免</b>，它判断的是当前状态是否<b>安全</b>，并不检测系统此刻是否已陷入死锁，能查死锁状态的是死锁检测算法；IV ✓——死锁即一组进程各自等待对方持有的资源、谁也不肯先放，每个都在等一个不会发生的事件，必然至少有两个进程处于阻塞态。I、II、IV → B。</div>
+<div class="step">自查：预防（静态破坏条件、保不发生）／避免（动态查安全、保不走进）／检测（事后查环、查到了再剥夺或撤销）三者的分工不要串位，III 就错在张冠李戴。</div>
+</div>
+
+<div class="cardhd">os-10 · 死锁避免 · 银行家算法求安全序列</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2022 年第 26 题（选择题）</div>
+<div class="step">某系统中有 3 个进程 P0、P1、P2 和 3 类资源 A、B、C。资源的分配与需求情况如下表所示。若采用银行家算法进行资源分配，则安全序列的个数是（　）。（原卷表格，照录成表）</div>
+<table class="pt">
+<tr><th>进程</th><th>已分配 A</th><th>已分配 B</th><th>已分配 C</th><th>尚需 A</th><th>尚需 B</th><th>尚需 C</th><th>可用 A</th><th>可用 B</th><th>可用 C</th></tr>
+<tr><td>P0</td><td>2</td><td>0</td><td>1</td><td>0</td><td>2</td><td>1</td><td rowspan="3">1</td><td rowspan="3">3</td><td rowspan="3">2</td></tr>
+<tr><td>P1</td><td>0</td><td>2</td><td>0</td><td>1</td><td>2</td><td>3</td></tr>
+<tr><td>P2</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>3</td></tr>
+</table>
+<div class="step">A. 1</div>
+<div class="step">B. 2</div>
+<div class="step">C. 3</div>
+<div class="step">D. 4</div>
+<div class="step"><b>解析 · 答案：B</b></div>
+<div class="step">Work = 可用 = (1, 3, 2)。先试谁能开头：P0 尚需 (0, 2, 1)，逐项 ≤ Work ✓；P1 尚需 (1, 2, 3)，C 差 1 ✗；P2 尚需 (0, 1, 3)，C 也差 1 ✗。所以任何安全序列都必须以 P0 开头。</div>
+<div class="step">P0 完成后释放其已分配 (2, 0, 1)，Work 增至 (3, 3, 3)：此时 P1 尚需 (1, 2, 3) ✓、P2 尚需 (0, 1, 3) ✓，两者谁先都可以——P0→P1→P2 一路可走通（P1 释放后 Work = (3, 5, 3)），P0→P2→P1 同样走通（P2 释放后 Work = (4, 3, 4)）。安全序列恰有 2 条 → B。</div>
+<div class="step">A 的 1 是只沿一条路走到底、漏数了 P0 之后的分叉；C、D 则把以 P1 或 P2 开头的排列也误算进来——它们第一步就迈不出去。</div>
+<div class="step">自查：已用程序枚举全部 6 种排列逐条按银行家规则检验，恰 2 条安全（P0,P1,P2 与 P0,P2,P1）（已程序复核）。对回本卡例题：本卡只要求找出一个安全序列，本题再进一步数条数——第一步筛完开头，第二步必须看分叉。</div>
+</div>
+
+<div class="cardhd">os-11 · 连续内存分配对比</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2017 年第 25 题（选择题）</div>
+<div class="step">在一分页存储管理系统中，内存大小为 64 MB，进程 P 申请 50 MB 内存，分区如下表所示，则分区回收后，若用最佳适应算法分配内存，得到空闲分区链的第一个分区的起始地址和大小分别是（　）。（原卷题干如此；分区表照录）</div>
+<table class="pt">
+<tr><th>分区号</th><th>起始地址 / K</th><th>大小 / KB</th></tr>
+<tr><td>1</td><td>20</td><td>40</td></tr>
+<tr><td>2</td><td>500</td><td>80</td></tr>
+<tr><td>3</td><td>1000</td><td>100</td></tr>
+<tr><td>4</td><td>200</td><td>200</td></tr>
+</table>
+<div class="step">A. 3、20 K、380 KB</div>
+<div class="step">B. 3、500 K、80 KB</div>
+<div class="step">C. 4、20 K、380 KB</div>
+<div class="step">D. 4、500 K、80 KB</div>
+<div class="step"><b>解析 · 答案：B</b></div>
+<div class="step">先回收合并：待回收区起始 60 K、大小 140 K。看它两侧的邻居——低地址侧：起始 20 K、大小 40 KB 的分区正好止于 60 K，相邻，合并；回收区止于 60 + 140 = 200 K，高地址侧正有起始 200 K 的分区，相邻，再合并。于是回收的不是一块、而是三块并成一块：起始 20 K、大小 40 + 140 + 200 = 380 KB。空闲分区总数由 4 变 3，这是第一个答案。</div>
+<div class="step">再按最佳适应的要求重排空闲分区链——按分区大小从小到大链接：80 KB（起始 500 K）→ 100 KB（起始 1000 K）→ 380 KB（起始 20 K）。链的第一个分区是起始地址 500 K、大小 80 KB。故三问依次为 3、500 K、80 KB → B。</div>
+<div class="step">A 的后两项是「地址序」的链首，忘了最佳适应链按大小升序；C、D 的分区数 4 是回收时只并了一侧（或根本没并合并）。</div>
+<div class="step">自查：已用程序按「反复合并相邻空闲分区、再按大小排序取链首」复算，合并后分区恰 3 块、链首为 (500 K, 80 KB)（已程序复核）。题干「分页」云云与真实考点（回收合并）无关，照考纲归连续分配，不必被题面字眼带偏。</div>
+</div>
+
+<div class="cardhd">os-12 · 请求分页缺页处理步骤</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2022 年第 29 题（选择题）</div>
+<div class="step">若进程在内存中访问某逻辑页 b 时产生缺页异常，则该缺页异常处理程序中不一定包含的操作是（　）。</div>
+<div class="step">A. 淘汰内存中的页</div>
+<div class="step">B. 建立页号与页框号的对应关系</div>
+<div class="step">C. 从外存读入页 b</div>
+<div class="step">D. 修改页表中页 b 对应的页表项</div>
+<div class="step"><b>解析 · 答案：A</b></div>
+<div class="step">对回本卡的缺页处理步骤核四项：页 b 不在内存，必须从外存把它读进来（C 必有）；读入后要在页表中登记页号与页框号的对应（B 必有），并把页表项的存在位置 1、填好页框号（D 必有）。唯独「淘汰内存中的页」是有条件的——本卡步骤 3 写明：有空闲内存块时直接用，<b>无空闲块时才</b>按置换算法选一页淘汰。只要还有空闲页框，这次缺页处理全程不发生任何淘汰。故「不一定包含」的是 A。</div>
+<div class="step">自查：其余三项是任何一次成功调页都躲不开的搬运与登记动作，只有淘汰取决于内存当时满没满；回卡面看「有空闲块则用之、无则置换」一句即可定案。</div>
+</div>
+
+<div class="cardhd">os-13 · 段页式与地址变换</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2019 年第 28 题（选择题）</div>
+<div class="step">在分段存储管理系统中，用共享段表描述所有被共享的段。若进程 P1 和 P2 共享段 S，下列叙述中，错误的是（　）。</div>
+<div class="step">A. 在物理内存中仅保存一份段 S 的内容</div>
+<div class="step">B. 段 S 在 P1 和 P2 中应该具有相同的段号</div>
+<div class="step">C. P1 和 P2 共享段 S 在共享段表中的段表项</div>
+<div class="step">D. P1 和 P2 都不再使用段 S 时才回收段 S 所占的内存空间</div>
+<div class="step"><b>解析 · 答案：B</b></div>
+<div class="step">B 错：共享靠的是两个进程各自的段表项都指向共享段表中的同一表项，进而指向同一份物理段；而段号是各进程自己逻辑地址空间内部的编号——S 在 P1 里可以是 3 号段、在 P2 里是 5 号段，两不相干。要求段号相同，反而把「逻辑编号」与「物理实体」绑死了。</div>
+<div class="step">其余三项正是共享段机制的要义：物理上只保存一份内容（A）；P1、P2 的段表项共享（指向）共享段表中的同一个表项（C）；共享段表项带有使用计数，计数归零（即两个进程都不再使用）时才回收其内存（D）。</div>
+<div class="step">自查：对回本卡的对比表——分段的长处正在于按逻辑单位共享与保护，共享的锚点是物理段与共享段表项，不是各进程自编的段号。</div>
+</div>
+
+<div class="cardhd">os-14 · 页面置换算法对比</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2025 年第 26 题（选择题）</div>
+<div class="step">某页式虚拟存储管理系统采用固定分配局部置换的 LRU 算法。若系统为进程 P 分配了 3 个页框，P 从某时刻开始的页访问序列为 0, 1, 2, 0, 5, 1, 4, 3, 0, 2, 3, 2, 0，且 0, 1, 2 三个页已在内存中，则完成上述页序列的访问时，系统执行缺页异常处理程序的次数为（　）。</div>
+<div class="step">A. 5</div>
+<div class="step">B. 6</div>
+<div class="step">C. 7</div>
+<div class="step">D. 8</div>
+<div class="step"><b>解析 · 答案：B</b></div>
+<div class="step">初始三页已在框内，序列前段的 0、1、2、0 全是命中（但每次命中都会刷新最近使用次序，手算时不能跳过）。从 5 开始逐项走（框内按 LRU 在前排列）：访问 5 缺页，淘汰 1（框内 2、0、5）；访问 1 缺页，淘汰 2（框内 0、5、1）；访问 4 缺页，淘汰 0（框内 5、1、4）；访问 3 缺页，淘汰 5（框内 1、4、3）；访问 0 缺页，淘汰 1（框内 4、3、0）；访问 2 缺页，淘汰 4（框内 3、0、2）；其后 3、2、0 全部命中。缺页共 6 次 → B。</div>
+<div class="step">A 是漏计了某一次淘汰引发的连锁缺页；C、D 多把命中误记为缺页（或把已驻留的三页初装也算进来——题面明说「已在内存中」，不计）。</div>
+<div class="step">自查：已用程序按 LRU 规则模拟全序列，缺页 6 次、淘汰顺序 1、2、0、5、1、4，与手算一致（已程序复核）。与本卡卡内 2019 年真题分工不同：那道数的是置换次数，这道数的是缺页总次数且初始页已驻留。</div>
+</div>
+
+<div class="cardhd">os-15 · 文件系统相关</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2017 年第 31 题（选择题）</div>
+<div class="step">若文件 f1 的硬链接为 f2，两个进程分别打开 f1 和 f2，获得对应的文件描述符为 fd1 和 fd2，则下列叙述中，正确的是（　）。</div>
+<div class="step">I. f1 和 f2 的读写指针位置保持相同</div>
+<div class="step">II. f1 和 f2 共享同一个内存索引结点</div>
+<div class="step">III. fd1 和 fd2 分别指向各自的用户打开文件表中的一项</div>
+<div class="step">A. 仅 III</div>
+<div class="step">B. 仅 II、III</div>
+<div class="step">C. 仅 I、II</div>
+<div class="step">D. I、II 和 III</div>
+<div class="step"><b>解析 · 答案：B</b></div>
+<div class="step">先立住图景：f1、f2 是两个目录项，共同指向同一个 inode。II ✓：文件打开时 inode 调入内存只有一份，两个打开都挂在同一个内存索引结点上（其上记有打开计数等共享状态）。III ✓：每次 open 都在进程自己的（用户）打开文件表中新建一项，文件描述符就是该项的下标，fd1、fd2 各指各的表项。I ✗：读写指针（文件偏移量）记在各自的打开文件表项里，而不在 inode 里——两个进程各读各的、位置互不牵动，不存在「保持相同」。故为 II、III → B。选项 D 正是把偏移量误挂到 inode 上才凑齐三项的。</div>
+<div class="step">自查：判这类题分三层——目录项（名字）／inode（文件本体，两次打开共享）／打开文件表项（本次打开的偏移，每次独立），I 错在把第三层的东西安到了第二层。</div>
+</div>
+
+<div class="cardhd">os-16 · 文件物理结构与分配方式对比</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2013 年第 24 题（选择题）</div>
+<div class="step">为支持 CD-ROM 中视频文件的快速随机播放，播放性能最好的文件数据块组织方式是（　）。</div>
+<div class="step">A. 连续结构</div>
+<div class="step">B. 链式结构</div>
+<div class="step">C. 直接索引结构</div>
+<div class="step">D. 多级索引结构</div>
+<div class="step"><b>解析 · 答案：A</b></div>
+<div class="step">先想视频文件的脾气：只读、体积大、既要顺序连播、又要能随机跳播。逐项对回本卡对比表：连续结构把文件块连成一整段，由偏移一次即可算出物理块号，顺序读最快、随机定位也是直达；而且 CD-ROM 的内容出厂即定型，连续分配最怕的「扩展难、产生外碎片」根本不存在 → A 最合。链式结构随机访问必须顺着链逐块走，跳播最慢；索引结构（含直接、多级）虽能随机定位，但定位前要先查一层索引，对这种一次写死的只读大文件是白白的间接开销，多级索引找靠前的数据块反而更慢。</div>
+<div class="step">自查：分配方式没有绝对优劣，只有与访问模式的匹配——可扩展性在本题是无关变量，「随机定位速度＋顺序吞吐」才是判据；这与本卡「索引分配利随机访问」的结论不矛盾，差别在介质（只读光盘）与文件（不可扩展）。</div>
+</div>
+
+<div class="cardhd">os-17 · 混合索引分配计算</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2015 年第 29 题（选择题）</div>
+<div class="step">在文件的索引结点中存放直接索引指针 10 个，一级和二级索引指针各 1 个。磁盘块大小为 1 KB，每个索引指针占 4 字节。若某文件的索引结点已在内存中，则把该文件偏移量（按字节编址）为 1234 和 307400 处所在的磁盘块读入内存，需访问的磁盘块个数分别是（　）。</div>
+<div class="step">A. 1、2</div>
+<div class="step">B. 1、3</div>
+<div class="step">C. 2、3</div>
+<div class="step">D. 2、4</div>
+<div class="step"><b>解析 · 答案：B</b></div>
+<div class="step">先算每个索引块能放的指针数：1 KB ÷ 4 B = 256 个。于是各级覆盖的逻辑块号：直接 0~9；一级 10~265（共 256 块）；二级自 266 起。</div>
+<div class="step">偏移 1234 → 逻辑块号 = ⌊1234 / 1024⌋ = 1，落在直接区；索引结点已在内存，读数据块本身即可 → 1 次。偏移 307400 → 逻辑块号 = ⌊307400 / 1024⌋ = 300，越过一级上限 265，必须走二级：先读二级索引块，再读它指向的一级索引块，最后读数据块 → 3 次。故依次为 1、3 → B。</div>
+<div class="step">A 的第二问少算了一层索引块；C 的第一问多算了一次（忘了「索引结点已在内存」这一前提）；D 两问都各多算一层。</div>
+<div class="step">自查：已用程序按「逻辑块号 → 级别 → 索引块层数 + 1」复算，得 (1234 → 1 次、307400 → 3 次)（已程序复核）。与本卡例题的分工：本卡例题算的是最大文件长度（4 KB 块、13 个地址项），本题换成 1 KB 块、算定位的访盘次数，公式是同一套。</div>
+</div>
+
+<div class="cardhd">os-18 · 空闲空间管理四法对比</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2015 年第 31 题（选择题）</div>
+<div class="step">文件系统用位图法表示磁盘空间的分配情况，位图存于磁盘的 32～127 号块中，每个盘块占 1024 字节，盘块和块内字节均从 0 开始编号。假设要释放的盘块号为 409612，则位图中要修改的位所在的盘块号和块内字节序号分别是（　）。</div>
+<div class="step">A. 81、1</div>
+<div class="step">B. 81、2</div>
+<div class="step">C. 82、1</div>
+<div class="step">D. 82、2</div>
+<div class="step"><b>解析 · 答案：C</b></div>
+<div class="step">一块位图有 1024 B = 8192 位，即一个位图块管 8192 个盘块。盘块 409612 的位序号就是 409612（从 0 起）：⌊409612 / 8192⌋ = 50，即它落在第 50 个位图块（0 起）内；位图自盘块 32 起存，故所在盘块号 = 32 + 50 = 82。再求块内位置：409612 − 50 × 8192 = 12，即该位图块内的第 12 位（0 起）；每字节 8 位，字节序号 = ⌊12 / 8⌋ = 1。故依次为 82、1 → C。</div>
+<div class="step">A 的盘块号是除法向下取整时的常见手误（8192 × 50 = 409600，余数只有 12，商就是 50 而非 49）；B、D 的字节序号 2 多来自把「第 12 位」按 1 起编号错位。</div>
+<div class="step">自查：已用程序按「位号 → 位图块序号 → 盘块号、字节号」复算，得 (82, 1)（已程序复核）。对照本卡例题：本卡练的是字长 32 位下的字号、位号，本题换成「位图块号＋字节号」的两级定位，仍是同一条除法链，且本题编号全从 0 起、无 1 起陷阱。</div>
+</div>
+
+<div class="cardhd">os-19 · I/O 设备与控制方式</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2026 年第 31 题（选择题）</div>
+<div class="step">下列关于驱动程序的叙述中，错误的是（　）。</div>
+<div class="step">A. 驱动程序中包含启动设备的代码</div>
+<div class="step">B. 驱动程序中包含一组读/写设备的代码</div>
+<div class="step">C. 驱动程序与内核之间需要定义统一的接口</div>
+<div class="step">D. 块设备和字符设备驱动程序采用相同的 I/O 控制方式</div>
+<div class="step"><b>解析 · 答案：D</b></div>
+<div class="step">D 错：控制方式是按设备的脾气选的——块设备（如磁盘）数据批量大，采用 DMA 方式；字符设备（如键盘）数据零散，采用中断驱动方式。两类驱动在数据如何搬运、CPU 如何介入上根本不同，谈不上「相同的 I/O 控制方式」。</div>
+<div class="step">其余三项都是本卡驱动层的本分：A 驱动负责把抽象命令翻译成对设备控制器的寄存器操作，启动设备正是其中的一步；B 读/写设备的具体代码就在驱动程序里；C 内核与形形色色的驱动之间靠统一接口衔接，上层才不必关心每台设备的细节，这也是设备独立性的实现前提。</div>
+<div class="step">自查：对回本卡例题 1 的选型结论——批量越大、越要选打扰少的控制方式；块设备与字符设备自分类起就分道，驱动与控制方式随之而分。</div>
+</div>
+
+<div class="cardhd">os-20 · 磁盘调度 FCFS / SSTF / SCAN 对比</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2024 年第 32 题（选择题）</div>
+<div class="step">某磁盘的磁道数为 400（磁道号为 0～399），采用循环扫描算法（CSCAN）进行磁盘调度，完成对 200 号磁道的请求后，磁头向磁道号减小的方向移动。若还有 7 个磁盘请求，对应的磁道号分别为 300, 120, 110, 0, 160, 210, 399，则完成上述磁盘访问请求后磁头移动的距离是（　）。</div>
+<div class="step">A. 599</div>
+<div class="step">B. 619</div>
+<div class="step">C. 788</div>
+<div class="step">D. 799</div>
+<div class="step"><b>解析 · 答案：C</b></div>
+<div class="step">C-SCAN 只朝一个方向服务：自 200 向减小方向，沿途请求从大到小依次是 160、120、110、0，移动 40 + 40 + 10 + 110 = 200，到达端点 0；然后磁头直接回绕到最大号 399（移动 399），再继续向减小方向服务剩下的 399、300、210，移动 0 + 99 + 90 = 189。合计 200 + 399 + 189 = 788 → C。</div>
+<div class="step">A 的 599 = 200 + 399，只算到刚回绕完、没算回绕后还要服务的三站；其余选项都是端点处理上的多算或少算。注意回绕段 0 → 399 并不服务任何请求，但磁头移动距离照样计入——这正是 C-SCAN 总移动距离总是偏大的原因。</div>
+<div class="step">自查：已用程序按「向下服务至 0 → 回绕 399 → 继续向下」模拟，总移动 788，与手算一致（已程序复核）。与本卡卡内 2021 年 SSTF 真题对照：SSTF 是就近贪心、C-SCAN 是单向到底加回绕，两道题正好把两种思路各走一遍。</div>
+</div>
+
+<div class="cardhd">os-21 · 磁盘访问时间</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 未配</div>
+<div class="step">本卡未配真题。18 年 A 类正考题中，没有以磁盘访问时间构成（寻道时间＋旋转延迟＋传输时间）为主归属命题的题：最接近的 2012 年第 32 题考的是「改善磁盘 I/O 性能的措施」（概念辨析，不涉及时间计算），2019 年第 44 题综合题的三个小问分别为磁盘容量、SSTF 调度与簇号地址转换，均不能干净隔离本卡点。按「无干净匹配不硬配」的口径，本卡留空，待后续有合适题源再补。</div>
+</div>
+
+<div class="cardhd">os-22 · SPOOLing 技术</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2016 年第 31 题（选择题）</div>
+<div class="step">下列关于 SPOOLing 技术的叙述中，错误的是（　）。</div>
+<div class="step">A. 需要外存的支持</div>
+<div class="step">B. 需要多道程序设计技术的支持</div>
+<div class="step">C. 可以让多个作业共享一台独占设备</div>
+<div class="step">D. 由用户作业控制设备与输入/输出井之间的数据传送</div>
+<div class="step"><b>解析 · 答案：D</b></div>
+<div class="step">D 错：井与设备之间的数据传送由 SPOOLing 系统的输入/输出进程（常驻的守护进程）负责——用户作业只把待输出的数据交进输出井、登记请求就返回，根本不直接控制设备与井之间搬什么、何时搬。</div>
+<div class="step">其余三项都是 SPOOLing 的立身之本：A 输入井、输出井都开在磁盘上，离不开外存；B 没有多道程序环境，就没有「作业提交后继续运行、后台慢慢输出」的格局；C 把独占设备改造成逻辑上可以排队共享的虚拟设备，正是这项技术的目的。</div>
+<div class="step">自查：对回本卡打印全流程的四步——最后一步的主语是输出进程，不是用户作业，D 错在偷换了主语。</div>
+</div>
+
+<div class="cardhd">os-23 · 缓冲管理</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2011 年第 31 题（选择题）</div>
+<div class="step">某文件占 10 个磁盘块，现要把该文件磁盘块逐个读入主存缓冲区，并送用户区进行分析，假设一个缓冲区与一个磁盘块大小相同，把一个磁盘块读入缓冲区的时间为 100 μs，将缓冲区的数据传送到用户区的时间是 50 μs，CPU 对一块数据进行分析的时间为 50 μs。在单缓冲区和双缓冲区结构下，读入并分析完该文件的时间分别是（　）。</div>
+<div class="step">A. 1500 μs、1000 μs</div>
+<div class="step">B. 1550 μs、1100 μs</div>
+<div class="step">C. 1550 μs、1550 μs</div>
+<div class="step">D. 2000 μs、2000 μs</div>
+<div class="step"><b>解析 · 答案：B</b></div>
+<div class="step">记号对回本卡：T = 100（读入）、M = 50（传送）、C = 50（分析）。先算单缓冲：第 1 块只能串行走完 T + M + C = 200 μs；从第 2 块起，瓶颈是「读入＋传送」这条链——缓冲区在传送（M）结束前腾不出来，下一块的读入必须排在上一块传送之后，而分析（50 μs）短于读入（100 μs），可以藏在下一块读入期间完成。故每块再加 T + M = 150，共 200 + 9 × 150 = 1550 μs。</div>
+<div class="step">再算双缓冲：两个缓冲轮换，读入与「传送＋分析」两条链并行，每块稳态耗时 = max(T, M + C) = max(100, 100) = 100 μs；首块仍须 200 μs 才分析完，此后每块推进 100，共 200 + 9 × 100 = 1100 μs。故依次为 1550、1100 → B。</div>
+<div class="step">A 的单缓冲 1500 是把首块也按 150 计；双缓冲 1000 则把首块的串行段也抹掉了——两种错法都是丢了流水线开头那段「填充」时间。</div>
+<div class="step">自查：已用事件模拟程序按资源约束（缓冲区数、传送通道、CPU）逐块推进，单缓冲 1550 μs、双缓冲 1100 μs（已程序复核）。与本卡例题的区别要记清：本卡公式给的是稳态下平均每块耗时，本题问 10 块的总时间，必须把第一块的串行填充段单独加上——用「平均 × 块数」会系统性地少算一个填充段。</div>
+</div>
+
+</body>
+</html>
