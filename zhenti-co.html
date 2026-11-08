@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>408 真题实战 · 计算机组成原理（试点稿）</title>
+<style>
+body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;font-size:14px;line-height:1.75;color:#222;max-width:880px;margin:24px auto;padding:0 16px}
+h1{font-size:20px}
+.note{background:#f4f6f8;border:1px solid #d8dee4;border-radius:6px;padding:10px 14px;font-size:13px}
+.cardhd{font-size:16px;font-weight:700;margin:26px 0 6px;border-left:4px solid #4a7fb5;padding-left:8px}
+.ex{border:1px solid #c9d4e0;border-radius:6px;padding:10px 14px;background:#fbfcfe}
+.ex-title{font-weight:700;color:#20507e;margin-bottom:6px}
+.step{margin:3px 0}
+.step.code{font-family:Consolas,Menlo,monospace;white-space:pre-wrap;background:#f0f3f6;border-radius:4px;padding:4px 8px}
+table.pt{border-collapse:collapse;margin:6px 0}
+table.pt th,table.pt td{border:1px solid #b9c6d2;padding:2px 12px;text-align:center}
+</style>
+</head>
+<body>
+<h1>408 真题实战 · 计算机组成原理（试点稿，未并入合辑）</h1>
+<div class="note">选题口径：每卡至多一题，须为该卡考点在 18 年考点库（exam-db-18y.csv）中的 A 类正考主归属题；优先选择题、年份越新越好；同一道题只配一张卡。题干与选项照录原卷（以 neville 重构版原卷文本为准、zhaoyang 结构化题库互校），答案以官方答案键为准；2023 年答案键为第三方「研芝士」版（已在对应卡与选题日志中标注）。解析为本稿自撰，计算均经程序复算。本轮 26 张计组卡全部配上真题，无未配卡。</div>
+
+<div class="cardhd">co-1 · 计算机系统层次结构</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2026 年第 12 题（选择题）</div>
+<div class="step">下列关于计算机系统层次结构的叙述中，错误的是（　）。</div>
+<div class="step">A. 最上层是应用软件层，最下层是器件及物理封装层</div>
+<div class="step">B. 指令集体系结构是软件和硬件之间的接口，且必不可少</div>
+<div class="step">C. 计算机组成（即微架构）属于指令集体系结构的物理实现层</div>
+<div class="step">D. 操作系统可通过指令集体系结构进行相应抽象，向上层软件提供服务</div>
+<div class="step"><b>解析 · 答案：C</b></div>
+<div class="step">逐项判：A 系统层次自顶向下由应用软件层一直到器件及物理封装层，正确；B 指令集体系结构（ISA）是软件与硬件的分界面，正确；D 操作系统建立在 ISA 之上、向上层软件提供服务，正确。</div>
+<div class="step">C 错在归属：ISA 本身只是一套规约（指令集、寄存器、寻址方式等程序员可见的约定），它没有「物理实现层」这一层；计算机组成（微架构）是这套规约的<b>实现者</b>，位于 ISA 之下，二者是「规约与实现」的关系，而不是「ISA 内部的一个层次」。</div>
+<div class="step">自查：凡问某物是否属于 ISA，只看它是否为程序员可见的规约——微架构对程序员不可见，故不属于 ISA。</div>
+</div>
+
+<div class="cardhd">co-2 · CPU 性能指标 · CPI / MIPS 与执行时间</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2022 年第 12 题（选择题）</div>
+<div class="step">某计算机主频为 1 GHz，程序 P 运行过程中，共执行了 10000 条指令，其中，80% 的指令执行平均需 1 个时钟周期，20% 的指令执行平均需 10 个时钟周期。程序 P 的平均 CPI 和 CPU 执行时间分别是（　）。</div>
+<div class="step">A. 2.8，28 μs</div>
+<div class="step">B. 28，28 μs</div>
+<div class="step">C. 2.8，28 ms</div>
+<div class="step">D. 28，28 ms</div>
+<div class="step"><b>解析 · 答案：A</b></div>
+<div class="step">平均 CPI 按指令占比加权：0.8 × 1 + 0.2 × 10 = 2.8。注意不是把 1 和 10 直接算术平均——占比才是权重，B、D 的 28 即是丢了权重（或量级错位）的结果。</div>
+<div class="step">总时钟周期数 = 指令条数 × 平均 CPI = 10000 × 2.8 = 28000。主频 1 GHz 对应时钟周期 1 ns，CPU 执行时间 = 28000 × 1 ns = 28 μs。C 的 CPI 正确但时间错了 1000 倍，是单位换算坑。</div>
+<div class="step">自查：万条指令 × 个位数 CPI × 纳秒周期，结果落在几十微秒量级，与 28 μs 一致。</div>
+</div>
+
+<div class="cardhd">co-3 · 机器数表示对比 · 原码 / 反码 / 补码 / 移码</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2023 年第 13 题（选择题）</div>
+<div class="step">若 short 型变量 x = −8190，则 x 的机器数是（　）。</div>
+<div class="step">A. E002H</div>
+<div class="step">B. E001H</div>
+<div class="step">C. 9FFFH</div>
+<div class="step">D. 9FFEH</div>
+<div class="step"><b>解析 · 答案：A</b>（注：2023 年答案键为第三方「研芝士」版，见选题日志）</div>
+<div class="step">short 为 16 位，「机器数」即补码。先备好 8190 = 1FFEH，沿原码 → 反码 → 补码链走一遍：原码 = 符号位 1 拼数值位，得 9FFEH——这正是 D，它是原码不是补码。</div>
+<div class="step">反码 = 符号位不变、数值位按位取反，得 E001H——这正是 B，走到反码就停手是本题最常见的坑。补码 = 反码 + 1 = E002H → A。</div>
+<div class="step">C 的 9FFFH 是 −8191 的原码（数值多算了 1，且同样停在原码）。自查：把 E002H 按 16 位补码译回真值恰为 −8190，分毫不差（已程序复核）。</div>
+</div>
+
+<div class="cardhd">co-4 · 补码运算规则</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2025 年第 14 题（选择题）</div>
+<div class="step">假设 8 位字长的计算机中，两个带符号整数 x 和 y 的补码表示分别为 [x]<sub>补</sub> = A3H，[y]<sub>补</sub> = 75H，则通过补码加减运算器得到的 x − y 的值及 OF 标志分别为（　）。</div>
+<div class="step">A. 24，0</div>
+<div class="step">B. 24，1</div>
+<div class="step">C. 46，0</div>
+<div class="step">D. 46，1</div>
+<div class="step"><b>解析 · 答案：D</b></div>
+<div class="step">先读真值定 OF：[x]<sub>补</sub> = A3H = 1010 0011B → x = −93；[y]<sub>补</sub> = 75H → y = +117。真值 x − y = −93 − 117 = −210，已超出 8 位补码范围 [−128，127]，故 OF = 1，答案先锁定在 B、D。</div>
+<div class="step">再算机器结果：减法在运算器里按补码加法做，x − y = A3H + [−y]<sub>补</sub> = A3H + 8BH = 1 2EH，截断为 8 位得 2EH = 46 → D。</div>
+<div class="step">A、B 中的 24 是把运算误作 x + y 的结果（−93 + 117 = 24）；C 的数值 46 对、但漏判了真值越界。自查：溢出只看真值是否越界，与机器结果的 46 本身无关——46 落在范围内不等于没溢出。</div>
+</div>
+
+<div class="cardhd">co-5 · 定点数乘除运算 · 原码一位乘 / Booth 算法 / 不恢复余数除法</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2024 年第 15 题（选择题）</div>
+<div class="step">下列关于整数乘法运算的叙述中，错误的是（　）。</div>
+<div class="step">A. 用阵列乘法器实现的乘运算可以在一个时钟周期内完成</div>
+<div class="step">B. 用 ALU 和移位器实现的乘运算无法在一个时钟周期内完成</div>
+<div class="step">C. 变量与常数的乘运算可编译优化为若干条移位及加/减运算指令</div>
+<div class="step">D. 两个变量的乘运算无法编译转换为移位及加法等指令的循环实现</div>
+<div class="step"><b>解析 · 答案：D</b></div>
+<div class="step">A：阵列乘法器是全组合逻辑阵列，部分积一次并行产生并相加，一个时钟周期可完成乘运算，正确。B：用 ALU 加移位器的串行实现须按乘数位数逐位迭代（n 位乘数要 n 轮移位与加法），一个周期内完不成，正确。</div>
+<div class="step">C：常数乘法可按常数的二进制分解为移位与加/减的组合（如 ×10 = ×8 + ×2），是编译器的常态优化，正确。D 错：两个变量相乘同样能编译成移位及加法指令组成的循环来软件实现——这正是没有乘法指令的机器做乘法的标准办法，本卡的原码一位乘、Booth 算法就是它的硬件对应物；「无法」二字把话说死了。</div>
+<div class="step">自查：四个选项恰好对应乘法的四条实现路径——阵列乘法器、串行硬件、常数优化、软件循环，不要把「慢」误判成「不能」。</div>
+</div>
+
+<div class="cardhd">co-6 · IEEE 754 浮点数</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2025 年第 13 题（选择题）</div>
+<div class="step">已知 float 型变量用 IEEE 754 单精度浮点数格式表示。若 float 型变量 x 的机器数为 4730 0000H，则 x 的值是（　）。</div>
+<div class="step">A. 0.375 × 2<sup>14</sup></div>
+<div class="step">B. 1.375 × 2<sup>14</sup></div>
+<div class="step">C. 0.375 × 2<sup>15</sup></div>
+<div class="step">D. 1.375 × 2<sup>15</sup></div>
+<div class="step"><b>解析 · 答案：D</b></div>
+<div class="step">把 4730 0000H 展开为二进制：0100 0111 0011 0000 …，按 1 / 8 / 23 位切分。符号位 0，为正数；阶码字段 1000 1110 = 142，减去偏置 127 得阶码真值 15。</div>
+<div class="step">尾数字段为 011 0000…，补上隐藏位 1 得尾数 1.011 = 1 + 1/4 + 1/8 = 1.375。故 x = 1.375 × 2<sup>15</sup> → D。</div>
+<div class="step">A、C 的 0.375 是漏加隐藏位、只取小数字段 0.011 的值；B 的指数 14 是把偏置错当 128（142 − 128 = 14）。自查：按 IEEE 754 实际解码 4730 0000H 得 45056 = 1.375 × 32768 ✓（已程序复核）。</div>
+</div>
+
+<div class="cardhd">co-7 · 浮点数加减运算 · 五步法</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2009 年第 13 题（选择题）</div>
+<div class="step">浮点数加、减运算过程一般包括对阶、尾数运算、规格化、舍入和判溢出等步骤。设浮点数的阶码和尾数均采用补码表示，且位数分别为 5 位和 7 位（均含 2 位符号位）。若有两个数 X = 2<sup>7</sup> × 29/32，Y = 2<sup>5</sup> × 5/8，则用浮点加法计算 X + Y 的最终结果是（　）。</div>
+<div class="step">A. 00111 1100010</div>
+<div class="step">B. 00111 0100010</div>
+<div class="step">C. 01000 0010001</div>
+<div class="step">D. 发生溢出</div>
+<div class="step"><b>解析 · 答案：D</b></div>
+<div class="step">按五步法走。写两数：X 阶码 7、尾数 29/32 = 0.11101；Y 阶码 5、尾数 5/8 = 0.101。对阶：小阶向大阶看齐，Y 阶码 5 → 7，尾数右移 2 位，0.101 → 0.00101（即 5/32）。</div>
+<div class="step">尾数相加：0.11101 + 0.00101 = 1.00010，双符号位呈 01，尾数（正）溢出，须右规：尾数右移一位得 0.10001，阶码 7 + 1 = 8。</div>
+<div class="step">判溢出：阶码共 5 位含 2 位符号位，数值位只有 3 位，补码最大可表示 7；阶码 8 写成 01000 后双符号位为 01，表示阶码上溢，整个结果溢出 → D。C 的 01000 0010001 正是右规后照单全收、忘了判阶码上溢的半成品；A、B 连右规都没做。</div>
+<div class="step">自查：真值 X + Y = 116 + 20 = 136，而该格式能表示的最大数约为 (1 − 2<sup>−5</sup>) × 2<sup>7</sup> = 124，136 确已越界，与「溢出」吻合。</div>
+</div>
+<div class="cardhd">co-8 · 数据类型转换</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2025 年第 12 题（选择题）</div>
+<div class="step">在 32 位计算机上执行下列 C 语言代码段后，ui 的值是（　）。</div>
+<div class="step code">short si = -32767;
+unsigned int ui = si;</div>
+<div class="step">A. 2<sup>15</sup> − 1</div>
+<div class="step">B. 2<sup>15</sup> + 1</div>
+<div class="step">C. 2<sup>32</sup> − 2<sup>15</sup> − 1</div>
+<div class="step">D. 2<sup>32</sup> − 2<sup>15</sup> + 1</div>
+<div class="step"><b>解析 · 答案：D</b></div>
+<div class="step">赋值分两步走。第一步，si 先提升为 int：符号扩展，16 位的 8001H 扩成 32 位的 FFFF 8001H，真值仍为 −32767——注意 8001H 的最高位是符号位 1，扩展时补的是 1 不是 0。</div>
+<div class="step">第二步，int 转 unsigned int：真值按模 2<sup>32</sup> 折算，ui = 2<sup>32</sup> + (−32767) = 2<sup>32</sup> − 32767 = 2<sup>32</sup> − (2<sup>15</sup> − 1) = 2<sup>32</sup> − 2<sup>15</sup> + 1 → D。</div>
+<div class="step">A、B 还停留在 16 位量级，漏掉了符号扩展这一步；C 与 D 只差末尾的 1，源于把 32767 错当成 2<sup>15</sup>（忘了 2<sup>15</sup> − 1 才等于 32767）。自查：FFFF 8001H 按无符号读数 = 4294934529 = 2<sup>32</sup> − 2<sup>15</sup> + 1 ✓（已程序复核）。</div>
+</div>
+
+<div class="cardhd">co-9 · 数据的大小端与对齐存储</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2025 年第 15 题（选择题）</div>
+<div class="step">某 32 位计算机按字节编址，采用小端方式存放数据，编译器按边界对齐方式为下列 C 语言结构型数组变量 employee 分配存储空间。</div>
+<div class="step code">struct record {
+    int id;
+    char name[10];
+    int salary;
+} employee[200];</div>
+<div class="step">若 employee 的首地址为 0000 A0B0H，employee[1].id 的机器数为 1234 5678H，则该机器数中的 56H 所在存储单元的地址是（　）。</div>
+<div class="step">A. 0000 A0C3H</div>
+<div class="step">B. 0000 A0C4H</div>
+<div class="step">C. 0000 A0C5H</div>
+<div class="step">D. 0000 A0C6H</div>
+<div class="step"><b>解析 · 答案：C</b></div>
+<div class="step">先算一个 record 的布局：id 占偏移 0~3；name[10] 占偏移 4~13；salary 是 int 须 4 字节对齐，偏移 14、15 补空，salary 落在偏移 16~19。一个 record 共 20 字节。</div>
+<div class="step">employee[1] 起始地址 = A0B0H + 20 = A0C4H，其 id 就存放在 A0C4H~A0C7H。小端方式下 1234 5678H 的字节自低地址起依次为 78H、56H、34H、12H，所以 56H 位于第二个字节 A0C5H → C。</div>
+<div class="step">B 的 A0C4H 是 id 的首字节，那里放的是 78H；D 是 34H 的位置；A 的 A0C3H 甚至是 employee[0] 的最后一个字节。自查：地址与字节序两步都已被程序按对齐规则模拟复核 ✓。</div>
+</div>
+
+<div class="cardhd">co-10 · 存储器容量计算</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2023 年第 15 题（选择题）</div>
+<div class="step">某计算机的 CPU 有 30 根地址线，按字节编址，CPU 和主存芯片连接时，要求主存芯片占满所有可能存储地址空间，并且 RAM 区和 ROM 区所分配的空间大小比为 3∶1，若 RAM 在连续低地址区，ROM 在连续高地址区，则 ROM 的地址范围是（　）。</div>
+<div class="step">A. 0000 0000H ~ 0FFF FFFFH</div>
+<div class="step">B. 1000 0000H ~ 2FFF FFFFH</div>
+<div class="step">C. 3000 0000H ~ 3FFF FFFFH</div>
+<div class="step">D. 4000 0000H ~ 4FFF FFFFH</div>
+<div class="step"><b>解析 · 答案：C</b>（注：2023 年答案键为第三方「研芝士」版，见选题日志）</div>
+<div class="step">先钉死总范围：30 根地址线、按字节编址 → 地址空间 2<sup>30</sup> = 1 GB，地址从 0000 0000H 到 3FFF FFFFH。D 的上限 4FFF FFFFH 已越出 30 位地址空间，可直接排除。</div>
+<div class="step">再按比切分：RAM∶ROM = 3∶1，ROM 占总空间的 1/4 = 256 MB = 1000 0000H，且位于高地址区。ROM 起始 = 4000 0000H − 1000 0000H = 3000 0000H，故范围为 3000 0000H ~ 3FFF FFFFH → C。A 是最低的那 1/4（属 RAM 的开头部分），B 是中间一段。</div>
+<div class="step">自查：四个等分点 0、1000 0000H、2000 0000H、3000 0000H、3FFF FFFFH，ROM 取最后一段，长度 1000 0000H 恰为总空间的 1/4 ✓。</div>
+</div>
+
+<div class="cardhd">co-11 · 存储芯片扩展 · 位扩展 / 字扩展 / 字位同时扩展</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2021 年第 15 题（选择题）</div>
+<div class="step">某计算机的存储器总线中有 24 位地址线和 32 位数据线，按字编址，字长为 32 位。若 000000H ~ 3FFFFFH 为 RAM 区，则需要 512K × 8 位的 RAM 芯片数为（　）。</div>
+<div class="step">A. 8</div>
+<div class="step">B. 16</div>
+<div class="step">C. 32</div>
+<div class="step">D. 64</div>
+<div class="step"><b>解析 · 答案：C</b></div>
+<div class="step">先算 RAM 区容量：地址 000000H ~ 3FFFFFH 共 2<sup>22</sup> 个地址，按字编址、一字 32 位，即需要 2<sup>22</sup> 字 × 32 位。单片芯片为 512K × 8 位 = 2<sup>19</sup> 字 × 8 位。</div>
+<div class="step">两个方向分别扩展：位扩展——每字 32 位 ÷ 芯片数据线 8 位 = 4 片并联成一组；字扩展——2<sup>22</sup> 字 ÷ 每组 2<sup>19</sup> 字 = 8 组。合计 4 × 8 = 32 片 → C。</div>
+<div class="step">A 只算了字扩展的组数，漏掉位扩展；D 在 32 的基础上又多乘了一个 2。自查：32 片 × 512K × 8 位 = 2<sup>22</sup> × 32 位，与 RAM 区容量恰好相等 ✓。</div>
+</div>
+
+<div class="cardhd">co-12 · 多体交叉存储器 · 低位交叉与流水存取</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2026 年第 15 题（选择题）</div>
+<div class="step">若用 8 个 64M × 8 位的 DRAM 芯片按交叉编址方式构成主存储器，并与一个宽度为 64 位的存储器总线相连，主存每次最多读写 64 位，且按字节编址，则下列地址中，与主存地址 0018 001DH 位于同一芯片中的是（　）。</div>
+<div class="step">A. 0000 01D5H</div>
+<div class="step">B. 000F A020H</div>
+<div class="step">C. 0018 001EH</div>
+<div class="step">D. 0F02 0014H</div>
+<div class="step"><b>解析 · 答案：A</b></div>
+<div class="step">低位交叉编址下，连续字节地址轮流落到各芯片，芯片号由字节地址的低 3 位决定（8 个芯片，即地址 mod 8）。这也与题面自洽：8 片 × 8 位并行，正好一次向 64 位总线供满 64 位。</div>
+<div class="step">目标地址低 3 位：1DH = 29，29 mod 8 = 5，属 5 号芯片。逐项求 mod 8：A 的 1D5H = 469，469 mod 8 = 5 ✓；B 的低位为 0，属 0 号；C 的 1EH = 30，mod 8 = 6；D 的 14H = 20，mod 8 = 4。只有 A 同片 → A。</div>
+<div class="step">C 只与目标地址差 1，是「相邻地址必同片」的直觉陷阱——低位交叉的特点恰恰是相邻地址分属不同芯片。自查：已用程序对四个选项逐一取低 3 位复核 ✓。</div>
+</div>
+
+<div class="cardhd">co-13 · 外部存储器</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2019 年第 20 题（选择题）</div>
+<div class="step">下列关于磁盘存储器的叙述中，错误的是（　）。</div>
+<div class="step">A. 磁盘的格式化容量比非格式化容量小</div>
+<div class="step">B. 扇区中包含数据、地址和校验等信息</div>
+<div class="step">C. 磁盘存储器的最小读写单位为一个字节</div>
+<div class="step">D. 磁盘存储器由磁盘控制器、磁盘驱动器和盘片组成</div>
+<div class="step"><b>解析 · 答案：C</b></div>
+<div class="step">C 错：磁盘以扇区为最小读写单位，一次读写至少搬运一整个扇区（通常 512 B 或 4 KB），不存在只读写其中某个字节的操作——磁盘是按块存取的设备。</div>
+<div class="step">其余三项均正确：A 格式化要划出引导、目录、校验等管理开销，可用容量自然小于非格式化容量；B 扇区除数据外还含地址标记与校验码等附加信息；D 控制器 + 驱动器 + 盘片是磁盘存储器的标准构成。</div>
+<div class="step">自查：凡说磁盘能按字节随机读写者皆错，与「磁盘按扇区（块）存取」这一条互证。</div>
+</div>
+
+<div class="cardhd">co-14 · Cache 地址划分与平均访问时间 · 计算</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2026 年第 18 题（选择题）</div>
+<div class="step">某计算机按字节编址，数据 Cache 共有 1024 行，采用 4 路组相联映射方式，主存块大小为 32 B。若需要访问主存地址为 1028 的 4 字节数据，则该数据所在主存块对应的 Cache 组号是（　）。</div>
+<div class="step">A. 4</div>
+<div class="step">B. 16</div>
+<div class="step">C. 32</div>
+<div class="step">D. 64</div>
+<div class="step"><b>解析 · 答案：C</b></div>
+<div class="step">三步走：① 主存块号 = 地址 ÷ 块大小 = 1028 ÷ 32 = 32（余 4，即该字节位于 32 号块内偏移 4 处）；② 组数 = 总行数 ÷ 路数 = 1024 ÷ 4 = 256 组；③ 组号 = 块号 mod 组数 = 32 mod 256 = 32 → C。</div>
+<div class="step">A 的 4 是路数（或块内偏移）被顺手误用；B、D 都是除法对象张冠李戴的错值。自查：块号 32 小于组数 256，取模后不变，组号即块号本身——这类「块号小于组数」的题不要多算一步。</div>
+</div>
+
+<div class="cardhd">co-15 · Cache 替换算法与写策略</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2012 年第 17 题（选择题）</div>
+<div class="step">假设某计算机按字编址，Cache 有 4 个行，Cache 和主存之间交换的块大小为 1 个字。若 Cache 的内容初始为空，采用 2 路组相联映射方式和 LRU 替换策略。访问的主存地址依次为 0，4，8，2，0，6，8，6，4，8 时，命中 Cache 的次数是（　）。</div>
+<div class="step">A. 1</div>
+<div class="step">B. 2</div>
+<div class="step">C. 3</div>
+<div class="step">D. 4</div>
+<div class="step"><b>解析 · 答案：C</b></div>
+<div class="step">先定映射：块大小 1 个字，块号即字地址。Cache 4 行、2 路组相联，共 2 组、每组 2 行；按官方解析的分组，块号的次低位定组——块号 0、4、8、0、8、4、8 这串访问落入第 0 组，块号 2、6、6 落入第 1 组。把一条混合访问流拆成两条组内流，是这类题的第一步。</div>
+<div class="step">逐组做 LRU 模拟（每组只有 2 个位置）。第 0 组（0，4，8，0，8，4，8）：0 缺失、4 缺失、8 缺失（挤走最久未用的 0）、0 缺失（挤走 4）、8 <b>命中</b>、4 缺失（挤走 0）、8 <b>命中</b> → 2 次命中。第 1 组（2，6，6）：2 缺失、6 缺失、6 <b>命中</b> → 1 次命中。</div>
+<div class="step">合计命中 3 次 → C。自查：已用程序按同口径模拟全序，命中点落在第 7、8、10 次访问 ✓。</div>
+</div>
+
+<div class="cardhd">co-16 · 虚存地址变换与页表规模 · 计算</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2022 年第 15 题（选择题）</div>
+<div class="step">某计算机主存地址为 24 位，采用分页虚拟存储管理方式，虚拟地址空间大小为 4 GB，页大小为 4 KB，按字节编址。某进程的页表部分内容如下表所示。当 CPU 访问虚拟地址 0008 2840H 时，虚-实地址转换的结果是（　）。</div>
+<table class="pt">
+<tr><th>虚页号</th><th>实页号（页框号）</th><th>存在位</th></tr>
+<tr><td>82</td><td>024H</td><td>0</td></tr>
+<tr><td>…</td><td>…</td><td>…</td></tr>
+<tr><td>129</td><td>180H</td><td>1</td></tr>
+<tr><td>130</td><td>018H</td><td>1</td></tr>
+</table>
+<div class="step">A. 得到主存地址 02 4840H</div>
+<div class="step">B. 得到主存地址 18 0840H</div>
+<div class="step">C. 得到主存地址 01 8840H</div>
+<div class="step">D. 检测到缺页异常</div>
+<div class="step"><b>解析 · 答案：C</b></div>
+<div class="step">先拆地址：页大小 4 KB = 2<sup>12</sup> B，页内偏移取低 12 位。虚拟地址 0008 2840H 的偏移为 840H，虚页号 = 00082H = 十进制 130——注意页号在表里是十进制写的，别拿 82 去错查第一行。</div>
+<div class="step">查表：130 号页存在位为 1、页框号 018H，已在主存。物理地址 = 页框号拼页内偏移 = 018H × 1000H + 840H = 01 8840H → C。</div>
+<div class="step">A 是误查 82 号页（页框 024H）且无视其存在位为 0 的结果；B 误查相邻的 129 号页；D 是把「页表只列了部分行」误当缺页——目标页明明列在表中且存在位为 1。自查：变换前后页内偏移 840H 保持不变，物理地址未越出 24 位主存范围 ✓。</div>
+</div>
+<div class="cardhd">co-17 · 指令格式与寻址方式 · 计算</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2022 年第 19 题（选择题）</div>
+<div class="step">设计某指令系统时，假设采用 16 位定长指令字格式，操作码使用扩展编码方式，地址码为 6 位，包含零地址、一地址和二地址 3 种格式的指令。若二地址指令有 12 条，一地址指令有 254 条，则零地址指令的条数最多为（　）。</div>
+<div class="step">A. 0</div>
+<div class="step">B. 2</div>
+<div class="step">C. 64</div>
+<div class="step">D. 128</div>
+<div class="step"><b>解析 · 答案：D</b></div>
+<div class="step">扩展操作码逐级扣减。二地址指令的操作码占 16 − 6 − 6 = 4 位，共 2<sup>4</sup> = 16 个编码，用掉 12 条，剩 4 个编码向下扩展。</div>
+<div class="step">每个剩余编码拼上一个 6 位地址码，可扩展出 2<sup>6</sup> = 64 条一地址指令，4 个编码共 256 条容量；一地址指令用 254 条，剩 2 个编码。再向下扩展一层：2 × 2<sup>6</sup> = 128 条零地址指令 → D。</div>
+<div class="step">A、B 是把「剩余编码数 2」直接当成了答案；C 只算了 1 个剩余编码的扩展量。自查：容量链 16 → 256 → 128，每一级都是「剩余编码数 × 2<sup>6</sup>」，量纲一致 ✓（已程序复核）。</div>
+</div>
+
+<div class="cardhd">co-18 · 程序的机器级代码表示</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2024 年第 13 题（选择题）</div>
+<div class="step">通常情况下，将汇编语言程序中实现特定功能的指令序列定义成一条伪指令（pseudoinstruction）。下列选项中，CPU 能理解并直接执行的是（　）。</div>
+<div class="step">I. 伪指令　　II. 微指令　　III. 机器指令　　IV. 汇编指令</div>
+<div class="step">A. 仅 I 和 IV</div>
+<div class="step">B. 仅 II 和 III</div>
+<div class="step">C. 仅 III 和 IV</div>
+<div class="step">D. 仅 I、II 和 IV</div>
+<div class="step"><b>解析 · 答案：B</b></div>
+<div class="step">把四种「指令」按层次摆开。III 机器指令是二进制形式的指令，CPU 直接执行，无疑入选。II 微指令在机器指令的下一层：取指后由微程序逐条解释、直接产生各部件的控制信号，是硬件直接执行的底层指令，同样入选——这是本题的辨别点。</div>
+<div class="step">I 伪指令只是给汇编器看的记号，汇编时被展开为一条或多条真正的机器指令，CPU 从不见到它；IV 汇编指令是机器指令的助记符形式，也必须先经汇编变成二进制。故只有 II、III → B。</div>
+<div class="step">A、D 把「汇编器能处理」误当成「CPU 能直接执行」；C 漏掉了微指令这一层。自查：链条是 伪指令/汇编指令 →（汇编）机器指令 →（微程序解释）微指令 → 控制信号，能被 CPU 直接执行的只有后两级。</div>
+</div>
+
+<div class="cardhd">co-19 · 指令执行阶段（五阶段）</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2019 年第 16 题（选择题）</div>
+<div class="step">下列有关处理器时钟脉冲信号的叙述中，错误的是（　）。</div>
+<div class="step">A. 时钟脉冲信号由机器脉冲源发出的脉冲信号经整形和分频后形成</div>
+<div class="step">B. 时钟脉冲信号的宽度称为时钟周期，时钟周期的倒数为机器主频</div>
+<div class="step">C. 时钟周期以相邻状态单元间组合逻辑电路的最大延迟为基准确定</div>
+<div class="step">D. 处理器总是在每来一个时钟脉冲信号时就开始执行一条新的指令</div>
+<div class="step"><b>解析 · 答案：D</b></div>
+<div class="step">D 错：一条指令的执行要跨取指、译码、执行等多个阶段，在多周期或微程序机器中，一个指令周期包含多个乃至十几个时钟周期；时钟脉冲只是推进状态转换的节拍，并非「来一个脉冲就开始执行一条新指令」。</div>
+<div class="step">A、B、C 分别是时钟信号的产生方式、时钟周期与主频的定义、周期取值的确定依据（须容纳相邻状态单元间组合逻辑的最大延迟），均为正确叙述。</div>
+<div class="step">自查：只有理想流水线在稳态时才接近「每周期流出一条」，那说的是吞吐、不是「开始执行」，且前提是多条指令重叠在不同阶段推进——与 D 不是一回事。</div>
+</div>
+
+<div class="cardhd">co-20 · CPU 数据通路与微操作 · 步骤与控存容量</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2026 年第 20 题（选择题）</div>
+<div class="step">在不考虑异常/中断处理和访存额外开销的前提下，下列关于数据通路结构与 CPI 之间关系的叙述中，正确的是（　）。</div>
+<div class="step">I. 单周期数据通路计算机的 CPI 等于 1</div>
+<div class="step">II. 多周期数据通路计算机的 CPI 大于 1</div>
+<div class="step">III. 流水线数据通路计算机的 CPI 等于 1</div>
+<div class="step">A. 仅 I、II</div>
+<div class="step">B. 仅 I、III</div>
+<div class="step">C. 仅 II、III</div>
+<div class="step">D. I、II、III</div>
+<div class="step"><b>解析 · 答案：A</b></div>
+<div class="step">I：单周期数据通路中每条指令恰占一个时钟周期，CPI = 1，正确。II：多周期把一条指令拆成若干步执行，不同指令步数不同，平均每条指令多于一个周期，CPI &gt; 1，正确。</div>
+<div class="step">III 错：流水线只有在理想稳态、无任何停顿时才每周期流出一条；实际中数据冒险、控制冒险、访存冲突都会插入停顿，真实 CPI 必然大于 1。把理想值说成「等于 1」就是把上限当成了定义。故仅 I、II → A。</div>
+<div class="step">自查：III 的反例在本合辑流水线部分随处可见——一次 load-use 停顿就足以把平均 CPI 顶离 1。</div>
+</div>
+
+<div class="cardhd">co-21 · 控制器对比 · 微程序 vs 硬布线</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2009 年第 19 题（选择题）</div>
+<div class="step">相对于微程序控制器，硬布线控制器的特点是（　）。</div>
+<div class="step">A. 指令执行速度慢，指令功能的修改和扩展容易</div>
+<div class="step">B. 指令执行速度慢，指令功能的修改和扩展难</div>
+<div class="step">C. 指令执行速度快，指令功能的修改和扩展容易</div>
+<div class="step">D. 指令执行速度快，指令功能的修改和扩展难</div>
+<div class="step"><b>解析 · 答案：D</b></div>
+<div class="step">两个维度分开判。速度：硬布线用组合逻辑直接生成控制信号，路径短、没有逐条取微指令的开销，快；微程序每执行一条机器指令都要逐条取微指令解释，慢。</div>
+<div class="step">灵活性：硬布线的逻辑固化在电路里，改一条指令的功能就得改布线，难；微程序控制器改功能只需改控制存储器中的微程序，容易。两维交叉，硬布线落在「快而难改」的一象限 → D。</div>
+<div class="step">A 恰好是微程序控制器的画像（慢而易改），正是本题让对照的另一面。自查：本题是标准的 2×2 交叉选项，先判准任意一个维度即可排除一半选项。</div>
+</div>
+
+<div class="cardhd">co-22 · 流水线相关公式</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2013 年第 18 题（选择题）</div>
+<div class="step">某 CPU 主频为 1.03 GHz，采用 4 级指令流水线，每个流水段的执行需要 1 个时钟周期。假定 CPU 执行了 100 条指令，在其执行过程中，没有发生任何流水线阻塞，此时流水线的吞吐率为（　）。</div>
+<div class="step">A. 0.25 × 10<sup>9</sup> 条指令/秒</div>
+<div class="step">B. 0.97 × 10<sup>9</sup> 条指令/秒</div>
+<div class="step">C. 1.0 × 10<sup>9</sup> 条指令/秒</div>
+<div class="step">D. 1.03 × 10<sup>9</sup> 条指令/秒</div>
+<div class="step"><b>解析 · 答案：C</b></div>
+<div class="step">流水线总周期数 = 段数 + 指令数 − 1 = 4 + 100 − 1 = 103 个时钟周期。时钟周期 = 1 / 1.03 GHz，总时间 = 103 ÷ 1.03 × 10<sup>9</sup> s = 100 ns。</div>
+<div class="step">吞吐率 = 指令数 ÷ 总时间 = 100 ÷ 100 ns = 1.0 × 10<sup>9</sup> 条/秒 → C。D 是忘了流水线的建立时间、按 100 个周期整算的结果；B 把 103 个周期错折成 103 ns 再去除；A 误把段数当成了吞吐的除数。</div>
+<div class="step">自查：指令数足够大时吞吐率应逼近主频 1.03 × 10<sup>9</sup>，C 略低于它且差距正来自开头 3 个周期的填充，关系合理（已程序复核）。</div>
+</div>
+
+<div class="cardhd">co-23 · 流水线冒险与冲突处理</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2019 年第 18 题（选择题）</div>
+<div class="step">在采用「取指、译码/取数、执行、访存、写回」5 段流水线的处理器中，执行如下指令序列，其中 s0、s1、s2、s3 和 t2 表示寄存器编号。</div>
+<div class="step code">I1：add s2, s1, s0        // R[s2] ← R[s1] + R[s0]
+I2：load s3, 0(t2)        // R[s3] ← M[R[t2] + 0]
+I3：add s2, s2, s3        // R[s2] ← R[s2] + R[s3]
+I4：store s2, 0(t2)       // M[R[t2] + 0] ← R[s2]</div>
+<div class="step">下列指令对中，不存在数据冒险的是（　）。</div>
+<div class="step">A. I1 和 I3</div>
+<div class="step">B. I2 和 I3</div>
+<div class="step">C. I2 和 I4</div>
+<div class="step">D. I3 和 I4</div>
+<div class="step"><b>解析 · 答案：C</b></div>
+<div class="step">数据冒险只看写后读（RAW）。先列每条指令的写集与读集：I1 写 s2，读 s1、s0；I2 写 s3，读 t2；I3 写 s2，读 s2、s3；I4 写内存，读 s2、t2。</div>
+<div class="step">逐对求「前者写集 ∩ 后者读集」：I1→I3 交于 s2，有冒险；I2→I3 交于 s3，有冒险；I3→I4 交于 s2，有冒险（I4 要把 I3 刚算出的 s2 存回内存）；I2→I4：I2 写的 s3 不在 I4 的读集里，交集为空 → 无数据冒险 → C。</div>
+<div class="step">最容易看漏的是 I3→I4：store 指令「不写寄存器」不等于「不读寄存器」，它读的 s2 正是 I3 的结果。自查：已用程序按写集∩读集逐对判定，仅 I2/I4 交集为空 ✓。</div>
+</div>
+
+<div class="cardhd">co-24 · 总线带宽计算</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2025 年第 20 题（选择题）</div>
+<div class="step">某处理器总线采用同步、并行传输方式，每个总线时钟周期传送 4 次数据（quadpumped 技术）。若该总线的工作频率为 1333 MHz（实际单位是 MT/s，表示每秒传送 1333M 次），总线宽度为 64 位，则总线带宽约为（　）。</div>
+<div class="step">A. 10.66 GB/s</div>
+<div class="step">B. 42.66 GB/s</div>
+<div class="step">C. 85.31 GB/s</div>
+<div class="step">D. 341.25 GB/s</div>
+<div class="step"><b>解析 · 答案：A</b></div>
+<div class="step">先读懂单位，这一步定生死：题面已注明 1333 的实际单位是 MT/s，即每秒已经完成 1333M 次传送——quadpumped 的「每周期 4 次」已经折算进这个数里，不能再乘一次 4。</div>
+<div class="step">带宽 = 每秒传送次数 × 每次传送的字节数 = 1333 × 10<sup>6</sup> × (64 ÷ 8) B/s = 1333 × 8 MB/s ≈ 10.66 GB/s → A。</div>
+<div class="step">B 的 42.66 正是多乘了一个 4 的结果，是本题预设的陷阱；C、D 又在此基础上继续翻倍。自查：1333 × 8 = 10664 MB/s ≈ 10.66 GB/s，量纲闭合 ✓（已程序复核）。</div>
+</div>
+
+<div class="cardhd">co-25 · I/O 方式对比</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2022 年第 21 题（选择题）</div>
+<div class="step">下列关于中断 I/O 方式的叙述中，不正确的是（　）。</div>
+<div class="step">A. 适用于键盘、针式打印机等字符型设备</div>
+<div class="step">B. 外设和主机之间的数据传送通过软件完成</div>
+<div class="step">C. 外设准备数据的时间应小于中断处理时间</div>
+<div class="step">D. 外设为某进程准备数据时 CPU 可运行其他进程</div>
+<div class="step"><b>解析 · 答案：C</b></div>
+<div class="step">先把中断 I/O 的节拍摆清：外设准备好一个数据 → 发中断请求 → CPU 响应并进服务程序取走数据。如果外设准备下一个数据的速度快于 CPU 处理一次中断的速度，新数据就会冲掉缓冲中还没取走的数据，造成丢失。所以要求恰恰相反：准备时间应<b>大于</b>中断处理时间，C 把不等号说反了。</div>
+<div class="step">其余三项均正确：A 字符型低速设备正是中断方式的典型场景；B 中断方式下数据由服务程序经端口寄存器搬运，属软件传送（与 DMA 的硬件直传相对）；D 外设准备数据期间 CPU 不空等、可运行其他进程，这是中断方式相对程序查询方式的核心优势。</div>
+<div class="step">自查：一句话判据——中断处理必须「跟得上」外设的产数速度，跟不上就丢数。</div>
+</div>
+
+<div class="cardhd">co-26 · 中断与 DMA（直接存储器访问） · 步骤与三种访存方式计算</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2023 年第 21 题（选择题）</div>
+<div class="step">下列关于硬件和异常/中断关系的叙述中，错误的是（　）。</div>
+<div class="step">A. CPU 在执行一条指令过程中检测异常事件</div>
+<div class="step">B. CPU 在执行完一条指令时检测中断请求信号</div>
+<div class="step">C. 开中断时 CPU 检测到中断请求后就进行中断响应</div>
+<div class="step">D. 外部设备通过中断控制器向 CPU 发中断结束信号</div>
+<div class="step"><b>解析 · 答案：D</b>（注：2023 年答案键为第三方「研芝士」版，见选题日志）</div>
+<div class="step">D 错在方向：中断结束信号（EOI）由 CPU 在中断处理结束时向中断控制器发出，通知控制器本次中断已经处理完毕、可以放行同级或低级中断请求；不是外部设备经控制器向 CPU 发的。</div>
+<div class="step">其余三项：A 异常源于指令执行内部（溢出、缺页等），在指令执行过程中检测，正确；B 外部中断请求在指令边界，即一条指令执行结束时统一采样检测，正确；C 开中断状态下检测到有效请求即进入中断响应（关中断、保护断点、形成服务程序入口），正确。</div>
+<div class="step">自查：记牢两个方向——中断请求是「外设 → 控制器 → CPU」，中断结束是「CPU → 控制器」，本题错在把结束信号的方向调转了。</div>
+</div>
+</body>
+</html>
