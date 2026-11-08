@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<title>408 真题实战 · 计算机网络（稿，未并入合辑）</title>
+<title>408 真题实战 · 计算机网络（稿 rev2，未并入合辑）</title>
 <style>
 body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;font-size:14px;line-height:1.75;color:#222;max-width:880px;margin:24px auto;padding:0 16px}
 h1{font-size:20px}
@@ -18,7 +18,7 @@ table.pt th,table.pt td{border:1px solid #b9c6d2;padding:2px 12px;text-align:cen
 </head>
 <body>
 <h1>408 真题实战 · 计算机网络（稿，未并入合辑）</h1>
-<div class="note">选题口径：每卡至多一题，须为该卡考点在 18 年考点库（exam-db-18y.csv）中的 A 类正考主归属题；优先选择题、年份越新越好；同一道题只配一张卡，且不与计组试点已用题重复。题干与选项照录原卷（以 neville 重构版原卷文本为准、zhaoyang 结构化题库互校），答案以官方答案键为准；2023 年答案键为第三方「研芝士」版（已在对应卡与选题日志中标注）。解析为本稿自撰，计算均经程序复算。本轮 26 张网络卡中 24 张配上真题，net-4、net-10 两张未配（本卡点的题全部依赖图形，原因见各卡占位与送审稿选题日志）。</div>
+<div class="note">选题口径：每卡至多一题，须为该卡考点在 18 年考点库（exam-db-18y.csv）中的 A 类正考主归属题；优先选择题、年份越新越好；同一道题只配一张卡，且不与计组试点已用题重复。题干与选项照录原卷（以 neville 重构版原卷文本为准、zhaoyang 结构化题库互校），答案以官方答案键为准；2023 年答案键为第三方「研芝士」版（已在对应卡与选题日志中标注）。解析为本稿自撰，计算均经程序复算。本轮 26 张网络卡中 24 张配上真题，net-4、net-10 两张未配（本卡点的题全部依赖图形，原因见各卡占位与送审稿选题日志）。rev2（2026-11-08）：按 GPT 第一轮意见定点修订 5 项、涉 6 卡（net-2、net-6、net-8、net-9、net-17、net-20），其余 6 条经逐条回稿核对与稿内实际不符、未落实，逐条对照见 zhenti-net-rev2-notes.md。</div>
 
 <div class="cardhd">net-1 · OSI 与 TCP/IP 参考模型 · 分层与功能归属</div>
 <div class="ex">
@@ -42,7 +42,7 @@ table.pt th,table.pt td{border:1px solid #b9c6d2;padding:2px 12px;text-align:cen
 <div class="step">B. 80.08ms</div>
 <div class="step">C. 80.09ms</div>
 <div class="step">D. 80.10ms</div>
-<div class="step"><b>解析 · 答案：D</b>（注：2023 年答案键为第三方「研芝士」版，见选题日志）</div>
+<div class="step"><b>解析 · 答案：D</b>（注：2023 年答案键为第三方「研芝士」版，未经官方原卷核对，见选题日志）</div>
 <div class="step">先把三个基本量算出来：分组数 = 10⁶ ÷ 1000 = 1000 个；每个分组在一段链路上的发送时延 = 1000×8 ÷ (100×10⁶) = 80μs；每段的传播时延由时延带宽积反推 = 1000b ÷ (100Mb/s) = 10μs。</div>
 <div class="step">再看流水线：存储转发下各分组背靠背流水推进，瓶颈是发送时延。H1 发完第 1000 个分组的时刻 = 1000 × 80μs = 80ms，此时最后一个分组才刚离开 H1；它还要在第二段链路再发送一次（80μs），并经历两段传播（2 × 10μs），才被 H2 完整收到。总时间 = 80ms + 0.08ms + 0.02ms = 80.10ms → D。</div>
 <div class="step">三个干扰项各漏一样：A（80.02）只加了传播、忘了第二跳的发送；B（80.08）只加了第二跳发送、忘了传播；C（80.09）只算了一段传播。自查：已用程序按流水线模型复算，总时间 80.10ms ✓。</div>
@@ -90,7 +90,7 @@ table.pt th,table.pt td{border:1px solid #b9c6d2;padding:2px 12px;text-align:cen
 <div class="step">B. 101110100</div>
 <div class="step">C. 101111000</div>
 <div class="step">D. 101111100</div>
-<div class="step"><b>解析 · 答案：D</b>（注：2023 年答案键为第三方「研芝士」版，见选题日志）</div>
+<div class="step"><b>解析 · 答案：D</b>（注：2023 年答案键为第三方「研芝士」版，未经官方原卷核对，见选题日志）</div>
 <div class="step">判读法：收到的比特串能被 G = 10011 整除（模 2 除法余数为 0000），就断定无差错；余数非 0 则必有差错。四个串逐个做模 2 除法（异或竖式，已用程序复算），余数分别是：A → 1100，B → 1000，C → 0100，D → 0000，只有 D 整除 → D。</div>
 <div class="step">以 D 走一遍竖式看清机理：取前 5 位 10111 与 10011 异或得 00100；带下一位组成窗口 10011，再与 10011 异或得 00000，其后带下的位全为 0，余数 0。对照 C：它与 D 只差第 6 位一个比特，第二窗口变成 10010 ⊕ 10011 = 00001，余数 0100 ≠ 0——单比特差错逃不过 CRC 的检出，这正是本题把 C、D 并置的用意。</div>
 <div class="step">自查：四个余数已由程序模 2 除法逐一验证，与答案键一致 ✓。</div>
@@ -120,7 +120,7 @@ table.pt th,table.pt td{border:1px solid #b9c6d2;padding:2px 12px;text-align:cen
 <div class="step">D. 5</div>
 <div class="step"><b>解析 · 答案：B</b></div>
 <div class="step">接收窗口能取多大的协议是 SR：SR 要求发送窗口 W<sub>T</sub> 与接收窗口 W<sub>R</sub> 之和不超过序号空间，即 W<sub>T</sub> + W<sub>R</sub> ≤ 2ⁿ。代入 n = 3、W<sub>T</sub> = 5：W<sub>R</sub> ≤ 8 − 5 = 3 → B。</div>
-<div class="step">为什么必须有这条约束：序号只有 2³ = 8 个，发送窗里未确认的帧占一批序号，接收窗待收的帧占另一批，两批若在序号空间里首尾相接甚至重叠，接收方就分不清迟到的重传帧是「上一轮的旧帧」还是「新一轮的新帧」。GBN 的接收窗口恒为 1、不受这条约束限制，但题目问「最大」，取的是 SR 的上限。自查：5 + 3 = 8，恰好顶住序号空间 ✓。</div>
+<div class="step">为什么必须有这条约束：序号只有 2³ = 8 个，发送窗里未确认的帧占一批序号，接收窗待收的帧占另一批，两批若在序号空间里首尾相接甚至重叠，接收方就分不清迟到的重传帧是「上一轮的旧帧」还是「新一轮的新帧」。GBN 的接收窗口恒为 1、不受这条约束限制，但题目问「最大」，取的是 SR 的上限。顺带把发送窗口的上界记清：GBN 发送窗口至多 2ⁿ − 1（3 比特时即 7），扣下的这 1 个序号是给重传留的区分余量——发送窗若占满全部 2ⁿ 个序号，一整窗旧帧重传时接收方将无从与新帧区分；SR 更紧，发送窗口至多 2^(n−1)（3 比特时即 4）。这两个上界与 2023 年第 35 题的官方口径（停等 1、GBN 7、SR 4）正好互证。自查：5 + 3 = 8，恰好顶住序号空间 ✓。</div>
 </div>
 
 <div class="cardhd">net-9 · 介质访问控制对比 · CSMA/CD vs CSMA/CA</div>
@@ -134,7 +134,7 @@ table.pt th,table.pt td{border:1px solid #b9c6d2;padding:2px 12px;text-align:cen
 <div class="step"><b>解析 · 答案：B</b></div>
 <div class="step">先划时间线的起点：题目从「开始发送数据帧时刻」起算，发送前的信道侦听与 DIFS 等待已经发生完，不计入——这是本题第一个分水岭。</div>
 <div class="step">起算后的账只有两笔：数据帧发送时延 = 1500 × 8 ÷ (300×10⁶) = 40μs；接收方收完帧后须等一个 SIFS（28μs）才回 ACK，ACK 本身的发送时延按题意忽略，ACK 一发出 H 即确认成功。总时间 = 40 + 28 = 68μs → B。</div>
-<div class="step">C（168）是误把 DIFS 计入且漏掉 SIFS；D（196）是 DIFS、SIFS 全算上。对照有线以太网的 CSMA/CD：它靠边发边检测冲突、不需要 ACK 与帧间间隔预约；无线信号衰减大、发送时无法检测冲突，只能改走 CA——先避撞、后用 ACK 确认，这正是本卡 CD 与 CA 的分工。自查：已用程序复算 40 + 28 = 68μs ✓。</div>
+<div class="step">C（168）是误把 DIFS 计入且漏掉 SIFS；D（196）是 DIFS、SIFS 全算上。对照有线以太网的 CSMA/CD：它靠边发边检测冲突、不需要 ACK 与帧间间隔预约；无线信号衰减大、发送时无法检测冲突，只能改走 CA——先避撞、后用 ACK 确认，这正是本卡 CD 与 CA 的分工。再补一句风险归属：碰撞与冲突域是集线器组网的事——用集线器连成的共享式以太网里，全部站点同属一个冲突域，才需要 CSMA/CD 来仲裁；交换机每个端口自成一个冲突域，而交换网络里的广播风暴源于泛洪与环路，与 CSMA 无关，两笔账别记混。自查：已用程序复算 40 + 28 = 68μs ✓。</div>
 </div>
 
 <div class="cardhd">net-10 · 以太网帧格式</div>
@@ -245,6 +245,7 @@ table.pt th,table.pt td{border:1px solid #b9c6d2;padding:2px 12px;text-align:cen
 <div class="step"><b>解析 · 答案：A</b></div>
 <div class="step">帧在局域网里真正投递靠的是 MAC 地址，而上层只知道下一跳的 IP 地址——ARP 就负责这一步翻译：在本网段广播 ARP 请求（「谁是 x.x.x.x？」），持有该 IP 的主机单播回自己的 MAC。方向是 IP → MAC → A。</div>
 <div class="step">B 是反向的 RARP（由 MAC 查 IP，早已淘汰、被 DHCP 取代）；C、D 都是 DNS 的活（正向解析与反向解析），与 ARP 不在一个层次。</div>
+<div class="step">补一句机制边界：ARP 只管翻译、不验身份——请求靠广播、应答不设防，局域网里任何主机都能冒名应答（ARP 欺骗），把本应发往网关或目标主机的帧引到自己手里，这正是局域网嗅探的常见入口；翻译结果可用，不等于应答者可信。</div>
 <div class="step">自查：ARP = Address Resolution Protocol，记住「已知 IP、求 MAC」一条线即可。</div>
 </div>
 
@@ -288,7 +289,7 @@ table.pt th,table.pt td{border:1px solid #b9c6d2;padding:2px 12px;text-align:cen
 <div class="step"><b>解析 · 答案：B</b></div>
 <div class="step">两个字段分开定。<b>序号</b>看对方的确认号：乙发来的确认序号 2046，意思是「2046 之前的字节都收到了、下一个期待 2046」，甲接着要发的段正从 2046 开始 → seq = 2046（不是 2047，确认号本身就是下一个待发字节的序号）。</div>
 <div class="step"><b>确认序号</b>看自己已收到的字节：乙这个段占字节 1913–2012（序号 1913、长 100），无差错无丢失，甲期待的下一个字节是 2013 → ack = 2013。</div>
-<div class="step">A 的 2012 是把「已收到的最后一个字节的序号」误当确认号；C、D 是把序号多加了 1。自查：确认号永远是「下一个期待值」，两边同理 ✓。</div>
+<div class="step">A 的 2012 是把「已收到的最后一个字节的序号」误当确认号；C、D 是把序号多加了 1。自查：确认号永远是「下一个期待值」，两边同理 ✓。再补一条有效性边界：确认只能确认已发出的数据——若对端发来的确认序号跑到了本方已发送数据之外（等于在确认从未发出过的数据），这样的段不合约定，接收方应予丢弃、不据此推进发送窗口；对端可信，不等于它发来的每个段都照单全收。</div>
 </div>
 
 <div class="cardhd">net-21 · TCP（传输控制协议）滑动窗口与流量控制</div>
