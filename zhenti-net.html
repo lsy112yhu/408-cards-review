@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>408 真题实战 · 计算机网络（稿，未并入合辑）</title>
+<style>
+body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;font-size:14px;line-height:1.75;color:#222;max-width:880px;margin:24px auto;padding:0 16px}
+h1{font-size:20px}
+.note{background:#f4f6f8;border:1px solid #d8dee4;border-radius:6px;padding:10px 14px;font-size:13px}
+.cardhd{font-size:16px;font-weight:700;margin:26px 0 6px;border-left:4px solid #4a7fb5;padding-left:8px}
+.ex{border:1px solid #c9d4e0;border-radius:6px;padding:10px 14px;background:#fbfcfe}
+.ex-title{font-weight:700;color:#20507e;margin-bottom:6px}
+.step{margin:3px 0}
+.step.code{font-family:Consolas,Menlo,monospace;white-space:pre-wrap;background:#f0f3f6;border-radius:4px;padding:4px 8px}
+table.pt{border-collapse:collapse;margin:6px 0}
+table.pt th,table.pt td{border:1px solid #b9c6d2;padding:2px 12px;text-align:center}
+</style>
+</head>
+<body>
+<h1>408 真题实战 · 计算机网络（稿，未并入合辑）</h1>
+<div class="note">选题口径：每卡至多一题，须为该卡考点在 18 年考点库（exam-db-18y.csv）中的 A 类正考主归属题；优先选择题、年份越新越好；同一道题只配一张卡，且不与计组试点已用题重复。题干与选项照录原卷（以 neville 重构版原卷文本为准、zhaoyang 结构化题库互校），答案以官方答案键为准；2023 年答案键为第三方「研芝士」版（已在对应卡与选题日志中标注）。解析为本稿自撰，计算均经程序复算。本轮 26 张网络卡中 24 张配上真题，net-4、net-10 两张未配（本卡点的题全部依赖图形，原因见各卡占位与送审稿选题日志）。</div>
+
+<div class="cardhd">net-1 · OSI 与 TCP/IP 参考模型 · 分层与功能归属</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2026 年第 33 题（选择题）</div>
+<div class="step">下列关于分层网络体系结构的叙述中，错误的是（　）。</div>
+<div class="step">A. 有利于标准化</div>
+<div class="step">B. 层次越多效率越高</div>
+<div class="step">C. 有利于各层技术独立演化</div>
+<div class="step">D. 降低网络系统设计与实现的复杂度</div>
+<div class="step"><b>解析 · 答案：B</b></div>
+<div class="step">逐项判：A、C、D 都是分层的收益面——分层划清接口才谈得上标准化（A）；每层只依赖相邻层的服务，技术可以独立演化（C）；把大问题切成逐层小问题，设计与实现的复杂度随之下降（D）。</div>
+<div class="step">B 错在方向：分层是要付代价的，每多一层就多一次封装/解封装与一份 PDU 首部开销，层次越多效率只会越低。分层是「以效率换结构清晰与可维护」，不是层数越多越好。</div>
+<div class="step">自查：凡是把分层说成纯收益、只字不提封装开销的选项，先怀疑。</div>
+</div>
+
+<div class="cardhd">net-2 · 时延计算 · 发送 / 传播时延与带宽时延积</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2023 年第 33 题（选择题）</div>
+<div class="step">在分组交换网络中，主机 H1 和 H2 通过一台路由器互连（H1—R—H2，共 2 段链路，原题配有拓扑图，图中信息即此），2 段链路的带宽均为 100Mb/s、时延带宽积（即单向传播时延×带宽）均为 1000b。若 H1 向 H2 发送 1 个大小为 1MB 的文件，分组长度为 1000B，则从 H1 开始发送时刻起到 H2 收到文件全部数据时刻止，所需的时间至少是（注：M=10⁶）（　）。</div>
+<div class="step">A. 80.02ms</div>
+<div class="step">B. 80.08ms</div>
+<div class="step">C. 80.09ms</div>
+<div class="step">D. 80.10ms</div>
+<div class="step"><b>解析 · 答案：D</b>（注：2023 年答案键为第三方「研芝士」版，见选题日志）</div>
+<div class="step">先把三个基本量算出来：分组数 = 10⁶ ÷ 1000 = 1000 个；每个分组在一段链路上的发送时延 = 1000×8 ÷ (100×10⁶) = 80μs；每段的传播时延由时延带宽积反推 = 1000b ÷ (100Mb/s) = 10μs。</div>
+<div class="step">再看流水线：存储转发下各分组背靠背流水推进，瓶颈是发送时延。H1 发完第 1000 个分组的时刻 = 1000 × 80μs = 80ms，此时最后一个分组才刚离开 H1；它还要在第二段链路再发送一次（80μs），并经历两段传播（2 × 10μs），才被 H2 完整收到。总时间 = 80ms + 0.08ms + 0.02ms = 80.10ms → D。</div>
+<div class="step">三个干扰项各漏一样：A（80.02）只加了传播、忘了第二跳的发送；B（80.08）只加了第二跳发送、忘了传播；C（80.09）只算了一段传播。自查：已用程序按流水线模型复算，总时间 80.10ms ✓。</div>
+</div>
+
+<div class="cardhd">net-3 · 香农公式与奈奎斯特公式</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2026 年第 34 题（选择题）</div>
+<div class="step">若在带宽为 200kHz、信噪比 S/N = 1023 的信道上发送一个长度为 1500B 的分组，则发送该分组的传输时延至少是（　）。</div>
+<div class="step">A. 0.375ms</div>
+<div class="step">B. 0.75ms</div>
+<div class="step">C. 3ms</div>
+<div class="step">D. 6ms</div>
+<div class="step"><b>解析 · 答案：D</b></div>
+<div class="step">「至少」二字是钥匙：发送时延最短，要求数据传输速率取最大值，而本题信道有噪声、给了 S/N，极限速率由香农公式定：C = W·log₂(1 + S/N) = 200×10³ × log₂(1024) = 200×10³ × 10 = 2Mb/s。</div>
+<div class="step">发送（传输）时延 = 分组长度 ÷ 速率 = 1500 × 8 ÷ (2×10⁶) = 6ms → D。</div>
+<div class="step">注意别被奈奎斯特带偏：本题没有给信号状态数（码元离散值个数），无噪声公式无从下手；给了 S/N 就用香农。A、B 是把 1023 误当分贝值或把对数算错的量级。自查：12000 bit ÷ 2Mb/s = 6ms，量纲闭合 ✓（已程序复核）。</div>
+</div>
+
+<div class="cardhd">net-4 · 物理层编码 · 不归零 / 曼彻斯特 / 差分曼彻斯特</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 未配</div>
+<div class="step">未配原因：本卡点（NRZ/曼彻斯特/差分曼彻斯特编码判读）18 年共 3 道选择题（2013 年第 34 题、2015 年第 34 题、2021 年第 34 题），无一例外以信号波形图给出逐码元电平与跳变沿、要求读图判码或由编码结果反推方案，图形信息无法用文字/表格忠实复现；其余物理层题或考传输介质、接口特性，或考调制与 QAM/Nyquist 速率（归 net-3），均非本卡点。按「宁缺毋滥」不配。</div>
+</div>
+
+<div class="cardhd">net-5 · 组帧与透明传输 · 零比特填充</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2013 年第 37 题（选择题）</div>
+<div class="step">HDLC 协议对 01111100 01111110 组帧后对应的比特串为（　）。</div>
+<div class="step">A. 01111100 00111110 10</div>
+<div class="step">B. 01111100 01111101 01111110</div>
+<div class="step">C. 01111100 01111101 0</div>
+<div class="step">D. 01111100 01111110 01111101</div>
+<div class="step"><b>解析 · 答案：A</b></div>
+<div class="step">零比特填充的规则只有一句：发送方每连续发出 5 个 1，就自动插入 1 个 0，免得数据里出现与标志字段相同的 01111110。</div>
+<div class="step">逐段数原串：前半段 011111 00 里有连续 5 个 1（第 2–6 位），第 5 个 1 之后插入 0；后半段 01111110 是连续 6 个 1，前 5 个之后插入 0、剩下 1 个 1 与末尾 0 收尾。插入 2 个 0 后总长 16 + 2 = 18 位：011111000011111010，按 8 位重新分组写作 01111100 00111110 10 → A。</div>
+<div class="step">B 是把标志字段原样拼回去的错位写法；C 只插了 1 个 0（漏掉后半段）；D 把 0 插到了串尾。自查：已用程序逐位模拟填充，结果与 A 逐位一致 ✓。</div>
+</div>
+
+<div class="cardhd">net-6 · CRC 循环冗余校验 · 计算步骤</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2023 年第 37 题（选择题）</div>
+<div class="step">若甲向乙发送数据时采用 CRC 校验，生成多项式为 G(x) = x⁴ + x + 1（即 G = 10011），则乙接收到下列比特串时，可以断定其在传输过程中未发生错误的是（　）。</div>
+<div class="step">A. 101110000</div>
+<div class="step">B. 101110100</div>
+<div class="step">C. 101111000</div>
+<div class="step">D. 101111100</div>
+<div class="step"><b>解析 · 答案：D</b>（注：2023 年答案键为第三方「研芝士」版，见选题日志）</div>
+<div class="step">判读法：收到的比特串能被 G = 10011 整除（模 2 除法余数为 0000），就断定无差错；余数非 0 则必有差错。四个串逐个做模 2 除法（异或竖式，已用程序复算），余数分别是：A → 1100，B → 1000，C → 0100，D → 0000，只有 D 整除 → D。</div>
+<div class="step">以 D 走一遍竖式看清机理：取前 5 位 10111 与 10011 异或得 00100；带下一位组成窗口 10011，再与 10011 异或得 00000，其后带下的位全为 0，余数 0。对照 C：它与 D 只差第 6 位一个比特，第二窗口变成 10010 ⊕ 10011 = 00001，余数 0100 ≠ 0——单比特差错逃不过 CRC 的检出，这正是本题把 C、D 并置的用意。</div>
+<div class="step">自查：四个余数已由程序模 2 除法逐一验证，与答案键一致 ✓。</div>
+</div>
+
+<div class="cardhd">net-7 · 信道利用率公式</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2020 年第 36 题（选择题）</div>
+<div class="step">假设主机甲采用停-等协议向主机乙发送数据帧，数据帧长与确认帧长均为 1000B，数据传输速率是 10kbps，单向传播延时是 200ms。则甲的最大信道利用率为（　）。</div>
+<div class="step">A. 80%</div>
+<div class="step">B. 66.7%</div>
+<div class="step">C. 44.4%</div>
+<div class="step">D. 40%</div>
+<div class="step"><b>解析 · 答案：D</b></div>
+<div class="step">信道利用率 = 一个发送周期内真正发送数据的时间占比。先算发送时延：数据帧 1000B ÷ 10kbps = 8000 ÷ 10000 = 0.8s = 800ms，确认帧等长，发送时延也是 800ms。</div>
+<div class="step">一个完整周期 = 发数据帧 800 + 传播 200 + 发确认帧 800 + 回传播 200 = 2000ms；其中有效发送只有数据帧的 800ms → 利用率 = 800 ÷ 2000 = 40% → D。</div>
+<div class="step">本题最大的坑是确认帧的发送时延：它与数据帧等长，不能像短确认那样忽略——漏算它，分母只剩 1200ms，会得到 66.7%（B）。自查：已用程序复算，周期 2000ms、利用率 40.0% ✓。</div>
+</div>
+
+<div class="cardhd">net-8 · GBN（后退 N 帧协议）与 SR（选择重传协议）窗口大小</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2019 年第 35 题（选择题）</div>
+<div class="step">对于滑动窗口协议，若分组序号采用 3 比特编号，发送窗口大小为 5，则接收窗口最大是（　）。</div>
+<div class="step">A. 2</div>
+<div class="step">B. 3</div>
+<div class="step">C. 4</div>
+<div class="step">D. 5</div>
+<div class="step"><b>解析 · 答案：B</b></div>
+<div class="step">接收窗口能取多大的协议是 SR：SR 要求发送窗口 W<sub>T</sub> 与接收窗口 W<sub>R</sub> 之和不超过序号空间，即 W<sub>T</sub> + W<sub>R</sub> ≤ 2ⁿ。代入 n = 3、W<sub>T</sub> = 5：W<sub>R</sub> ≤ 8 − 5 = 3 → B。</div>
+<div class="step">为什么必须有这条约束：序号只有 2³ = 8 个，发送窗里未确认的帧占一批序号，接收窗待收的帧占另一批，两批若在序号空间里首尾相接甚至重叠，接收方就分不清迟到的重传帧是「上一轮的旧帧」还是「新一轮的新帧」。GBN 的接收窗口恒为 1、不受这条约束限制，但题目问「最大」，取的是 SR 的上限。自查：5 + 3 = 8，恰好顶住序号空间 ✓。</div>
+</div>
+
+<div class="cardhd">net-9 · 介质访问控制对比 · CSMA/CD vs CSMA/CA</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2026 年第 35 题（选择题）</div>
+<div class="step">假设某采用 CSMA/CA 的 IEEE 802.11 无线局域网，数据传输速率为 300Mbps，DIFS = 128μs，SIFS = 28μs，忽略除数据帧外的其他帧的传输时延以及信号传播时延。若主机 H 发送一个总长度为 1500B 的数据帧，则 H 从开始发送数据帧时刻起，到确认接收方接收到该帧为止，所需的时间至少是（　）。</div>
+<div class="step">A. 40μs</div>
+<div class="step">B. 68μs</div>
+<div class="step">C. 168μs</div>
+<div class="step">D. 196μs</div>
+<div class="step"><b>解析 · 答案：B</b></div>
+<div class="step">先划时间线的起点：题目从「开始发送数据帧时刻」起算，发送前的信道侦听与 DIFS 等待已经发生完，不计入——这是本题第一个分水岭。</div>
+<div class="step">起算后的账只有两笔：数据帧发送时延 = 1500 × 8 ÷ (300×10⁶) = 40μs；接收方收完帧后须等一个 SIFS（28μs）才回 ACK，ACK 本身的发送时延按题意忽略，ACK 一发出 H 即确认成功。总时间 = 40 + 28 = 68μs → B。</div>
+<div class="step">C（168）是误把 DIFS 计入且漏掉 SIFS；D（196）是 DIFS、SIFS 全算上。对照有线以太网的 CSMA/CD：它靠边发边检测冲突、不需要 ACK 与帧间间隔预约；无线信号衰减大、发送时无法检测冲突，只能改走 CA——先避撞、后用 ACK 确认，这正是本卡 CD 与 CA 的分工。自查：已用程序复算 40 + 28 = 68μs ✓。</div>
+</div>
+
+<div class="cardhd">net-10 · 以太网帧格式</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 未配</div>
+<div class="step">未配原因：18 年没有以「以太网帧格式（字段构成与各字段长度）」为主考点的选择题；与帧相关的题或依赖拓扑图/转发表图形（2014 年第 34 题、2018 年第 37 题），或考 MAC 的服务类型（2012 年第 35 题）、传输介质（2019 年第 34 题），帧格式本身只在综合题中作载体出现且与图绑定，无法干净隔离。按「宁缺毋滥」不配。</div>
+</div>
+
+<div class="cardhd">net-11 · 以太网交换机 · 自学习与帧转发</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2009 年第 36 题（选择题）</div>
+<div class="step">以太网交换机进行转发决策时使用的 PDU 地址是（　）。</div>
+<div class="step">A. 目的物理地址</div>
+<div class="step">B. 目的 IP 地址</div>
+<div class="step">C. 源物理地址</div>
+<div class="step">D. 源 IP 地址</div>
+<div class="step"><b>解析 · 答案：A</b></div>
+<div class="step">交换机工作在数据链路层，只读得懂帧首部里的 MAC 地址，它的两件本职工作分工明确：<b>转发查目的</b>——按帧的目的 MAC 查交换表决定出端口（表里没有就泛洪）；<b>建表学源</b>——把帧的源 MAC 与入端口记入交换表，这就是自学习。</div>
+<div class="step">B、D 的 IP 地址要到网络层的路由器才处理，交换机不看；C 源物理地址确是交换机要用的地址，但那是自学习的依据，不是转发决策的依据——本题问的正是「转发决策」，故选 A 不选 C。</div>
+<div class="step">自查：一句口诀分清两个地址的用途——「学源、查目的」。说明：本卡点的过程模拟题（给定交换表判转发端口、自学习建表过程）18 年有 2014 年第 34 题、2021 年第 47 题等，但均依赖拓扑图与图中地址表，无法文字复现；故取这道转发决策题，解析已把自学习一并对照。</div>
+</div>
+
+<div class="cardhd">net-12 · 网络层的功能</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2022 年第 37 题（选择题）</div>
+<div class="step">在 SDN 网络体系结构中，SDN 控制器向数据平面的 SDN 交换机下发流表时所使用的接口是（　）。</div>
+<div class="step">A. 东向接口</div>
+<div class="step">B. 南向接口</div>
+<div class="step">C. 西向接口</div>
+<div class="step">D. 北向接口</div>
+<div class="step"><b>解析 · 答案：B</b></div>
+<div class="step">这道题考的是网络层功能在 SDN 里的新组织方式：传统路由器把「算路由」（控制平面）与「查表转发」（数据平面）揉在一台设备里，SDN 把两者拆开——控制器集中承担控制平面、算出流表，交换机只剩数据平面、照流表转发。</div>
+<div class="step">控制器向数据平面下发流表，走的是<b>南向接口</b>（如 OpenFlow）；北向接口是控制器向上层应用开放的编程接口；东向/西向接口是控制器与控制器之间的接口。记法：「南下北上」——向下管设备用南向，向上供应用用北向。</div>
+<div class="step">自查：凡问控制器→交换机的下发通道，一律南向。说明：本卡点近年的正考题以 SDN 架构的面貌出现，本题在考点库中为主归属 A 类且无争议；同点其余候选（2010 年第 38 题、2020 年第 34 题）均有归属争议、2024 年第 33 题为图题，故取本题。</div>
+</div>
+
+<div class="cardhd">net-13 · IP 地址分类与特殊地址</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2017 年第 36 题（选择题）</div>
+<div class="step">下列 IP 地址中，只能作为 IP 分组的源 IP 地址但不能作为目的 IP 地址的是（　）。</div>
+<div class="step">A. 0.0.0.0</div>
+<div class="step">B. 127.0.0.1</div>
+<div class="step">C. 200.10.10.3</div>
+<div class="step">D. 255.255.255.255</div>
+<div class="step"><b>解析 · 答案：A</b></div>
+<div class="step">逐项过特殊地址的身份：0.0.0.0 表示「本网络上的本主机」，主机尚未获得正式地址时（如 DHCP 发现阶段）只能拿它作源地址充数，任何分组都不会以它为目的地址 → 符合题意。</div>
+<div class="step">B 127.0.0.1 是环回地址，恰恰可以作目的地址（发给本机自己）；C 200.10.10.3 是普通单播地址，源、目的都能当；D 255.255.255.255 是受限广播地址，只能作目的、不能作源——与题干问的方向正好相反，是本题预设的镜像陷阱。</div>
+<div class="step">自查：0.0.0.0（仅源）与 255.255.255.255（仅目的）是一对镜像，判断时先分清问的是哪一头。</div>
+</div>
+
+<div class="cardhd">net-14 · 子网划分计算</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2019 年第 37 题（选择题）</div>
+<div class="step">若将 101.200.16.0/20 划分为 5 个子网，则可能的最小子网的可分配 IP 地址数是（　）。</div>
+<div class="step">A. 126</div>
+<div class="step">B. 254</div>
+<div class="step">C. 510</div>
+<div class="step">D. 1022</div>
+<div class="step"><b>解析 · 答案：B</b></div>
+<div class="step">先算总量：/20 的地址块有 2^(32−20) = 4096 个地址。问的是「可能的最小子网」——要让 5 个子网里最小的那个尽量小，就让其余子网尽量大，必须用变长划分（VLSM），贪心地先切大块：取 /21（2048）、/22（1024）、/23（512），已用 3584，余下 512 正好再切成两个 /24（各 256），凑满 5 个子网且地址恰好用完。</div>
+<div class="step">最小的子网是 /24，共 256 个地址，扣掉网络地址与广播地址，可分配 256 − 2 = 254 → B。</div>
+<div class="step">C（510）是等长划分（借 3 位、每块 /23、可分配 510）的结果——那是「划成 5 个一样大的子网」时的最小块，不是题目问的「可能的最小」。自查：已用程序核对 2048 + 1024 + 512 + 256 + 256 = 4096 ✓。</div>
+</div>
+
+<div class="cardhd">net-15 · CIDR 与路由聚合 · 最长前缀匹配</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2015 年第 38 题（选择题）</div>
+<div class="step">某路由器的路由表如下表所示。</div>
+<table class="pt"><tr><th>目的网络</th><th>下一跳</th><th>接口</th></tr>
+<tr><td>169.96.40.0/23</td><td>176.1.1.1</td><td>S1</td></tr>
+<tr><td>169.96.40.0/25</td><td>176.2.2.2</td><td>S2</td></tr>
+<tr><td>169.96.40.0/27</td><td>176.3.3.3</td><td>S3</td></tr>
+<tr><td>0.0.0.0/0</td><td>176.4.4.4</td><td>S4</td></tr></table>
+<div class="step">若路由器收到一个目的地址为 169.96.40.5 的 IP 分组，则转发该 IP 分组的接口是（　）。</div>
+<div class="step">A. S1</div>
+<div class="step">B. S2</div>
+<div class="step">C. S3</div>
+<div class="step">D. S4</div>
+<div class="step"><b>解析 · 答案：C</b></div>
+<div class="step">逐条验匹配范围：40.5 落在 /23（169.96.40.0–169.96.41.255）内、落在 /25（40.0–40.127）内、也落在 /27（40.0–40.31）内，默认路由 /0 更是兜底全通——一共四条命中。</div>
+<div class="step">多条命中时按<b>最长前缀匹配</b>：选网络前缀最长的那条，/27 长于 /25 长于 /23 → 从 S3 转发 → C。</div>
+<div class="step">这道题的用意正在于此：三条表项的目的网络写法相同、只差前缀长度，先命中的不是先用的，唯一标准是前缀最长。自查：已用程序按网段包含关系逐条验证，四条全命中、最长为 /27 ✓。</div>
+</div>
+
+<div class="cardhd">net-16 · IP 数据报分片 · 标志与片偏移计算</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2021 年第 36 题（选择题）</div>
+<div class="step">若路由器向 MTU = 800B 的链路转发一个总长度为 1580B 的 IP 数据报（首部长度为 20B）时，进行了分片，且每个分片尽可能大，则第 2 个分片的总长度字段和 MF 标志位的值分别是（　）。</div>
+<div class="step">A. 796, 0</div>
+<div class="step">B. 796, 1</div>
+<div class="step">C. 800, 0</div>
+<div class="step">D. 800, 1</div>
+<div class="step"><b>解析 · 答案：B</b></div>
+<div class="step">先拆总量：原数据报的数据部分 = 1580 − 20 = 1560B，分片切的是这 1560B（每片再各加 20B 首部）。</div>
+<div class="step">再定每片上限：分片的数据长度必须是 8 的整数倍（片偏移以 8B 为单位），且总长不超过 MTU 800 → 每片数据至多 ⌊(800 − 20) ÷ 8⌋ × 8 = 776B。1560 = 776 + 776 + 8，共 3 片。</div>
+<div class="step">第 2 片：总长度 = 776 + 20 = 796；它后面还有第 3 片，所以 MF = 1 → B。</div>
+<div class="step">C、D 的 800 是把 MTU 直接当分片总长，忘了首部要占位、数据还要 8 字节对齐；A 的数值对但 MF 判错——只要不是最后一片，MF 恒为 1。自查：已用程序复算分片序列 776/776/8 ✓。</div>
+</div>
+
+<div class="cardhd">net-17 · ARP（地址解析协议）</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2012 年第 38 题（选择题）</div>
+<div class="step">ARP 协议的功能是（　）。</div>
+<div class="step">A. 根据 IP 地址查询 MAC 地址</div>
+<div class="step">B. 根据 MAC 地址查询 IP 地址</div>
+<div class="step">C. 根据域名查询 IP 地址</div>
+<div class="step">D. 根据 IP 地址查询域名</div>
+<div class="step"><b>解析 · 答案：A</b></div>
+<div class="step">帧在局域网里真正投递靠的是 MAC 地址，而上层只知道下一跳的 IP 地址——ARP 就负责这一步翻译：在本网段广播 ARP 请求（「谁是 x.x.x.x？」），持有该 IP 的主机单播回自己的 MAC。方向是 IP → MAC → A。</div>
+<div class="step">B 是反向的 RARP（由 MAC 查 IP，早已淘汰、被 DHCP 取代）；C、D 都是 DNS 的活（正向解析与反向解析），与 ARP 不在一个层次。</div>
+<div class="step">自查：ARP = Address Resolution Protocol，记住「已知 IP、求 MAC」一条线即可。</div>
+</div>
+
+<div class="cardhd">net-18 · RIP（路由信息协议）与 OSPF（开放最短路径优先）对比</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2026 年第 38 题（选择题）</div>
+<div class="step">下列路由协议中，可以将一个自治系统划分为多个区域（Area）的内部网关协议是（　）。</div>
+<div class="step">I. OSPF　II. RIP　III. BGP</div>
+<div class="step">A. 仅 I</div>
+<div class="step">B. 仅 II</div>
+<div class="step">C. 仅 I、III</div>
+<div class="step">D. 仅 II、III</div>
+<div class="step"><b>解析 · 答案：A</b></div>
+<div class="step">先砍题干的范围词「内部网关协议」：BGP 是外部网关协议（用于自治系统之间），III 直接出局，含 III 的 C、D 一并排除。</div>
+<div class="step">再在两个 IGP 里分：RIP 是距离向量协议，不分区域、靠跳数度量（上限 15 跳）；OSPF 是链路状态协议，其标志性结构就是把自治系统划分为多个区域（骨干区域 0 与普通区域），各区域内部泛洪链路状态、区域间汇总，以压住大规模网络的开销——「分区域」正是 OSPF 与 RIP 的核心分工差异 → 仅 I，选 A。</div>
+<div class="step">自查：对比表落点——区域划分：OSPF 有、RIP 无、BGP 不适用（它连 IGP 都不是）。</div>
+</div>
+
+<div class="cardhd">net-19 · TCP（传输控制协议）与 UDP（用户数据报协议）对比</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2021 年第 39 题（选择题）</div>
+<div class="step">若大小为 12B 的应用层数据分别通过 1 个 UDP 数据报和 1 个 TCP 段传输，则该 UDP 数据报和 TCP 段实现的有效载荷（应用层数据）最大传输效率分别是（　）。</div>
+<div class="step">A. 37.5%, 16.7%</div>
+<div class="step">B. 37.5%, 37.5%</div>
+<div class="step">C. 60.0%, 16.7%</div>
+<div class="step">D. 60.0%, 37.5%</div>
+<div class="step"><b>解析 · 答案：D</b></div>
+<div class="step">传输效率 = 应用层数据 ÷ 报文总长，差别只在首部：UDP 首部固定 8B，效率 = 12 ÷ (12 + 8) = 60.0%；TCP 首部最短 20B（无选项字段时），效率 = 12 ÷ (12 + 20) = 37.5% → D。</div>
+<div class="step">这道题把 TCP/UDP 对比落到了数字上：数据越小，首部开销占比越被放大，UDP 的「轻首部」优势越明显，这正是短报文、实时类应用偏爱 UDP 的量化理由。A、C 把两者算反或用错首部长（16.7% 是把 TCP 首部按 60B 最大值算的）。</div>
+<div class="step">自查：已用程序复算 12/20 = 60.0%、12/32 = 37.5% ✓。</div>
+</div>
+
+<div class="cardhd">net-20 · TCP 可靠传输 · 序号、确认与超时重传</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2013 年第 39 题（选择题）</div>
+<div class="step">主机甲与主机乙之间已建立一个 TCP 连接，双方持续有数据传输，且数据无差错与丢失。若甲收到 1 个来自乙的 TCP 段，该段的序号为 1913、确认序号为 2046、有效载荷为 100 字节，则甲立即发送给乙的 TCP 段的序号和确认序号分别是（　）。</div>
+<div class="step">A. 2046、2012</div>
+<div class="step">B. 2046、2013</div>
+<div class="step">C. 2047、2012</div>
+<div class="step">D. 2047、2013</div>
+<div class="step"><b>解析 · 答案：B</b></div>
+<div class="step">两个字段分开定。<b>序号</b>看对方的确认号：乙发来的确认序号 2046，意思是「2046 之前的字节都收到了、下一个期待 2046」，甲接着要发的段正从 2046 开始 → seq = 2046（不是 2047，确认号本身就是下一个待发字节的序号）。</div>
+<div class="step"><b>确认序号</b>看自己已收到的字节：乙这个段占字节 1913–2012（序号 1913、长 100），无差错无丢失，甲期待的下一个字节是 2013 → ack = 2013。</div>
+<div class="step">A 的 2012 是把「已收到的最后一个字节的序号」误当确认号；C、D 是把序号多加了 1。自查：确认号永远是「下一个期待值」，两边同理 ✓。</div>
+</div>
+
+<div class="cardhd">net-21 · TCP（传输控制协议）滑动窗口与流量控制</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2021 年第 40 题（选择题）</div>
+<div class="step">设主机甲通过 TCP 向主机乙发送数据，部分过程如下图所示。甲在 t0 时刻发送一个序号 seq = 501、封装 200B 数据的段，在 t1 时刻收到乙发送的序号 seq = 601、确认序号 ack_seq = 501、接收窗口 rcvwnd = 500B 的段，则甲在未收到新的确认段之前，可以继续向乙发送的数据序号范围是（　）。</div>
+<div class="step">A. 501～1000</div>
+<div class="step">B. 601～1100</div>
+<div class="step">C. 701～1000</div>
+<div class="step">D. 801～1100</div>
+<div class="step"><b>解析 · 答案：C</b></div>
+<div class="step">说明先行：原题时序图中的全部信息已由题干文字给出（两段的 seq、ack、rcvwnd 均已明示），下述计算只用题干数据。</div>
+<div class="step">先定「已发未确认」：甲在 t0 发出的段占字节 501–700，这 200B 还在飞、未被确认。再定窗口右界：乙的确认序号 501 表示它期待从 501 开始收，接收窗口 500B 意味着它最多能再收 501 起的 500 个字节，即接收范围到 501 + 500 − 1 = 1000 为止。</div>
+<div class="step">甲还能新发的数据 = 窗口允许范围 − 已在飞的 = 701～1000，共 300B → C。A 把已发的 501–700 也算作可发；B、D 把窗口起点错位到 601 或把已发段重复计入、右界冲到 1100。</div>
+<div class="step">自查：流量控制的铁律是「可发送量 = 对方通告窗口 − 已发未确认量」，代入 500 − 200 = 300B，与范围 701–1000 的长度一致 ✓（已程序复核）。</div>
+</div>
+
+<div class="cardhd">net-22 · TCP（传输控制协议）拥塞控制四阶段</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2022 年第 38 题（选择题）</div>
+<div class="step">假设主机甲和主机乙已建立一个 TCP 连接，最大段长 MSS = 1 KB，甲一直有数据向乙发送，当甲的拥塞窗口为 16KB 时，计时器发生了超时，则甲的拥塞窗口再次增长到 16KB 所需要的时间至少是（　）。</div>
+<div class="step">A. 4 RTT</div>
+<div class="step">B. 5 RTT</div>
+<div class="step">C. 11 RTT</div>
+<div class="step">D. 16 RTT</div>
+<div class="step"><b>解析 · 答案：C</b></div>
+<div class="step">先执行超时后的处置：ssthresh 减半为 16 ÷ 2 = 8KB，cwnd 重置为 1（单位下文以 KB 计，即 1 个 MSS），重新进入慢开始。</div>
+<div class="step">慢开始阶段每个 RTT 翻倍：1 → 2 → 4 → 8，3 个 RTT 恰好到达新阈值 8；越过阈值后转入拥塞避免，每个 RTT 只线性 +1：8 → 9 → … → 16，需要 8 个 RTT。总计 3 + 8 = 11 RTT → C。</div>
+<div class="step">A 的 4 RTT 是误以为全程都能翻倍（1→2→4→8→16 只需 4 步），忘了阈值之后是指数转线性的拐点——这正是「四阶段」里最常考的转折。自查：已用程序按阶段规则模拟，恢复到 16KB 用时 11 RTT ✓。</div>
+</div>
+
+<div class="cardhd">net-23 · TCP（传输控制协议）三次握手</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2019 年第 39 题（选择题）</div>
+<div class="step">若主机甲主动发起一个与主机乙的 TCP 连接，甲、乙选择的初始序列号分别为 2018 和 2046，则第三次握手 TCP 段的确认序列号是（　）。</div>
+<div class="step">A. 2018</div>
+<div class="step">B. 2019</div>
+<div class="step">C. 2046</div>
+<div class="step">D. 2047</div>
+<div class="step"><b>解析 · 答案：D</b></div>
+<div class="step">把三次握手的序号链写全：第一次，甲发 SYN，seq = 2018；第二次，乙回 SYN+ACK，seq = 2046、ack = 2019；第三次轮到甲确认乙的 SYN。</div>
+<div class="step">确认序号的规则是「对方序号 + 1」——因为 SYN 标志本身要消耗一个序号：ack = 2046 + 1 = 2047 → D。</div>
+<div class="step">C（2046）是忘了 SYN 占序号、直接抄了乙的初始序号；A、B 是甲自己那条序号线（2018 与它的 +1），与「确认乙」无关。自查：握手三段的序号/确认号链条 2018 → 2046 → 2047 首尾闭合 ✓。</div>
+</div>
+
+<div class="cardhd">net-24 · TCP（传输控制协议）四次挥手</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2022 年第 39 题（选择题）</div>
+<div class="step">假设客户 C 和服务器 S 已建立一个 TCP 连接，通信往返时间 RTT = 50 ms，最长报文段寿命 MSL = 800ms，数据传输结束后，C 主动请求断开连接。若从 C 主动向 S 发出 FIN 段时刻算起，则 C 和 S 进入 CLOSED 状态所需的时间至少分别是（　）。</div>
+<div class="step">A. 850 ms, 50 ms</div>
+<div class="step">B. 1650 ms, 50 ms</div>
+<div class="step">C. 850 ms, 75 ms</div>
+<div class="step">D. 1650 ms, 75 ms</div>
+<div class="step"><b>解析 · 答案：D</b></div>
+<div class="step">准备量：单程时延 = RTT ÷ 2 = 25ms。「所需时间至少」意味着 S 收到 FIN 后不再发数据、立即把自己的 FIN 与对 C 的 ACK 合并成一段发出（挥手由四次并成事实上三次）。</div>
+<div class="step">沿时间线走：t = 0，C 发 FIN；t = 25，S 收到，立即回 FIN+ACK；t = 50，C 收到，发出 ACK 并进入 TIME_WAIT；C 必须等满 2MSL = 1600ms 才进 CLOSED，即 50 + 1600 = 1650ms。另一边，S 在 t = 75 收到 C 的 ACK，随即进 CLOSED（被动关闭方没有 TIME_WAIT）→ 1650ms、75ms，选 D。</div>
+<div class="step">A、C 的 850 是把 C 的等待只算了 1 个 MSL；B 的 S = 50ms 是把 ACK 的到达提前了一程（25ms 只是 C 收到 FIN+ACK 的时刻，不是 S 收到 ACK 的时刻）。自查：已用程序按时间线复算，C = 1650ms、S = 75ms ✓。</div>
+</div>
+
+<div class="cardhd">net-25 · 应用层协议对比</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2014 年第 40 题（选择题）</div>
+<div class="step">使用浏览器访问某大学 Web 网站主页时，不可能使用到的协议是（　）。</div>
+<div class="step">A. PPP</div>
+<div class="step">B. ARP</div>
+<div class="step">C. UDP</div>
+<div class="step">D. SMTP</div>
+<div class="step"><b>解析 · 答案：D</b></div>
+<div class="step">把一次网页访问的链路逐层走一遍，看每个协议有没有出场机会：接入段（如拨号/PPPoE 场景）链路层可能用 PPP（A 有可能）；要拿到网关或目标主机的 MAC 地址必须用 ARP（B 有可能）；域名解析走 DNS，DNS 的查询报文跑在 UDP 上（C 有可能）；网页内容本身由 HTTP over TCP 承载。</div>
+<div class="step">SMTP 是发送电子邮件的协议，只在「用户代理把邮件推给邮件服务器、邮件服务器之间转发」时出现，与访问网页毫无交集 → 不可能用到，选 D。</div>
+<div class="step">自查：应用层协议各就其位——SMTP 管发信、POP3/IMAP 管收信、HTTP 管网页、DNS 管解析，本题错在把发信协议塞进浏览链路。</div>
+</div>
+
+<div class="cardhd">net-26 · DNS 解析与 DHCP 分配过程</div>
+<div class="ex">
+<div class="ex-title">真题实战 · 2016 年第 40 题（选择题）</div>
+<div class="step">假设所有域名服务器均采用迭代查询方式进行域名解析。当 H4 访问规范域名为 www.abc.xyz.com 的网站时，域名服务器 201.1.1.1 在完成该域名解析过程中，可能发出 DNS 查询的最少和最多次数分别是（　）。</div>
+<div class="step">A. 0，3</div>
+<div class="step">B. 1，3</div>
+<div class="step">C. 0，4</div>
+<div class="step">D. 1，4</div>
+<div class="step"><b>解析 · 答案：C</b></div>
+<div class="step">注意发问主体：数的是域名服务器 201.1.1.1（本地 DNS 服务器）<b>发出</b>的查询次数，不是 H4 发出的。</div>
+<div class="step">最少：若 201.1.1.1 的缓存里已有 www.abc.xyz.com 的解析记录，直接返回、一次查询都不用发 → 0 次。最多：缓存全空且逐级迭代——本地服务器依次问根域名服务器、顶级域名服务器（.com）、权限域名服务器（xyz.com）、权限域名服务器（abc.xyz.com），共 4 次。域名自右向左的层级是 . / com / xyz.com / abc.xyz.com，每级一问 → C。</div>
+<div class="step">A 的最多 3 次是漏数了一级（把 xyz.com 与 abc.xyz.com 误并成一级）。迭代查询的要义正在于此：本地服务器自己逐级跑腿、每问只得到「下一级去哪问」。自查：最少看缓存（0），最多数层级（4）✓。</div>
+<div class="step">说明：本卡为 DNS 与 DHCP 双面卡，本题取 DNS 迭代查询面；DHCP 面的选择题（2025 年第 36 题）在考点库中带有归属争议标记，其余 DHCP 题均为综合题且与图绑定，故本轮未取。</div>
+</div>
+
+</body>
+</html>
