@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>408 数据结构 · 算法题例题集（暴力解版）</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm; @bottom-center { content: "408 算法题例题集 · 暴力解版 — 第 " counter(page) " 页"; font-size: 9pt; color: #888; } }
+  body { font-family: "Noto Serif CJK SC", "Source Han Serif SC", serif; font-size: 10.5pt; line-height: 1.65; color: #1a1a1a; }
+  h1 { font-size: 20pt; text-align: center; margin: 8mm 0 2mm; letter-spacing: .05em; }
+  .subtitle { text-align: center; color: #666; font-size: 10pt; margin-bottom: 8mm; }
+  h2 { font-size: 14pt; border-bottom: 2px solid #333; padding-bottom: 2px; margin: 9mm 0 4mm; page-break-after: avoid; }
+  h3 { font-size: 12pt; margin: 6mm 0 2mm; page-break-after: avoid; }
+  h3 .no { color: #b03030; margin-right: .4em; }
+  .src { font-size: 8.5pt; color: #777; font-weight: normal; }
+  .tag { display: inline-block; font-size: 8.5pt; padding: 0 .5em; border: 1px solid #b03030; color: #b03030; border-radius: 3px; margin-left: .5em; vertical-align: middle; }
+  .tag.orig { border-color: #2e7d32; color: #2e7d32; }
+  .prob { background: #f7f5f0; border-left: 3px solid #999; padding: 2mm 3mm; margin: 2mm 0; }
+  .prob p { margin: 1mm 0; }
+  pre { background: #f4f4f4; border: 1px solid #ddd; border-radius: 3px; padding: 2.5mm 3mm; font-family: "JetBrains Mono", "Noto Sans Mono CJK SC", monospace; font-size: 8.8pt; line-height: 1.5; white-space: pre-wrap; word-break: break-all; page-break-inside: avoid; }
+  .note { font-size: 9.5pt; color: #555; }
+  .cx { font-size: 9.5pt; color: #333; }
+  .cx b { color: #b03030; }
+  .toc { font-size: 10pt; line-height: 1.9; }
+  .rule { border: none; border-top: 1px solid #ccc; margin: 5mm 0; }
+  .qa p { margin: 1.2mm 0; }
+  .ans { color: #b03030; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<h1>408 数据结构 · 算法题例题集</h1>
+<p class="subtitle">暴力解版 —— 只留暴力解 / 通用解，最优解一律剔除<br>素材来源：2026-11-06 暂存的 12 份数据结构讲义（录课截图）逐页提取；2026-11-08 续编新增素材：讲义 85 页，含二叉树与图两章</p>
+
+<p><b>收录口径。</b>本集按讲义自己的定位整理：算法设计题<b>只给暴力解</b>——按题意直来直去的枚举、遍历、模拟、辅助数组直数、全排序后取值等朴素写法；靠双指针、快排分区、哈希、原地反转等技巧降复杂度的最优解<b>全部剔除</b>。</p>
+<p>全集按数据结构分<b>上篇（顺序表与数组）</b>、<b>下篇（链表）</b>、<b>第三篇（二叉树）</b>、<b>第四篇（图）</b>，另附与两者无关的递归入门 1 组。每题的来源性质由题目标签标明：<br>
+· 标「讲义原码」：讲义自带暴力解（或题目本身就是实现某算法 / 基本操作、无所谓暴力与最优），代码<b>照讲义原样</b>收录；<br>
+· 标「整理者补写」：讲义只有最优解或没给代码，暴力解由<b>整理者补写</b>，代码均已实际编译运行、用讲义示例数据验算通过。</p>
+<p>选择题一概未收，只收算法大题与例题。讲义中看不清、被截图截断的内容如实标注，未补编。</p>
+
+<div class="toc">
+<b>目录</b><br>
+上篇　顺序表与数组（15 组）<br>
+下篇　链表（11 组）<br>
+第三篇　二叉树（8 组）<br>
+第四篇　图（7 组）<br>
+附篇　递归入门（1 组）<br>
+</div>
+
+<h2>上篇　顺序表与数组</h2>
+<h3><span class="no">1</span>经典处理：用辅助数组统计元素出现次数<span class="src">（3 号讲义 p1）</span><span class="tag orig">讲义原码</span></h3>
+<div class="prob"><p>方法页（非真题）：当数组元素取值范围已知（如 0 ≤ a[i] ≤ 8）时，用辅助数组 b 以<b>元素值作下标</b>直接计数。示例：int a[6] = {2, 8, 2, 1, 3, 8}。若只需判断是否出现过，把计数改为置 1（b[a[i]] = 1）。</p></div>
+<pre>for (int i = 0; i &lt; n; i++) {
+    b[a[i]]++;
+}</pre>
+<p class="cx">这是后面主元素（上篇 2）、未现最小正整数（上篇 3）、删绝对值重复结点（下篇 3）几题的共同套路：<b>值域不大时，辅助数组直数就是最稳的通用解</b>。</p>
+<p class="note">使用前提：辅助数组 b 必须先清零、长度须覆盖元素值域（如值域 0~8 需至少 9 个位置），否则统计会读到未初始化的值。复杂度：计数循环时间 O(n)（若把辅助数组清零也计入，则为 O(n+U)），辅助空间 O(U)（U 为值域大小）。</p>
+
+<h3><span class="no">2</span>2013 统考真题：找主元素<span class="src">（3 号讲义 p5–p11）</span><span class="tag orig">讲义原码</span></h3>
+<div class="prob"><p>已知整数序列 A = (a<sub>0</sub>, …, a<sub>n-1</sub>)，其中 0 ≤ a<sub>i</sub> &lt; n。若存在 x 出现次数 m &gt; n/2，则称 x 为主元素（如 (0,5,5,3,5,7,5,5) 的主元素是 5）。设计算法找出主元素，存在则输出该元素，否则输出 -1。（三段式要求，下同略）</p></div>
+<p class="note">讲义给了两种统计策略，都是辅助数组直数。解法一：边统计边判断，一旦某元素计数超过 n/2 立即输出。</p>
+<pre>void func(int A[], int n) {
+    int *temp = (int*)malloc(sizeof(int) * n);
+    for (int i = 0; i &lt; n; i++) temp[i] = 0;
+    for (int i = 0; i &lt; n; i++) {
+        temp[A[i]]++;
+        if (temp[A[i]] &gt; n/2) {
+            printf("%d\n", A[i]);
+            return;
+        }
+    }
+    printf("%d\n", -1);
+}</pre>
+<p class="note">解法二：先全部统计完，再遍历辅助数组找计数过半者（此时下标 i 即元素值）。</p>
+<pre>void func(int A[], int n) {
+    int *temp = (int*)malloc(sizeof(int) * n);
+    for (int i = 0; i &lt; n; i++) temp[i] = 0;
+    for (int i = 0; i &lt; n; i++) temp[A[i]]++;
+    for (int i = 0; i &lt; n; i++) {
+        if (temp[i] &gt; n/2) {
+            printf("%d\n", i);
+            return;
+        }
+    }
+    printf("%d\n", -1);
+}</pre>
+<p class="cx">复杂度：时间 <b>O(n)</b>，空间 <b>O(n)</b>。讲义另提到摩尔投票法（O(1) 空间）为更优解，截图未给代码，按口径不收。</p>
+<p class="note">原码疑似（审核记录，不改原码）：两种解法的 temp 在返回前均未释放，存在内存泄漏。</p>
+
+<h3><span class="no">3</span>2018 统考真题：未出现的最小正整数<span class="src">（3 号讲义 p12–p23）</span><span class="tag orig">讲义原码</span></h3>
+<div class="prob"><p>给定含 n（n ≥ 1）个整数的数组，找出数组中未出现的最小正整数。例如 {-5, 3, 2, 3} → 1；{1, 2, 3} → 4。</p></div>
+<p class="note">讲义给了辅助数组 n+2、n+1、n 三个大小版本，思路相同，此处收最干净的 n+1 版：标记 1..n 中出现过的数，第一个没标记的就是答案；全出现则答案是 n+1。</p>
+<pre>int func(int a[], int n) {
+    int *temp = (int*)malloc(sizeof(int) * (n + 1));
+    for (int i = 0; i &lt; n + 1; i++) temp[i] = 0;
+    for (int i = 0; i &lt; n; i++) {
+        if (a[i] &gt; 0 &amp;&amp; a[i] &lt; n + 1) temp[a[i]] = 1;
+    }
+    for (int i = 1; i &lt;= n; i++) {
+        if (temp[i] == 0) return i;
+    }
+    return n + 1;
+}</pre>
+<p class="cx">复杂度：时间 <b>O(n)</b>，空间 <b>O(n)</b>。讲义要点另提到本题的纯暴力写法（从 1 到 n+1 逐个回数组里找，两层循环 O(n²)），纯暴力版附在本题之后。原码疑似（审核记录，不改原码）：原码的 temp 在返回路径上未释放。</p>
+
+
+<p class="note">附：本题的纯暴力写法【此段代码为整理者补写，非讲义原码】（讲义要点提及、未给代码）——从 1 到 n+1 逐个候选值、每个都回数组里线性查找，两层循环 O(n²)：</p>
+<pre>int func(int a[], int n) { // A3 的纯暴力写法（讲义要点提及、未给代码，整理者补写）
+    for (int x = 1; x &lt;= n + 1; x++) {
+        bool found = false;
+        for (int i = 0; i &lt; n; i++)
+            if (a[i] == x) { found = true; break; }
+        if (!found) return x;
+    }
+    return -1;
+}</pre>
+<h3><span class="no">4</span>2011 统考真题：两个等长升序序列的中位数<span class="src">（4 号讲义 p6–p13；题面见 3 号 p4）</span><span class="tag orig">讲义原码</span></h3>
+<div class="prob"><p>长度为 L 的升序序列 S，处在第 ⌈L/2⌉ 个位置的数称为 S 的中位数。两个序列的中位数是含它们所有元素的升序序列的中位数（如 S<sub>1</sub>=(11,13,15,17,19)、S<sub>2</sub>=(2,4,6,8,20)，中位数是 11）。现有两个等长升序序列 A 和 B，求它们的中位数。原题要求在时间和空间两方面都尽可能高效；下面的解法一是保分通用解，达不到原题最佳效率（最优为二分法，按口径未收）。</p></div>
+<p class="note">解法一：把两个序列<b>整个归并</b>到 temp 里，直接取下标 L-1 处（即合并后第 L 个）。讲义明确定位这是通用直接解，并明确说二分最优解不推荐。</p>
+<pre>int func(int S1[], int S2[], int L) {
+    int *temp = (int*)malloc(sizeof(int) * 2 * L);
+    int i = 0, j = 0, k = 0;
+    while (i &lt; L &amp;&amp; j &lt; L) {
+        if (S1[i] &lt; S2[j]) temp[k++] = S1[i++];
+        else temp[k++] = S2[j++];
+    }
+    while (i &lt; L) temp[k++] = S1[i++];
+    while (j &lt; L) temp[k++] = S2[j++];
+    return temp[L - 1];
+}</pre>
+<p class="note">解法二：同一思路的省空间版——不存数组，归并时计数，数到第 L 个立即返回（时间 O(L)，空间 O(1)）。</p>
+<pre>int func(int S1[], int S2[], int L) {
+    int i = 0, j = 0, count = 0, ans = 0;
+    while (i &lt; L &amp;&amp; j &lt; L) {
+        if (S1[i] &lt; S2[j]) ans = S1[i++];
+        else ans = S2[j++];
+        count++;
+        if (count == L) return ans;
+    }
+    return -1;
+}</pre>
+<p class="cx">注：解法二讲义定稿代码在一个序列先走完时以 return -1 收尾，未写处理剩余元素的循环——正常输入下数满 L 个必然在循环内返回，-1 不会触达，照讲义原样收录。</p>
+<p class="note">口径说明（审核意见）：解法二带省空间优化色彩，按最严口径应移出正文；考虑到它与解法一同为归并顺序取数的通用思路、并非二分最优解，暂保留并在此标注。原码疑似（审核记录）：解法一的 temp 未释放。</p>
+
+<h3><span class="no">5</span>2020 统考真题：三元组最小距离<span class="src">（3 号讲义 p12、p25 仅题面）</span><span class="tag">暴力解：整理者补写</span></h3>
+<div class="prob"><p>定义三元组 (a, b, c) 的距离 D = |a-b| + |b-c| + |c-a|。给定 3 个非空整数集合 S<sub>1</sub>、S<sub>2</sub>、S<sub>3</sub>，按升序分别存储在 3 个数组中。计算并输出所有可能三元组中的最小距离。如 S<sub>1</sub>={-1,0,9}、S<sub>2</sub>={-25,-10,10,11}、S<sub>3</sub>={2,9,17,30,41}，最小距离为 2（三元组 (9,10,9)）。</p></div>
+<p class="note">暴力解：三重循环枚举全部三元组，逐个算距离取最小。不用管三个数组是否有序。</p>
+<pre>int func(int S1[], int S2[], int S3[], int n1, int n2, int n3) {
+    int ans = INT_MAX;
+    for (int i = 0; i &lt; n1; i++)
+        for (int j = 0; j &lt; n2; j++)
+            for (int k = 0; k &lt; n3; k++) {
+                int d = abs(S1[i] - S2[j]) + abs(S2[j] - S3[k]) + abs(S3[k] - S1[i]);
+                if (d &lt; ans) ans = d;
+            }
+    return ans;
+}</pre>
+<p class="cx">复杂度：时间 <b>O(n<sub>1</sub>·n<sub>2</sub>·n<sub>3</sub>)</b>，空间 O(1)。已用题面示例验算：输出 2 ✓。注：按统考惯例用 int；若数据范围极大、距离之和可能溢出 int，可整体换成 long long（审核建议，枚举思路不变）。</p>
+<h3><span class="no">6</span>综合应用题：把所有奇数移动到所有偶数前边<span class="src">（7 号讲义 p1 仅题面）</span><span class="tag">暴力解：整理者补写</span></h3>
+<div class="prob"><p>已知线性表按顺序存储，且每个元素都是不相同的整数型元素，设计把所有奇数移动到所有偶数前边的算法。（原题要求时间最短、辅助空间最小，指向双指针划分；暴力解不满足该要求，定位保分打法。）</p></div>
+<pre>void func(int A[], int n) {
+    int *temp = (int*)malloc(sizeof(int) * n);
+    int k = 0;
+    for (int i = 0; i &lt; n; i++)
+        if (A[i] % 2 != 0) temp[k++] = A[i]; //第一遍：先放奇数
+    for (int i = 0; i &lt; n; i++)
+        if (A[i] % 2 == 0) temp[k++] = A[i]; //第二遍：再放偶数
+    for (int i = 0; i &lt; n; i++) A[i] = temp[i];
+    free(temp);
+}</pre>
+<p class="cx">复杂度：时间 <b>O(n)</b>，空间 <b>O(n)</b>。</p>
+
+<h3><span class="no">7</span>综合应用题：找出数组中第 k 小的元素<span class="src">（7 号讲义 p1 题面、p6–p10 优化解）</span><span class="tag">暴力解：整理者补写</span></h3>
+<div class="prob"><p>试编写一个算法，使之能够在数组 L[1...n] 中找出第 k 小的元素（从小到大排序后处于第 k 个位置的元素）。</p></div>
+<p class="note">讲义给的是借快排划分只递归一侧的快速选择（平均 O(n)），已剔除。暴力解：<b>先全排序，再直接取第 k 个</b>——排序用最简单的简单选择排序即可。</p>
+<pre>int func(int L[], int n, int k) { //数组下标 0..n-1，k 从 1 开始数
+    for (int i = 0; i &lt; n - 1; i++) { //简单选择排序，全排升序
+        int min = i;
+        for (int j = i + 1; j &lt; n; j++)
+            if (L[j] &lt; L[min]) min = j;
+        if (min != i) { int t = L[i]; L[i] = L[min]; L[min] = t; }
+    }
+    return L[k - 1];
+}</pre>
+<p class="cx">复杂度：时间 <b>O(n²)</b>，空间 O(1)。前置条件：1 ≤ k ≤ n（题面默认成立，k 越界会访问越界）。已验算 ✓。</p>
+
+<h3><span class="no">8</span>2016 统考真题：集合划分<span class="src">（7 号讲义 p1 题面、p14–p17 优化解；8 号 p1 残段同题）</span><span class="tag">暴力解：整理者补写</span></h3>
+<div class="prob"><p>已知由 n（n ≥ 2）个正整数构成的集合 A = {a<sub>k</sub> | 0 ≤ k &lt; n}，将其划分为两个不相交的子集 A<sub>1</sub>、A<sub>2</sub>，元素个数分别是 n<sub>1</sub>、n<sub>2</sub>，元素之和分别是 S<sub>1</sub>、S<sub>2</sub>。设计划分算法，满足 |n<sub>1</sub> − n<sub>2</sub>| 最小且 |S<sub>1</sub> − S<sub>2</sub>| 最大，并返回 S<sub>2</sub> − S<sub>1</sub>。</p></div>
+<p class="note">讲义要点明说「全排序是本题的暴力解」：全排升序后，前 ⌊n/2⌋ 个最小的归 A<sub>1</sub>、其余归 A<sub>2</sub>，个数差最小、和差自然最大。讲义的快速选择解法已剔除。</p>
+<pre>int func(int A[], int n) {
+    for (int i = 0; i &lt; n - 1; i++) { //简单选择排序，全排升序
+        int min = i;
+        for (int j = i + 1; j &lt; n; j++)
+            if (A[j] &lt; A[min]) min = j;
+        if (min != i) { int t = A[i]; A[i] = A[min]; A[min] = t; }
+    }
+    int s1 = 0, s2 = 0;
+    for (int i = 0; i &lt; n / 2; i++) s1 += A[i];
+    for (int i = n / 2; i &lt; n; i++) s2 += A[i];
+    return s2 - s1;
+}</pre>
+<p class="cx">复杂度：时间 <b>O(n²)</b>（瓶颈在全排序），空间 O(1)。已用讲义手绘示例 {10,20,…,70}（n=7）验算：返回 160 ✓。</p>
+<p class="note">注：返回 S<sub>2</sub> − S<sub>1</sub> 是沿用讲义同题原码的接口约定；元素之和在统考规模下 int 足够，范围极大时可换 long long 防溢出。</p>
+
+<h3><span class="no">9</span>综合应用题：荷兰国旗问题<span class="src">（7 号讲义 p1 仅框架）</span><span class="tag">暴力解：整理者补写</span></h3>
+<div class="prob"><p>设有一个仅由红、白、蓝三种颜色条块组成的序列，存储在一个顺序表中，编写算法使条块按红、白、蓝顺序排好（原题要求时间复杂度 O(n)，指向三指针一趟划分；暴力解为计数重填）。题目给出的类型与函数框架：typedef enum {RED, WHITE, BLUE} color; void Flag_Arrange(color a[], int n)。</p></div>
+<pre>void Flag_Arrange(color a[], int n) {
+    int cntR = 0, cntW = 0;
+    for (int i = 0; i &lt; n; i++) { //第一遍：只数个数
+        if (a[i] == RED) cntR++;
+        else if (a[i] == WHITE) cntW++;
+    }
+    for (int i = 0; i &lt; n; i++) { //第二遍：按个数整段重填
+        if (i &lt; cntR) a[i] = RED;
+        else if (i &lt; cntR + cntW) a[i] = WHITE;
+        else a[i] = BLUE;
+    }
+}</pre>
+<p class="cx">复杂度：时间 <b>O(n)</b>，空间 O(1)。思路就是上篇 1 的计数套路用在三色上。</p>
+
+<h3><span class="no">10</span>顺序表习题组（删除 / 互换 / 查找类）<span class="src">（4 号讲义 p1 仅题面）</span><span class="tag">暴力解：整理者补写</span></h3>
+<div class="prob"><p>03：对长度为 n 的顺序表 L，删除其中所有值为 x 的数据元素。<br>04：从顺序表中删除值在 s 与 t 之间（包含 s、t，要求 s &lt; t）的所有元素。<br>05：从<b>有序</b>顺序表中删除所有值重复的元素，使表中元素值各不相同。<br>07：一位数组 A[m+n] 中依次存放两个线性表 (a<sub>1</sub>,…,a<sub>m</sub>) 和 (b<sub>1</sub>,…,b<sub>n</sub>)，将两个顺序表的位置互换，即把 (b<sub>1</sub>,…,b<sub>n</sub>) 放到 (a<sub>1</sub>,…,a<sub>m</sub>) 前面。<br>08：线性表元素递增有序且顺序存储，用最少时间查找值为 x 的元素：找到则与后继元素交换位置，找不到则插入并保持递增有序。<br>09：给定三个长度均为 n、无重复元素的递增序列 A、B、C，逐行输出同时存在于三个序列中的所有元素（如 A={1,2,3}、B={2,3,4}、C={-1,0,2}，输出 2）。</p></div>
+<p class="note">03、04、05 用同一个最笨的套路：逐个扫描，命中就<b>整体左移删掉</b>，不用紧凑计数法。以下设顺序表为王道 SqList（data 数组＋length）。</p>
+<pre>// 03：删除所有值为 x 的元素
+void func(SqList &amp;L, ElemType x) {
+    int i = 0;
+    while (i &lt; L.length) {
+        if (L.data[i] == x) {
+            for (int j = i; j &lt; L.length - 1; j++) L.data[j] = L.data[j + 1];
+            L.length--;
+        } else i++;
+    }
+}
+// 04：删除值在 [s, t] 内的元素（与 03 只差判断条件）
+void func(SqList &amp;L, ElemType s, ElemType t) {
+    int i = 0;
+    while (i &lt; L.length) {
+        if (L.data[i] &gt;= s &amp;&amp; L.data[i] &lt;= t) {
+            for (int j = i; j &lt; L.length - 1; j++) L.data[j] = L.data[j + 1];
+            L.length--;
+        } else i++;
+    }
+}
+// 05：有序表删除重复元素（有序则重复必相邻）
+void func(SqList &amp;L) {
+    int i = 0;
+    while (i &lt; L.length - 1) {
+        if (L.data[i] == L.data[i + 1]) {
+            for (int j = i + 1; j &lt; L.length - 1; j++) L.data[j] = L.data[j + 1];
+            L.length--;
+        } else i++;
+    }
+}</pre>
+<p class="note">07 暴力解：另开一个数组，先抄第二个表、再抄第一个表，最后抄回。</p>
+<pre>void func(int A[], int m, int n) {
+    int *temp = (int*)malloc(sizeof(int) * (m + n));
+    for (int i = 0; i &lt; n; i++) temp[i] = A[m + i];
+    for (int i = 0; i &lt; m; i++) temp[n + i] = A[i];
+    for (int i = 0; i &lt; m + n; i++) A[i] = temp[i];
+    free(temp);
+}</pre>
+<p class="note">08 暴力解：线性查找（不用二分），找到就与后继交换；没找到就找插入位置、整体右移腾位插入。</p>
+<pre>void func(SqList &amp;L, ElemType x) {
+    int i = 0;
+    while (i &lt; L.length &amp;&amp; L.data[i] &lt; x) i++; //从头逐个找
+    if (i &lt; L.length &amp;&amp; L.data[i] == x) {
+        if (i + 1 &lt; L.length) { //与后继交换（已是最后元素则无后继，不动）
+            ElemType t = L.data[i]; L.data[i] = L.data[i + 1]; L.data[i + 1] = t;
+        }
+    } else { //没找到：i 处即插入位置，右移腾位
+        if (L.length &gt;= MaxSize) return; //表已满，插入失败
+        for (int j = L.length; j &gt; i; j--) L.data[j] = L.data[j - 1];
+        L.data[i] = x;
+        L.length++;
+    }
+}</pre>
+<p class="note">09 暴力解：逐个枚举 A 的元素，分别去 B、C 里线性查找（两层嵌套），都在才输出（不用三指针同步推进的优化写法）。</p>
+<pre>void func(int A[], int B[], int C[], int n) {
+    for (int i = 0; i &lt; n; i++) {
+        bool inB = false, inC = false;
+        for (int j = 0; j &lt; n; j++) if (B[j] == A[i]) { inB = true; break; }
+        for (int j = 0; j &lt; n; j++) if (C[j] == A[i]) { inC = true; break; }
+        if (inB &amp;&amp; inC) printf("%d\n", A[i]);
+    }
+}</pre>
+<p class="cx">复杂度：03/04/05 时间<b>最坏 O(n²)</b>（瓶颈在逐个左移，无删除时仅 O(n)）；07 时间 O(m+n)、空间 O(m+n)；08 时间 O(n)；09 时间 <b>O(n²)</b>。</p>
+
+<h3><span class="no">11</span>数组循环左移与逆置<span class="src">（2 号讲义 p1 仅要点提及）</span><span class="tag">暴力解：整理者补写</span></h3>
+<div class="prob"><p>要点提及的两道常见题：将数组元素循环左移 p 位；逆置数组（顺序表）元素。讲义未给题面与代码，下按要点所述方法补写。</p></div>
+<pre>// 循环左移 p 位：辅助数组存前 p 个，其余整体前移，再把暂存的放到尾部（要点原述方法）
+void func(int A[], int n, int p) {
+    int *temp = (int*)malloc(sizeof(int) * p);
+    for (int i = 0; i &lt; p; i++) temp[i] = A[i];
+    for (int i = 0; i &lt; n - p; i++) A[i] = A[i + p];
+    for (int i = 0; i &lt; p; i++) A[n - p + i] = temp[i];
+    free(temp);
+}
+// 逆置：下标两端逐对交换——数组逆置最朴素的写法就是它本身
+void func(int A[], int n) {
+    for (int i = 0; i &lt; n / 2; i++) {
+        int t = A[i]; A[i] = A[n - 1 - i]; A[n - 1 - i] = t;
+    }
+}</pre>
+<p class="cx">左移的前置条件：0 ≤ p ≤ n（题面默认）。</p>
+<p class="note">口径说明：数组逆置本身即基本操作，其最朴素的写法就是两端交换，不存在更「暴力」的版本，故按基本操作收录（审核曾建议移附录，此处据此说明保留）。复杂度：左移时间 O(n)、空间 O(p)；逆置时间 O(n)、空间 O(1)。</p>
+
+
+<h3><span class="no">12</span>快速排序：Partition ＋ QuickSort<span class="src">（6 号讲义 p1、p4 王道版）</span><span class="tag orig">讲义原码</span></h3>
+<div class="prob"><p>实现快速排序。板书要点：左右双指针、以第一个元素作枢轴、初始方向从右往左。演示数组 6, 1, 5, 9, 8, 4, 7。（讲师另有 int 数组自写版，同题从略。）</p></div>
+<p class="note">本题为<b>算法实现题</b>（题目本身即实现快速排序），不是解题用的暴力解，凭此注与标签区分。复杂度：平均时间 O(n log n)、最坏 O(n²)；递归栈平均 O(log n)、最坏 O(n)。</p>
+<pre>int Partition(ElemType A[], int low, int high) { //一趟划分
+    ElemType pivot = A[low]; //将当前表中第一个元素设为枢轴
+    while (low &lt; high) {
+        while (low &lt; high &amp;&amp; A[high] &gt;= pivot) --high;
+        A[low] = A[high]; //将比枢轴小的元素移动到左端
+        while (low &lt; high &amp;&amp; A[low] &lt;= pivot) ++low;
+        A[high] = A[low]; //将比枢轴大的元素移动到右端
+    }
+    A[low] = pivot; //枢轴元素存放到最终位置
+    return low;
+}
+
+void QuickSort(ElemType A[], int low, int high) {
+    if (low &lt; high) {
+        int pivotpos = Partition(A, low, high); //划分
+        QuickSort(A, low, pivotpos - 1); //依次对两个子表进行递归排序
+        QuickSort(A, pivotpos + 1, high);
+    }
+}</pre>
+
+<h3><span class="no">13</span>归并排序：Merge ＋ MergeSort<span class="src">（5 号讲义 p1、p7–p9 王道版）</span><span class="tag orig">讲义原码</span></h3>
+<div class="prob"><p>实现递归二路归并排序。示例：初始关键字 [49] [38] [65] [97] [76] [13] [27]，归并后为 13 27 38 49 65 76 97。（讲师另有 int 数组自写版，同题从略。）</p></div>
+<p class="note">本题为<b>算法实现题</b>，不是解题用的暴力解。复杂度：时间 O(n log n)，辅助空间 O(n)（另有递归栈开销）。原码疑似（审核记录，不改原码）：全局辅助数组 B 的声明依赖未在代码中展示的 n 定义与初始化，使用时须先按实际规模分配好 B。</p>
+<pre>ElemType *B = (ElemType*)malloc((n + 1) * sizeof(ElemType)); //辅助数组 B
+void Merge(ElemType A[], int low, int mid, int high) {
+    //A 的两段 A[low...mid] 和 A[mid+1...high] 各自有序，合并成一个有序表
+    int i, j, k;
+    for (k = low; k &lt;= high; k++) B[k] = A[k]; //将 A 中所有元素复制到 B 中
+    for (i = low, j = mid + 1, k = i; i &lt;= mid &amp;&amp; j &lt;= high; k++) {
+        if (B[i] &lt;= B[j]) A[k] = B[i++]; //将较小值复制到 A 中
+        else A[k] = B[j++];
+    }
+    while (i &lt;= mid) A[k++] = B[i++]; //若第一个表未检测完，复制
+    while (j &lt;= high) A[k++] = B[j++]; //若第二个表未检测完，复制
+}
+
+void MergeSort(ElemType A[], int low, int high) {
+    if (low &lt; high) {
+        int mid = (low + high) / 2; //从中间划分两个子序列
+        MergeSort(A, low, mid); //对左侧子序列进行递归排序
+        MergeSort(A, mid + 1, high); //对右侧子序列进行递归排序
+        Merge(A, low, mid, high); //归并
+    }
+}</pre>
+
+<h3><span class="no">14</span>合并两个有序顺序表 / 有序数组<span class="src">（4 号讲义 p1–p5 王道版＋讲师数组版）</span><span class="tag orig">讲义原码</span></h3>
+<div class="prob"><p>将两个有序顺序表合并为一个新的有序顺序表，并由函数返回结果顺序表（王道习题 06）。</p></div>
+<pre>bool Merge(SeqList A, SeqList B, SeqList &amp;C) {
+    //将有序顺序表 A 与 B 合并为一个新的有序顺序表 C
+    if (A.length + B.length &gt; C.maxSize) return false; //大于顺序表的最大长度
+    int i = 0, j = 0, k = 0;
+    while (i &lt; A.length &amp;&amp; j &lt; B.length) { //循环，两两比较，小者存入结果表
+        if (A.data[i] &lt;= B.data[j]) C.data[k++] = A.data[i++];
+        else C.data[k++] = B.data[j++];
+    }
+    while (i &lt; A.length) C.data[k++] = A.data[i++]; //还剩一个没有比较完的顺序表
+    while (j &lt; B.length) C.data[k++] = B.data[j++];
+    C.length = k;
+    return true;
+}</pre>
+<p class="note">同题的数组版（讲师自写，演示 a={1,3,5}、b={2,4,8,10,12,15}；此 merge 也是上篇 13 归并排序的核心动作）：</p>
+<pre>void merge(int a[], int b[], int temp[], int m, int n) {
+    int i = 0, j = 0, k = 0;
+    while (i &lt; m &amp;&amp; j &lt; n) {
+        if (a[i] &lt; b[j]) temp[k++] = a[i++];
+        else temp[k++] = b[j++];
+    }
+    while (i &lt; m) temp[k++] = a[i++];
+    while (j &lt; n) temp[k++] = b[j++];
+}</pre>
+
+<h3><span class="no">15</span>2021 统考真题：读代码题 cmpCountSort（比较计数排序）<span class="src">（8 号讲义 p1–p2）</span><span class="tag orig">讲义原码＋整理者试算</span></h3>
+<div class="prob"><p>已知排序算法如下（代码见下），回答：1）若 int a[] = {25, -10, 25, 10, 11, 19}，调用 cmpCountSort(a, b, 6) 后数组 b 的内容是什么？2）a 中有 n 个元素时，元素之间的比较次数是多少？3）该算法稳定吗？若否，修改为稳定排序算法。</p></div>
+<pre>void cmpCountSort(int a[], int b[], int n) {
+    int i, j, *count;
+    count = (int*)malloc(sizeof(int) * n);
+    for (i = 0; i &lt; n; i++) count[i] = 0;
+    for (i = 0; i &lt; n - 1; i++)
+        for (j = i + 1; j &lt; n; j++)
+            if (a[i] &lt; a[j]) count[j]++;
+            else count[i]++;
+    for (i = 0; i &lt; n; i++) b[count[i]] = a[i];
+    free(count);
+}</pre>
+<div class="qa">
+<p>这道题的给定代码本身就是最朴素的<b>两两枚举计数</b>（每个元素数一遍「有几个元素比我小」，count 即其排序名次），与暴力解同源，故收录于此。整理者按代码逐步试算：</p>
+<p>1）各元素 count 依次为 {5, 0, 4, 1, 2, 3}，故 b = <b>{-10, 10, 11, 19, 25, 25}</b>。</p>
+<p>2）比较次数 = 双重循环的执行次数 = <b>n(n-1)/2</b>。</p>
+<p>复杂度：时间 O(n²)，计数辅助空间 O(n)。</p>
+<p>3）<b>不稳定</b>：两个 25 中，前者（a[0]）count=5、后者（a[2]）count=4，相对次序被颠倒。改法：把判断改为 <span class="ans">if (a[i] &lt;= a[j]) count[j]++; else count[i]++;</span>——相等时给后者计数，使前者名次靠前，次序得以保持。</p>
+</div>
+
+
+<h2>下篇　链表</h2>
+<h3><span class="no">1</span>2009 统考真题：查找单链表倒数第 k 个结点<span class="src">（10 号讲义 p32–p43）</span><span class="tag orig">讲义原码</span></h3>
+<div class="prob"><p>带头结点的单链表只给出头指针 list。在不改变链表的前提下，查找倒数第 k 个位置上的结点（k 为正整数）：成功则输出该结点 data 并返回 1，否则返回 0。</p></div>
+<p class="note">讲义共给了 4 种解法，其中两种是暴力解（快慢指针两种优化写法已剔除）。暴力解一：<b>数组法</b>——先求长，再把链表整个搬进辅助数组，按下标 n-k 直取。</p>
+<pre>int Length(LinkList list) {
+    int len = 0;
+    LNode *p = list;
+    while (p-&gt;next != NULL) {
+        p = p-&gt;next;
+        len++;
+    }
+    return len;
+}
+
+void ListArray(LinkList list, int temp[], int n) {
+    LNode *p = list-&gt;next;
+    for (int i = 0; i &lt; n; i++) {
+        temp[i] = p-&gt;data;
+        p = p-&gt;next;
+    }
+}
+
+int func(LinkList list, int k) {
+    int n = Length(list);
+    if (k &gt; n) return 0;
+    int *temp = (int*)malloc(sizeof(int) * n);
+    ListArray(list, temp, n);
+    printf("%d", temp[n - k]);
+    return 1;
+}</pre>
+<p class="note">暴力解二：<b>先求长再正数定位</b>——倒数第 k 个就是正数第 n-k+1 个，从头逐个往后数（讲义代码注释里原标注「//暴力解」；求长函数在本页写作 LenList）。</p>
+<pre>int func(LinkList list, int k) { //暴力解
+    int n = LenList(list);
+    if (k &gt; n) return 0;
+    LNode *p = list;
+    int count = 0;
+    while (p-&gt;next != NULL) {
+        p = p-&gt;next;
+        count++;
+        if (count == n - k + 1) break;
+    }
+    printf("%d", p-&gt;data);
+    return 1;
+}</pre>
+<p class="cx">复杂度：两种都是时间 <b>O(n)</b>；数组法空间 O(n)，定位法空间 O(1) 但要走两遍。</p>
+<p class="note">原码疑似（审核记录，不改原码）：数组法的 temp 在返回前未释放。</p>
+
+<h3><span class="no">2</span>2019 统考真题：单链表重排<span class="src">（12 号讲义 p6–p10）</span><span class="tag orig">讲义原码（部分分打法）</span></h3>
+<div class="prob"><p>线性表 L = (a<sub>1</sub>, a<sub>2</sub>, …, a<sub>n</sub>) 采用带头结点单链表保存。设计算法重新排列各结点，得到 L′ = (a<sub>1</sub>, a<sub>n</sub>, a<sub>2</sub>, a<sub>n-1</sub>, a<sub>3</sub>, a<sub>n-2</sub>, …)。原题要求空间复杂度 O(1)。</p></div>
+<p class="note">讲义先给的「变通」写法即暴力解：数据搬进辅助数组，再用下标从两端交替取、逐个新建结点尾插重建链表。讲义明说此法不满足 O(1) 空间要求、<b>只能拿部分分</b>，但考场上先保住这部分分正是暴力解的用法；满足要求的快慢指针＋反转写法按口径剔除。</p>
+<pre>LinkList func(LinkList L) {
+    int n = Length(L);
+    int *temp = (int*)malloc(sizeof(int) * n);
+    for (int i = 0; i &lt; n; i++) temp[i] = 0;
+    ListArray(L, temp, n);
+    Node *p = L;
+    for (int i = 0, j = n - 1; i &lt;= j; i++, j--) {
+        Node *node1 = (Node*)malloc(sizeof(Node));
+        node1-&gt;data = temp[i];
+        p-&gt;next = node1;
+        p = p-&gt;next;
+        if (i == j) break;
+        Node *node2 = (Node*)malloc(sizeof(Node));
+        node2-&gt;data = temp[j];
+        p-&gt;next = node2;
+        p = p-&gt;next;
+    }
+    return L;
+}</pre>
+<p class="cx">复杂度：时间 <b>O(n)</b>，空间 <b>O(n)</b>（Length、ListArray 为讲义预设的求长 / 链表转数组函数，见下篇 1）。</p>
+<p class="note">⚠ <b>原码疑似问题</b>（审核指出，仅记录、不改原码，未对讲义原件截图复核）：① 新建结点的 next 从未赋值，尾结点指针未初始化，遍历有越界风险；② 原链表结点被整批遗弃、未释放；③ 类型名写作 Node，与下篇 11 的通用定义 LNode 不一致。本法只可作思路参考，<b>不要直接当可运行标准答案默写</b>。</p>
+
+<h3><span class="no">3</span>2015 统考真题：删除链表中绝对值相等的重复结点<span class="src">（11 号讲义 p13–p18）</span><span class="tag orig">讲义原码</span></h3>
+<div class="prob"><p>用单链表保存 m 个整数，|data| ≤ n（n 为正整数）。设计算法：对于 data 绝对值相等的结点，仅保留第一次出现的，其余删除。如 head → 21 → -15 → -15 → -7 → 15 → ∧，删除后为 head → 21 → -15 → -7。</p></div>
+<pre>void func(LinkList head, int n) {
+    int *temp = (int*)malloc(sizeof(int) * (n + 1));
+    for (int i = 0; i &lt;= n; i++) temp[i] = 0;
+    LNode *p = head;
+    while (p-&gt;next != NULL) {
+        int x = abs(p-&gt;next-&gt;data);
+        if (temp[x] == 0) {
+            temp[x] = 1;
+            p = p-&gt;next;
+        } else {
+            LNode *q = p-&gt;next;
+            p-&gt;next = q-&gt;next;
+            free(q);
+        }
+    }
+}</pre>
+<p class="cx">复杂度：时间 <b>O(m+n)</b>（初始化辅助数组 O(n)＋遍历链表 O(m)），空间 <b>O(n)</b>。套路仍是上篇 1：开 n+1 的辅助数组按 |data| 下标直接标记「见过没有」，以空间换时间。原码疑似（审核记录）：temp 未释放。</p>
+
+<h3><span class="no">4</span>2012 统考真题：找两个单链表的共同后缀起始位置<span class="src">（11 号讲义 p1 题面、p8 优化解）</span><span class="tag">暴力解：整理者补写</span></h3>
+<div class="prob"><p>采用带头结点单链表保存单词，两个单词有相同后缀时可共享后缀存储空间（如 loading 与 being 共享 ing）。设 str1、str2 分别指向两个单词所在单链表的头结点，设计算法找出两个链表共同后缀的起始位置。</p></div>
+<p class="note">讲义给的是「先求长度差、对齐后同步走」的优化解，已剔除。暴力解：拿 str1 的每个结点，逐个去 str2 里从头比对<b>地址</b>，第一个地址相同的结点就是共同后缀起点（后缀共享存储，所以比地址不比字符）。</p>
+<pre>LNode* func(LinkList str1, LinkList str2) {
+    for (LNode *p = str1-&gt;next; p != NULL; p = p-&gt;next)
+        for (LNode *q = str2-&gt;next; q != NULL; q = q-&gt;next)
+            if (p == q) return p; //第一个相同的结点即共同后缀起点
+    return NULL;
+}</pre>
+<p class="cx">复杂度：时间 <b>O(n<sub>1</sub>·n<sub>2</sub>)</b>，空间 O(1)。已构造共享后缀链表验算 ✓。</p>
+
+<h3><span class="no">5</span>回文链表（力扣 234）<span class="src">（12 号讲义 p20–p22 优化解）</span><span class="tag">暴力解：整理者补写</span></h3>
+<div class="prob"><p>判断一个带头结点的单链表是否为回文链表（讲义按力扣 234 的题意引入，但讲义代码与本集统一采用<b>带头结点约定</b>：head 指向头结点，数据从 head-&gt;next 起）。如数据序列 [1,2,2,1] → true；[1,2] → false。</p></div>
+<p class="note">讲义给的是快慢指针＋原地反转后半段的优化解，已剔除。暴力解：把数据搬进数组，下标两端对着比。数组按表长动态分配，不设固定上限。</p>
+<pre>bool func(LinkList head) {
+    int n = 0;
+    for (LNode *p = head-&gt;next; p != NULL; p = p-&gt;next) n++; //先数表长
+    int *a = (int*)malloc(sizeof(int) * n);
+    int i = 0;
+    for (LNode *p = head-&gt;next; p != NULL; p = p-&gt;next) a[i++] = p-&gt;data; //再搬进数组
+    for (int l = 0, r = n - 1; l &lt; r; l++, r--) {
+        if (a[l] != a[r]) { free(a); return false; }
+    }
+    free(a);
+    return true;
+}</pre>
+<p class="cx">复杂度：时间 <b>O(n)</b>，空间 <b>O(n)</b>。已用题面两例（带头结点约定下）验算 ✓。审核曾按力扣无头结点接口指出 head-&gt;next 会跳过首元素；本集与讲义统一为带头结点约定，题面已注明。</p>
+
+<h3><span class="no">6</span>单链表综合题组（删 x 结点 / 删最小值结点）<span class="src">（10 号讲义 p24 仅题面）</span><span class="tag">暴力解：整理者补写</span></h3>
+<div class="prob"><p>综合 01：在带头结点的单链表 L 中，删除所有值为 x 的结点并释放空间（值为 x 的结点不唯一）。<br>综合 02：在带头结点的单链表 L 中删除一个最小值结点（假设最小值结点唯一）。</p></div>
+<pre>// 综合 01：删所有值为 x 的结点——盯着前驱看后继，命中就摘
+void func(LinkList L, ElemType x) {
+    LNode *p = L;
+    while (p-&gt;next != NULL) {
+        if (p-&gt;next-&gt;data == x) {
+            LNode *q = p-&gt;next;
+            p-&gt;next = q-&gt;next;
+            free(q);
+        } else p = p-&gt;next;
+    }
+}
+// 综合 02：删最小值结点——先完整遍历找到最小值结点的前驱，再删
+void func(LinkList L) {
+    if (L-&gt;next == NULL) return; //空表无可删
+    LNode *pre = L, *minpre = L, *p = L-&gt;next;
+    ElemType min = p-&gt;data; //假设链表非空
+    while (p != NULL) {
+        if (p-&gt;data &lt; min) { min = p-&gt;data; minpre = pre; }
+        pre = p;
+        p = p-&gt;next;
+    }
+    LNode *q = minpre-&gt;next;
+    minpre-&gt;next = q-&gt;next;
+    free(q);
+}</pre>
+<p class="cx">复杂度：两题时间均 <b>O(n)</b>，空间 O(1)——链表删除类本来就只能一趟遍历，这就是它们的通用解形态。</p>
+
+<h3><span class="no">7</span>快慢指针四类应用的暴力对应版<span class="src">（9 号讲义仅板书思路；2 号要点）</span><span class="tag">暴力解：整理者补写</span></h3>
+<div class="prob"><p>9 号讲义以「快慢指针」总览了四类链表应用：倒数第 k 个结点、链表中点、两链表交点、判环。讲义只给技巧思路、无代码。其中倒数第 k 个与交点的暴力解已分别见下篇 1、下篇 4；这里补中点与判环两题的暴力版。</p></div>
+<p class="note">找中点——暴力解：先求表长，再从头走 (n-1)/2 步：奇数取正中、偶数取中间两结点中靠前的一个，与讲义板书口径一致（空表返回 NULL）。</p>
+<pre>LNode* func(LinkList L) {
+    int n = 0;
+    for (LNode *p = L-&gt;next; p != NULL; p = p-&gt;next) n++;
+    if (n == 0) return NULL;
+    LNode *p = L-&gt;next;
+    for (int i = 0; i &lt; (n - 1) / 2; i++) p = p-&gt;next;
+    return p;
+}</pre>
+<p class="note">判环——暴力解：把走过的每个结点地址存进数组（满了就翻倍扩容），每到一个新结点就回头逐个比对地址，重复出现即有环（不用快慢指针追及）。</p>
+<pre>bool func(LinkList L) {
+    int cap = 16, n = 0;
+    LNode **seen = (LNode**)malloc(sizeof(LNode*) * cap);
+    for (LNode *p = L-&gt;next; p != NULL; p = p-&gt;next) {
+        for (int i = 0; i &lt; n; i++)
+            if (seen[i] == p) { free(seen); return true; }
+        if (n == cap) {
+            cap *= 2;
+            LNode **tmp = (LNode**)realloc(seen, sizeof(LNode*) * cap);
+            if (tmp == NULL) { free(seen); return false; } //扩容失败，无法继续判断
+            seen = tmp;
+        }
+        seen[n++] = p;
+    }
+    free(seen);
+    return false;
+}</pre>
+<p class="cx">复杂度：中点时间 O(n)（两遍）；判环时间 <b>O(n²)</b>、空间 O(n)。两段均已编译验算 ✓。</p>
+
+<h3><span class="no">8</span>合并两个有序链表（力扣 21）<span class="src">（12 号讲义 p24）</span><span class="tag orig">讲义原码</span></h3>
+<div class="prob"><p>将两个升序链表合并为一个新的升序链表并返回（拼接给定链表的所有节点）。如 l1=[1,2,4]、l2=[1,3,4] → [1,1,2,3,4,4]。</p></div>
+<pre>LinkList func(LinkList head1, LinkList head2) {
+    LNode *head = new LNode();
+    LNode *cur = head, *p = head1-&gt;next, *q = head2-&gt;next;
+    while (p != NULL &amp;&amp; q != NULL) {
+        if (p-&gt;val &lt; q-&gt;val) {
+            cur-&gt;next = p;
+            p = p-&gt;next;
+        } else {
+            cur-&gt;next = q;
+            q = q-&gt;next;
+        }
+        cur = cur-&gt;next;
+    }
+    cur-&gt;next = p != NULL ? p : q;
+    return head;
+}</pre>
+<p class="note">注：讲义原代码数据域写作 val（力扣风格），与王道 typedef 的 data 不同，照原样收录。</p>
+<p class="note">⚠ <b>接口前提</b>（审核指出，仅记录、不改原码）：本代码默认输入是<b>带头结点</b>的链表；力扣 21 原题是无头结点接口，照原题输入调用会丢掉两表各自的首元素，且空表时访问 head1-&gt;next 有风险。使用时认清前提。复杂度：时间 O(m+n)，额外空间 O(1)。</p>
+
+<h3><span class="no">9</span>尾插法 / 头插法建立单链表<span class="src">（12 号讲义 p2–p3 教材代码）</span><span class="tag orig">讲义原码</span></h3>
+<div class="prob"><p>依次读入整数、以 9999 为结束标志、带头结点，分别用尾插法（正向）与头插法（逆向）建立单链表。头插法读入顺序与表中顺序相反，可用来实现链表逆置。</p></div>
+<pre>LinkList List_TailInsert(LinkList &amp;L) { //正向建立单链表
+    int x; //设元素类型为整型
+    L = (LNode*)malloc(sizeof(LNode)); //创建头结点
+    LNode *s, *r = L; //r 为表尾指针
+    scanf("%d", &amp;x);
+    while (x != 9999) { //输入 9999 表示结束
+        s = (LNode*)malloc(sizeof(LNode));
+        s-&gt;data = x;
+        r-&gt;next = s;
+        r = s; //r 指向新的表尾结点
+        scanf("%d", &amp;x);
+    }
+    r-&gt;next = NULL; //尾结点指针置空
+    return L;
+}
+
+LinkList List_HeadInsert(LinkList &amp;L) { //逆向建立单链表
+    LNode *s; int x;
+    L = (LNode*)malloc(sizeof(LNode)); //创建头结点
+    L-&gt;next = NULL; //初始为空链表
+    scanf("%d", &amp;x);
+    while (x != 9999) {
+        s = (LNode*)malloc(sizeof(LNode)); //创建新结点
+        s-&gt;data = x;
+        s-&gt;next = L-&gt;next;
+        L-&gt;next = s; //将新结点插入表中
+        scanf("%d", &amp;x);
+    }
+    return L;
+}</pre>
+
+<h3><span class="no">10</span>单链表就地逆置<span class="src">（12 号讲义 p4–p5，王道综合题 03）</span><span class="tag orig">讲义原码</span></h3>
+<div class="prob"><p>试编写算法将带头结点的单链表就地逆置（辅助空间复杂度 O(1)）。方法即把元素结点逐个摘下、用头插法重新挂回去。</p></div>
+<pre>LinkList Reverse_1(LinkList L) {
+    LNode *p, *r; //p 为工作指针，r 为 p 的后继，以防断链
+    p = L-&gt;next; //从第一个元素结点开始
+    L-&gt;next = NULL; //先将头结点 next 域置为 NULL
+    while (p != NULL) { //依次将元素结点摘下
+        r = p-&gt;next; //暂存 p 的后继
+        p-&gt;next = L-&gt;next; //将 p 结点插入到头结点之后
+        L-&gt;next = p;
+        p = r;
+    }
+    return L;
+}</pre>
+<p class="note">本题为<b>链表基本操作实现题</b>（题目本身要求就地逆置），不是解题用的暴力解，凭此注与标签区分。</p>
+
+<h3><span class="no">11</span>单链表基本操作四件套<span class="src">（10 号讲义）</span><span class="tag orig">讲义原码</span></h3>
+<div class="prob"><p>结点类型定义（讲义各页通用）：typedef struct LNode { ElemType data; struct LNode *next; } LNode, *LinkList;</p></div>
+<p class="note">来源细分：Length、ListInsert、ListDelete 为讲义原码；GetElem 的函数体为整理者补写（讲义截图残缺），已在代码内注释标明。</p>
+<pre>// 求表长（p17 写法一；p19 另有从头结点后继起、判 p 本身为空的写法二，同题从略）
+int Length(LinkList L) {
+    int len = 0; //计数变量
+    LNode *p = L;
+    while (p-&gt;next != NULL) {
+        p = p-&gt;next;
+        len++; //每访问一个结点，计数加 1
+    }
+    return len;
+}
+
+// 按序号查找 GetElem（截图只拍到函数头，函数体被页面截断；以下按王道通行写法补全，非讲义原码）
+LNode *GetElem(LinkList L, int i) {
+    if (i &lt; 0) return NULL; //位序非法（i=0 时返回头结点）
+    LNode *p = L; //指针 p 指向当前扫描到的结点
+    int j = 0; //头结点是第 0 个结点
+    while (p != NULL &amp;&amp; j &lt; i) {
+        p = p-&gt;next;
+        j++;
+    }
+    return p; //i 大于表长时返回 NULL
+}
+
+// 按位序插入 ListInsert（p27）
+bool ListInsert(LinkList &amp;L, int i, ElemType e) {
+    LNode *p = L;
+    int j = 0;
+    while (p != NULL &amp;&amp; j &lt; i - 1) { //循环找到第 i-1 个结点
+        p = p-&gt;next;
+        j++;
+    }
+    if (p == NULL) return false; //i 值不合法
+    LNode *s = (LNode*)malloc(sizeof(LNode));
+    s-&gt;data = e;
+    s-&gt;next = p-&gt;next; //①
+    p-&gt;next = s;       //②（①②顺序不能颠倒）
+    return true;
+}
+
+// 按位序删除 ListDelete（p31）
+bool ListDelete(LinkList &amp;L, int i, ElemType &amp;e) {
+    LNode *p = L;
+    int j = 0;
+    while (p-&gt;next != NULL &amp;&amp; j &lt; i - 1) { //循环找到第 i-1 个结点
+        p = p-&gt;next;
+        j++;
+    }
+    if (p-&gt;next == NULL || j &gt; i - 1) return false; //i 值不合法
+    LNode *q = p-&gt;next; //令 q 指向被删除结点
+    e = q-&gt;data; //用 e 返回元素的值
+    p-&gt;next = q-&gt;next; //将 *q 结点从链中"断开"
+    free(q); //释放结点的存储空间
+    return true;
+}</pre>
+<p class="note">双链表在 p 之后插入 s 的代码片段（p32；命题追踪：2023）：① s-&gt;next = p-&gt;next；② p-&gt;next-&gt;prior = s；③ s-&gt;prior = p；④ p-&gt;next = s。语句顺序不唯一，但 ① 必须在 ④ 之前。</p>
+<p class="note">原码疑似（审核记录，不改原码）：① ListInsert 在 i ≤ 0 时循环不执行、会直接在表头后插入，未拦截非法位序；② 双链表插入片段中 p-&gt;next-&gt;prior = s 要求 p 有后继结点，p 为尾结点时不适用（命题语境默认 p 非尾结点）。</p>
+
+<h2>第三篇　二叉树</h2>
+<h3><span class="no">1</span>链式存储的先序 / 中序 / 后序递归遍历<span class="src">（新讲义 p-01～p-11，教材 5.2.2）</span><span class="tag orig">讲义原码</span></h3>
+<div class="prob"><p>二叉树采用二叉链表（链式）存储，先给出结点结构定义，再给出三种递归遍历算法。教材示例树：根 1，左孩子 2、右孩子 3；2 的右孩子 4；3 的右孩子 5；4 的左孩子 6（该树后序遍历序列为 642531）。三种遍历递归遍历左、右子树的顺序固定，只是访问根结点的顺序不同。本组为<b>基本操作实现题</b>。</p></div>
+<pre>typedef struct BiTNode{
+ElemType data; //数据域
+struct BiTNode *lchild,*rchild; //左、右孩子指针
+}BiTNode,*BiTree;
+
+//先序遍历
+void PreOrder(BiTree T){
+if(T!=NULL){
+visit(T); //访问根结点
+PreOrder(T-&gt;lchild); //递归遍历左子树
+PreOrder(T-&gt;rchild); //递归遍历右子树
+}
+}
+
+//中序遍历
+void InOrder(BiTree T){
+if(T!=NULL){
+InOrder(T-&gt;lchild); //递归遍历左子树
+visit(T); //访问根结点
+InOrder(T-&gt;rchild); //递归遍历右子树
+}
+}
+
+//后序遍历
+void PostOrder(BiTree T){
+if(T!=NULL){
+PostOrder(T-&gt;lchild); //递归遍历左子树
+PostOrder(T-&gt;rchild); //递归遍历右子树
+visit(T); //访问根结点
+}
+}</pre>
+<p class="cx">复杂度：每个结点访问一次且仅访问一次，时间 <b>O(n)</b>；递归深度等于树高，最坏情况（n 个结点的单支树）空间 <b>O(n)</b>。</p>
+<p class="note">中序遍历在讲义板书中另有一种写法（先判空直接 return）：void InOrder(BiTree T){ if(T==NULL) return; InOrder(T-&gt;lchild); visit(T); InOrder(T-&gt;rchild);}——只是空树判断位置不同，与上文是同一算法，不另立条。</p>
+
+<h3><span class="no">2</span>顺序存储二叉树的先序 / 中序 / 后序 / 层次遍历<span class="src">（新讲义 p-12～p-17，讲师演示代码）</span><span class="tag orig">讲义原码</span></h3>
+<div class="prob"><p>二叉树用数组顺序存储，结点数组下标从 1 开始，故数组 0 号元素赋值为 -1；根结点的值为 10，放在下标 1 的位置；空结点以 -1 标记；maxnum 记录结点数组下标的最大值。示例数组 {-1, 10, 5, 4, 17, -1, -1, 20}，root = 1，maxnum = 7。递归终止条件：下标超过 maxnum 或结点值为 -1 时直接 return；左孩子下标 = root * 2，右孩子下标 = root * 2 + 1。本组为<b>基本操作实现题</b>。</p></div>
+<pre>//初始化二叉树，根结点数组下标从1开始，故数组0号元素赋值为-1，根结点的值为10，放在数组下标为1的位置
+int binaryTree[8] = {-1,10,5,4,17,-1,-1,20};
+int root = 1; //根结点数组下标为1
+int maxnum = 7; //maxnum记录二叉树结点数组下标的最大值
+
+//先序遍历
+void preorder(int root) {
+if(root &gt; maxnum || binaryTree[root] == -1) return;
+printf("%d ", binaryTree[root]);
+preorder(root * 2);
+preorder(root * 2 + 1);
+}
+
+//中序遍历
+void inorder(int root) {
+if(root &gt; maxnum || binaryTree[root] == -1) return;
+inorder(root * 2);
+printf("%d ", binaryTree[root]);
+inorder(root * 2 + 1);
+}
+
+//后序遍历
+void postorder(int root) {
+if(root &gt; maxnum || binaryTree[root] == -1) return;
+postorder(root * 2);
+postorder(root * 2 + 1);
+printf("%d ", binaryTree[root]);
+}
+
+//层次遍历
+void levelorder(int root) {
+queue&lt;int&gt; q;
+if(root &lt;= maxnum &amp;&amp; binaryTree[root]!= -1) {
+q.push(root);
+}
+while(q.empty() == false) {
+int node = q.front();
+q.pop();
+printf("%d ", binaryTree[node]);
+if(node * 2 &lt;= maxnum &amp;&amp; binaryTree[node * 2]!= -1) q.push(node * 2);
+if(node * 2 + 1 &lt;= maxnum &amp;&amp; binaryTree[node * 2 + 1]!= -1)
+q.push(node * 2 + 1);
+}
+}</pre>
+<p class="cx">复杂度：四种遍历各访问每个结点一次，时间 <b>O(n)</b>。</p>
+<p class="note">整理者附带验算（不改原码）：上述演示代码实际编译运行，示例数组输出为——先序 10 5 17 4 20；中序 17 5 10 4 20；后序 17 5 20 4 10；层次 10 5 4 17 20。</p>
+
+<h3><span class="no">3</span>链式存储的层次遍历 LevelOrder<span class="src">（新讲义 p-14～p-16，教材图 5.11）</span><span class="tag orig">讲义原码</span></h3>
+<div class="prob"><p>对二叉链表存储的二叉树进行层次遍历，需要借助一个队列：① 首先将根结点入队；② 若队列非空，则队头结点出队，访问该结点，若它有左孩子则左孩子入队、若有右孩子则右孩子入队；③ 重复 ② 步，直至队列为空。教材示例树（图 5.11）结点为 A～I，层次遍历序列为 ABCDEFGHI。本组为<b>基本操作实现题</b>。</p></div>
+<pre>void LevelOrder(BiTree T){
+InitQueue(Q); //初始化辅助队列
+BiTree p;
+EnQueue(Q,T); //将根结点入队
+while(!IsEmpty(Q)){ //队列不空则循环
+DeQueue(Q, p); //队头结点出队
+visit(p); //访问出队结点
+if(p-&gt;lchild!=NULL)
+EnQueue(Q,p-&gt;lchild); //若左孩子不空，则左孩子入队
+if(p-&gt;rchild!=NULL)
+EnQueue(Q,p-&gt;rchild); //若右孩子不空，则右孩子入队
+}
+}</pre>
+<p class="cx">复杂度：时间 <b>O(n)</b>；队列中最多存一层的结点，空间最坏 <b>O(n)</b>。</p>
+<p class="note">本篇第 6 题（WPL）方法二讲解时，讲义另附过同一份王道教材层次遍历模板作参考，与此处为同一代码，不重复收录。</p>
+
+<h3><span class="no">4</span>课后习题 15：将二叉树的叶结点从左到右连成单链表<span class="src">（新讲义 p-18～p-19，教材 p.159 习题 15）</span><span class="tag">暴力解：整理者补写</span></h3>
+<div class="prob"><p>设计一个算法，将一棵二叉树的叶结点依次按从左到右的顺序连成一个单链表，表头指针为 head。二叉树按二叉链表方式存储，链接时用叶结点的右指针域来存放单链表指针。</p></div>
+<p class="note">讲义只有题面、未给代码。暴力解（整理者补写）：先用先序遍历把叶结点逐个收进辅助数组（先序遍历访问叶结点的先后恰是从左到右），再用各叶结点的右指针依次把它们串起来。不边遍历边改指针，免得相互干扰。</p>
+<pre>// 补写代码（已编译验算）：先序遍历收集叶结点，再串链
+BiTNode *leaves[64]; //辅助数组，存放收集到的叶结点指针
+int cnt = 0;
+void collect(BiTree T) {
+if (T == NULL) return;
+if (T-&gt;lchild == NULL &amp;&amp; T-&gt;rchild == NULL) leaves[cnt++] = T; //是叶结点，收下
+collect(T-&gt;lchild);
+collect(T-&gt;rchild);
+}
+BiTNode *linkLeaves(BiTree T) { //返回表头指针 head
+cnt = 0;
+collect(T);
+if (cnt == 0) return NULL; //空树
+for (int i = 0; i + 1 &lt; cnt; i++) leaves[i]-&gt;rchild = leaves[i + 1]; //右指针串链
+leaves[cnt - 1]-&gt;rchild = NULL;
+return leaves[0];
+}</pre>
+<p class="cx">复杂度：时间 <b>O(n)</b>，空间 O(叶结点数)、最坏 <b>O(n)</b>。已验算：教材图 5.7 示例树（根 1，叶结点 6、5）输出叶链 6 5 ✓；WPL 示例树（叶 5、3、2、4）输出 5 3 2 4 ✓；单结点树输出其自身 ✓。</p>
+<p class="note">注：① 题面首行上半部分在截图中被 PDF 阅读器工具栏遮挡，题面大意按可辨认部分转述，已与教材通行题面核对一致。② 辅助数组容量 64 为验算取值，实际使用按叶结点数放大即可；串链会改写叶结点的右指针域，串链之后原树不能再按原结构遍历。</p>
+
+<h3><span class="no">5</span>课后习题 16：判断两棵二叉树是否相似<span class="src">（新讲义 p-18～p-19，教材 p.159 习题 16）</span><span class="tag">暴力解：整理者补写</span></h3>
+<div class="prob"><p>试设计判断两棵二叉树是否相似的算法。所谓二叉树 T<sub>1</sub> 和 T<sub>2</sub> 相似，指的是 T<sub>1</sub> 和 T<sub>2</sub> 都是空的二叉树或都只有一个根结点；或者 T<sub>1</sub> 的左子树和 T<sub>2</sub> 的左子树是相似的，且 T<sub>1</sub> 的右子树和 T<sub>2</sub> 的右子树是相似的。</p></div>
+<p class="note">讲义只有题面、未给代码。暴力解（整理者补写）：题面已经把递归定义给全了，照定义直译即可——同空为真，一空一非空为假，否则递归比较左右子树。<b>注意按此定义只比结构、不比结点数据</b>（「都只有一个根结点」即相似，与根的取值无关）。</p>
+<pre>// 补写代码（已编译验算）：递归同构比较
+bool Similar(BiTree T1, BiTree T2) {
+if (T1 == NULL &amp;&amp; T2 == NULL) return true; //都空，相似
+if (T1 == NULL || T2 == NULL) return false; //只有一个空，不相似
+return Similar(T1-&gt;lchild, T2-&gt;lchild) &amp;&amp; Similar(T1-&gt;rchild, T2-&gt;rchild);
+}</pre>
+<p class="cx">复杂度：时间 O(min(n<sub>1</sub>, n<sub>2</sub>))、最坏 <b>O(n)</b>，递归栈空间 O(树高)、最坏 O(n)。已验算 5 组用例全对：结构同而数据全不同 → 相似 ✓；某结点孩子左右位置不同 → 不相似 ✓；同空 / 一空一非空 / 单结点对单结点均符合定义 ✓。</p>
+
+<h3><span class="no">6</span>2014 统考真题：求二叉树的带权路径长度 WPL<span class="src">（新讲义 p-18～p-30，王道习题 17）</span><span class="tag orig">讲义原码</span></h3>
+<div class="prob"><p>二叉树的带权路径长度（WPL）是二叉树中所有叶结点的带权路径长度之和。给定一棵二叉树 T，采用二叉链表存储，结点结构为 | left | weight | right |，其中叶结点的 weight 域保存该结点的非负权值。设 root 为指向 T 的根结点的指针，请设计求 T 的 WPL 的算法，要求：1）给出算法的基本设计思想；2）使用 C 或 C++ 语言，给出二叉树结点的数据类型定义；3）根据设计思想，采用 C 或 C++ 语言描述算法，关键之处给出注释。</p>
+<p>讲义示例树：根 A，左孩子 B、右孩子 C；B 的右孩子为叶结点（权值 5）；C 的左孩子为叶结点（权值 3）、右孩子 D；D 的左、右孩子为叶结点（权值 2、4）。板书算式：WPL = 5×2 + 3×2 + 2×3 + 4×3。</p></div>
+<pre>typedef struct BiTNode{
+int weight;
+struct BiTNode *left, *right;
+}BiTNode, *BiTree;</pre>
+<p class="note">方法一：先序遍历（递归带深度参数，叶结点处累加）。</p>
+<pre>int ans = 0;
+void func(BiTree root, int depth){
+if(root == NULL) return;
+if(root-&gt;left == NULL &amp;&amp; root-&gt;right == NULL){
+ans += root-&gt;weight * depth;
+}
+func(root-&gt;left, depth + 1);
+func(root-&gt;right, depth + 1);
+}
+
+int WPL(BiTree root){
+func(root, 0);
+return ans;
+}</pre>
+<p class="note">方法二：层次遍历（队列分层，每处理完一层深度加 1）。</p>
+<pre>int func(BiTree root, int depth){
+queue&lt;BiTNode*&gt; q;
+int ans = 0, depth = 0;
+if(root!= NULL) q.push(root);
+while(q.empty() == false){
+int n = q.size();
+for(int i = 0; i &lt; n; i++){ //同一层
+BiTNode* node = q.front();
+q.pop();
+if(node-&gt;left!= NULL) q.push(node-&gt;left);
+if(node-&gt;right!= NULL) q.push(node-&gt;right);
+if(node-&gt;left == NULL &amp;&amp; node-&gt;right == NULL){
+ans += node-&gt;weight × depth;
+}
+}
+depth++;
+}
+return ans;
+}</pre>
+<p class="cx">复杂度：两种方法都是把树遍历一遍、在叶结点处累加 weight × depth，时间均为 <b>O(n)</b>；方法一递归栈空间 O(树高)，方法二队列空间 O(最大层宽)。按板书算式，示例树 WPL = 5×2 + 3×2 + 2×3 + 4×3 = 34（总和为整理者核算，板书只写算式未写总和）。</p>
+<p class="note">原码说明（照录，不改原码）：① 方法一的深度从 0 起（根 depth = 0），由外层 WPL 传初值 0；其手写原稿大括号位置不规整，此处按讲义另一路 p-22 转写收录。② 方法二函数签名带 depth 参数、函数体内又定义了局部 depth = 0，参数实际未用，照截图录；其函数尾部 return ans 及收尾括号在 p-28 截图下缘被截断，据 p-29～p-30 同版代码与旁白补全，特此注明。③ 方法二代码中的乘号写作板书的「×」，照录。</p>
+
+<h3><span class="no">7</span>2017 统考真题：表达式树转换为等价的中缀表达式<span class="src">（新讲义 p-31～p-33、p-46，王道习题 18）</span><span class="tag orig">讲义原码</span></h3>
+<div class="prob"><p>请设计一个算法，将给定的表达式树（二叉树）转换为等价的中缀表达式（通过括号反映操作符的计算次序）并输出。例如，当下列两棵表达式树作为算法的输入时：左树根为 *，左孩子 +（其左右孩子为 a、b），右孩子 *（左孩子 c，右孩子 −，− 只有右孩子 d）；右树根为 +，左孩子 *（左右孩子为 a、b），右孩子 −（左孩子为空，右孩子 −，其左右孩子为 c、d）。输出的等价中缀表达式分别为 (a+b) * (c* (-d)) 和 (a*b) + (-(c-d))。二叉树结点定义如下：typedef struct node{ char data[10]; //存储操作数或操作符 struct node *left, *right;}BTree; 要求：1）给出算法的基本设计思想；2）根据设计思想，采用 C 或 C++ 语言描述算法，关键之处给出注释。</p></div>
+<pre>void func(BTree *root, int depth){
+if(root == NULL) return;
+else if(root-&gt;left == NULL &amp;&amp; root-&gt;right == NULL){
+printf("%s", root-&gt;data);
+}else{
+if(depth &gt; 1) printf("(");
+func(root-&gt;left, depth + 1);
+printf("%s", root-&gt;data);
+func(root-&gt;right, depth + 1);
+if(depth &gt; 1) printf(")");
+}
+}
+
+void BtreeToE(BTree *root){
+func(root, 1);
+}</pre>
+<p class="cx">思路：本质是中序遍历的变形——根结点深度定义为 1，只有 depth &gt; 1 的非叶结点（即除最外层根之外）才在遍历其左子树前加左括号、遍历右子树后加右括号；叶结点直接输出、不加括号；整棵树最外层不加括号。复杂度：时间 <b>O(n)</b>，递归栈空间 O(树高)。</p>
+<p class="note">注：① 题面定义里 BTree 只是 struct node 本身、不是指针类型，传参时要手写 BTree *root，原码已如此。② 题面以讲义 p-31 截图（另一路提取）为准；本批另一路提取对右树枝叶位置的转述略有出入，经与输出表达式核对，以此处题面为准。</p>
+
+<h3><span class="no">8</span>2022 统考真题：判定顺序存储的二叉树是否为二叉搜索树<span class="src">（新讲义 p-35～p-45，王道习题 19）</span><span class="tag orig">讲义原码</span></h3>
+<div class="prob"><p>已知非空二叉树 T 的结点值均为正整数，采用顺序存储方式保存，数据结构定义如下：typedef struct { //MAX_SIZE 为已定义常量 int SqBiTNode[MAX_SIZE]; //保存二叉树结点值的数组 int ElemNum; //实际占用的数组元素个数} SqBiTree; T 中不存在的结点在数组 SqBiTNode 中用 -1 表示。例如，对于两棵非空二叉树 T<sub>1</sub> 和 T<sub>2</sub>（T<sub>1</sub>：根 40，左孩子 25，右孩子 60；25 的右孩子 30；60 的右孩子 80；30 的左孩子 27。T<sub>2</sub>：根 40，左孩子 50，右孩子 60；50 的右孩子 30；30 的右孩子 35），T<sub>1</sub> 的存储结果为 T1.SqBiTNode = [40, 25, 60, -1, 30, -1, 80, -1, -1, 27]（下标 0～9），T1.ElemNum = 10；T<sub>2</sub> 的存储结果为 T2.SqBiTNode = [40, 50, 60, -1, 30, -1, -1, -1, -1, -1, 35]（下标 0～10），T2.ElemNum = 11。请设计一个尽可能高效的算法，判定一棵采用这种方式存储的二叉树是否为二叉搜索树，若是，则返回 true，否则，返回 false。要求：1）给出算法的基本设计思想；2）根据设计思想，采用 C 或 C++ 语言描述算法，关键之处给出注释。</p></div>
+<p class="note">解法一（讲义先讲的普通解法，本集收录）：编号规则——根编号 i = 0 时，左孩子 2i+1、右孩子 2i+2；编号 ≥ ElemNum 或值为 -1 即结点不存在。解题思想是「中序遍历递增」：二叉搜索树的中序遍历序列必递增，把中序序列整个存入辅助数组、再线性扫描判递增即可（如 T<sub>1</sub> 的中序序列为 25、27、30、40、60、80）。第一步先写顺序存储版中序遍历（输出版）：</p>
+<pre>void inorder(SqBiTree tree, int root){
+if(root &gt;= tree.ElemNum || tree.SqBiTNode[root] == -1){
+return; //链式：if(root == NULL) return;
+}
+inorder(tree, 2*root + 1);
+printf("%d", tree.SqBiTNode[root]);
+inorder(tree, 2*root + 2);
+}</pre>
+<p class="note">第二步把「访问」改成存入辅助数组（计数变量原稿先写作 i，讲义随后改名为 k，以免与判递增时的循环变量混用，此处按改名后的定稿收录）：</p>
+<pre>int n = tree.ElemNum;
+int temp[n]; //讲义旁白推荐用 malloc 动态分配，时间紧时 C++ 里可直接写变长数组
+int k = 0;
+
+void inorder(SqBiTree tree, int root){
+if(root &gt;= tree.ElemNum || tree.SqBiTNode[root] == -1){
+return; //链式：if(root == NULL) return;
+}
+inorder(tree, 2*root + 1);
+temp[k++] = tree.SqBiTNode[root];
+inorder(tree, 2*root + 2);
+}</pre>
+<p class="note">第三步判递增（只需比较 temp 已填充的前 k 个元素）：</p>
+<pre>bool judge(){
+for(int i = 1; i &lt; k; i++){
+if(temp[i-1] &gt; temp[i]){
+return false;
+}
+}
+return true;
+}</pre>
+<p class="cx">复杂度：时间 <b>O(n)</b>，空间 <b>O(n)</b>（辅助数组）。讲义随后给出的解法二——只维护一个前驱变量 prev 在线比较、省去辅助数组——属优化解，已按口径<b>剔除</b>（见文末剔除清单）。</p>
+<p class="note">注：judge 的 return true 一行未在截图中明文出现，据讲义 p-42 旁白「整个 for 循环执行无误，函数应返回 true」补记，特此注明。</p>
+
+<h2>第四篇　图</h2>
+<h3><span class="no">1</span>2021 统考真题：判断 EL 路径（欧拉路径）是否存在<span class="src">（新讲义 p-51～p-56，讲义编号 07）</span><span class="tag orig">讲义原码</span></h3>
+<div class="prob"><p>已知无向连通图 G 由顶点集 V 和边集 E 组成，|E| &gt; 0，当 G 中度为奇数的顶点个数为不大于 2 的偶数时，G 存在包含所有边且长度为 |E| 的路径（称为 EL 路径）。设图 G 采用邻接矩阵存储，类型定义如下：typedef struct{ //图的定义 int numVertices, numEdges; //图中实际的顶点数和边数 char VerticesList[MAXV]; //顶点表，MAXV 为已定义常量 int Edge[MAXV][MAXV]; //邻接矩阵}MGraph; 请设计算法 int IsExistEL(MGraph G)，判断 G 是否存在 EL 路径，若存在，则返回 1，否则返回 0。要求：1）给出算法的基本设计思想；2）根据设计思想，采用 C 或 C++ 语言描述算法，关键之处给出注释；3）说明你所设计算法的时间复杂度和空间复杂度。</p>
+<p>板书示例图：顶点 A(0)、B(1)、C(2)、D(3)，边 A—B、A—C、A—D、B—D；示例 EL 路径为 C→A→D→B→A。</p></div>
+<pre>int IsExistEL(MGraph G){
+int count = 0;
+for (int i = 0; i &lt; G.numVertices; i++) {
+int degree = 0;
+for (int j = 0; j &lt; G.numVertices; j++) {
+//degree += G.Edge[i][j];
+if (G.Edge[i][j] == 1) degree++;
+}
+if (degree % 2 == 1) count++;
+}
+if (count == 0 || count == 2) return 1;
+else return 0;
+}</pre>
+<p class="cx">思路：逐行扫描邻接矩阵数出每个顶点的度，再统计奇数度顶点的个数，为 0 或 2 即存在 EL 路径。复杂度：时间 <b>O(|V|<sup>2</sup>)</b>，空间 <b>O(1)</b>。以板书示例图试算：度数 A=3、B=2、C=1、D=2，奇数度顶点 2 个，返回 1 ✓。</p>
+<p class="note">注：内层求度处讲义先写了被注释掉的累加写法 degree += G.Edge[i][j]，再改用条件计数；讲义旁白明确两种写法等价、无优劣之分，故合并呈现（代码中保留了被注释掉的一行）。奇数判定 degree % 2 == 1 与 degree % 2!= 0 等价。</p>
+
+<h3><span class="no">2</span>2023 统考真题：输出有向图的全部 K 顶点<span class="src">（新讲义 p-57～p-60，讲义编号 08）</span><span class="tag orig">讲义原码</span></h3>
+<div class="prob"><p>已知有向图 G 采用邻接矩阵存储，类型定义如下：typedef struct{ //图的类型定义 int numVertices, numEdges; //图的顶点数和有向边数 char VerticesList[MAXV]; //顶点表，MAXV 为已定义常量 int Edge[MAXV][MAXV]; //邻接矩阵}MGraph; 将图中出度大于入度的顶点称为 K 顶点。例如，在下图中，顶点 a 和 b 为 K 顶点（例图四顶点 a、b、c、d，边集按截图转述：a 指向 b、d；b 指向 d；c 指向 b、d）。请设计算法 int printVertices(MGraph G)，对给定的任意非空有向图 G，输出 G 中所有的 K 顶点，并返回 K 顶点的个数。要求：1）给出算法的基本设计思想；2）根据设计思想，采用 C 或 C++ 语言描述算法，关键之处给出注释。</p></div>
+<pre>int printVertices(MGraph G){
+int count = 0;
+for (int i = 0; i &lt; G.numVertices; i++) {
+int outdegree = 0, indegree = 0;
+for (int j = 0; j &lt; G.numVertices; j++) {
+outdegree += G.Edge[i][j];
+}
+for (int j = 0; j &lt; G.numVertices; j++) {
+indegree += G.Edge[j][i];
+}
+if (outdegree &gt; indegree) {
+[截图截断]
+}
+}
+return count;
+}</pre>
+<p class="cx">思路：逐顶点按行求和得出度、按列求和得入度，比较即可。复杂度：时间 <b>O(|V|<sup>2</sup>)</b>，空间 <b>O(1)</b>。</p>
+<p class="note">注：① if 体内一行在 p-59 截图下缘被截断——据讲义旁白，该行应为输出该顶点字符（以 %c 格式打印 VerticesList[i]）并 count++；补述只记于此，<b>不混入上方代码块冒充原码</b>，代码块中以 [截图截断] 标示原状。② 例图的边集为截图转述，个别边可能有出入，不影响算法本身。</p>
+
+<h3><span class="no">3</span>2014 统考真题：路由器网络 LSI 链式存储综合题<span class="src">（新讲义 p-62～p-76，讲义编号 10）</span><span class="tag orig">讲义原码</span></h3>
+<div class="prob"><p>某网络中的路由器运行 OSPF 路由协议。下表是路由器 R1 维护的主要链路状态信息（LSI），R1 构造的网络拓扑图是根据题下表及 R1 的接口名构造出来的网络拓扑。各路由器的 LSI 要点：R1（Router ID 10.1.1.1）：Link1 连 R2（10.1.1.2），本地 IP 10.1.1.1，费用 3；Link2 连 R3（10.1.1.5），本地 IP 10.1.1.9，费用 2；直连 Net1 为 192.1.1.0/24，费用 1。R2（10.1.1.2）：Link1 连 R1，本地 IP 10.1.1.2，费用 3；Link2 连 R4（10.1.1.6），本地 IP 10.1.1.13，费用 4；Net1 为 192.1.6.0/24，费用 1。R3（10.1.1.5）：Link1 连 R4（10.1.1.6），本地 IP 10.1.1.5，费用 6；Link2 连 R1，本地 IP 10.1.1.10，费用 2；Net1 为 192.1.5.0/24，费用 1。R4（10.1.1.6）：Link1 连 R3（10.1.1.5），本地 IP 10.1.1.6，费用 6；Link2 连 R2，本地 IP 10.1.1.14，费用 4；Net1 为 192.1.7.0/24，费用 1。拓扑即：R1—R2 费用 3、R1—R3 费用 2、R2—R4 费用 4、R3—R4 费用 6，每台路由器再以费用 1 直连各自的子网。</p>
+<p>请回答下列问题。1）本题中的网络可抽象为数据结构中的哪种逻辑结构？2）针对表中的内容，设计合理的链式存储结构，以保存表中的链路状态信息（LSI）。要求给出链式存储结构的数据类型定义，并画出对应表的链式存储结构示意图（示意图中可仅以 ID 标识结点）。3）按照 Dijkstra 算法的策略，依次给出 R1 到达子网 192.1.x.x 的最短路径及费用。</p></div>
+<p class="note">第 1 问（整理）：该网络可抽象为<b>图</b>逻辑结构——路由器与网络看作结点、链路看作带权边，整体是一张带权（无向）图；讲义讲解亦按图的逻辑结构立论。</p>
+<p class="note">第 2 问的类型定义为讲义原码。讲义的设计是邻接表式链式存储：把路由器作为表头顶点（表头结点之间也用 next 指针串成链），网络和链路都作为弧结点挂在表头的边表上；为简化代码，把网络与链路两种弧结点合并为一个结构、用标志位 Flag 区分（Flag=1 为 Link、Flag=2 为 Net），各自的数据域用 union 存放。</p>
+<pre>typedef struct{
+unsigned int ID, IP;
+}LinkNode; //Link 的结构
+typedef struct{
+unsigned int Prefix, Mask;
+}NetNode; //Net 的结构
+typedef struct Node{
+int Flag; //Flag=1 为 Link;Flag=2 为 Net
+union{
+LinkNode Lnode;
+NetNode Nnode
+}LinkORNet;
+Unsigned int Metric;
+struct Node *next;
+}ArcNode; //弧结点
+typedef struct hNode{
+unsigned int RouterID;
+ArcNode *LN_link;
+Struct hNode *next;
+}HNODE; //表头结点</pre>
+<p class="note">原码说明（照录，不改原码）：定义中大写开头的 Unsigned、Struct 即原图如此，疑为原书排版笔误，照录未改。与王道标准邻接表相比有两点不同（讲义对比指出）：① 顶点表结点之间也用链式存储（hNode 带 next 串联所有路由器）；② 边表结点类型不统一，Link 与 Net 两种形态靠 Flag＋union 合并。</p>
+<p class="note">第 2 问的存储示意（整理，据讲义 p-66 结构图以文字复述）：表头链为 10.1.1.1 → 10.1.1.2 → 10.1.1.5 → 10.1.1.6；每个表头结点的边表由三个弧结点组成——两个 Flag=1 的 Link 弧结点和一个 Flag=2 的 Net 弧结点。如 R1（10.1.1.1）的边表为：{Flag=1, ID 10.1.1.2, IP 10.1.1.1, Metric 3} → {Flag=1, ID 10.1.1.5, IP 10.1.1.9, Metric 2} → {Flag=2, Prefix 192.1.1.0, Mask 255.255.255.0, Metric 1}。</p>
+<p class="note">第 3 问（<b>整理者试算</b>）：图中链路费用已回讲义 p-62～p-64 原图逐项复核（R1—R2 为 3、R1—R3 为 2、R2—R4 为 4、R3—R4 为 6，各直连子网费用 1）。以 R1 为源点跑 Dijkstra：初始 dist(R2)=3、dist(R3)=2；先确定 R3（dist 2），经 R3 得 dist(R4)=2+6=8（暂定）；再确定 R2（dist 3），经 R2 把 dist(R4) 更新为 3+4=7；最后确定 R4（dist 7）。各子网费用再加直连的 1：到达 192.1.1.0/24（R1 直连）费用 <span class="ans">1</span>；到达 192.1.5.0/24 路径 R1→R3，费用 <span class="ans">3</span>（2+1）；到达 192.1.6.0/24 路径 R1→R2，费用 <span class="ans">4</span>（3+1）；到达 192.1.7.0/24 路径 R1→R2→R4，费用 <span class="ans">8</span>（3+4+1）。试算结果已另用程序复核一致。</p>
+
+<h3><span class="no">4</span>2017 统考真题：用 Prim 算法求最小生成树及 MST 唯一性<span class="src">（新讲义 p-62、p-64，讲义编号 11）</span><span class="tag">整理者补写</span></h3>
+<div class="prob"><p>使用 Prim 算法求带权连通图的最小（代价）生成树（MST）。请回答下列问题：1）对下列图 G，从顶点 A 开始求 G 的 MST，依次给出按算法选出的边。2）图 G 的 MST 是唯一的吗？3）对任意的带权连通图，满足什么条件时，其 MST 是唯一的？</p></div>
+<p class="note"><b>图缺失声明</b>：本题为手算应用题、讲义未给代码；且题面所指的图 G 未出现在本批讲义 85 页截图中——整理时已回 p-62、p-64 原图及前后页逐页复核，p-62、p-64 只见本题题面文字与上一题（路由器题）的图表，图 G 的顶点与权值无从读取。故第 1、2 问<b>无法试算，本条只收题面与解题口径，不编造图中数据</b>。</p>
+<p class="note">解题口径（整理）：第 1 问——从顶点 A 开始，置 U = {A}，反复在「一端在 U 内、另一端在 U 外」的边中选取权值最小的一条加入生成树、并把其外侧顶点并入 U，直到所有顶点都进入 U；依次写出选中的边即为所求。第 2 问——看求解过程中每一步的最小候选边是否唯一：若每一步的最小边都唯一（从无两条同权候选边可选），则 MST 唯一；若某一步出现并列最小且不同选择能生成不同的树，则不唯一（此为口径性判据，具体到图 G 须待见到原图后按其权值核对）。第 3 问——充分条件：图中所有边的权值互不相同，则 MST 必唯一（教材通行口径）。</p>
+
+<h3><span class="no">5</span>图的广度优先遍历 BFS（遍历主控＋邻接表实现）<span class="src">（新讲义 p-77～p-82，王道 6.3.1）</span><span class="tag orig">讲义原码</span></h3>
+<div class="prob"><p>广度优先搜索（Breadth-First-Search，BFS）类似于二叉树的层序遍历。基本思想：首先访问起始顶点 v，接着依次访问 v 的各个未访问过的邻接点，再依次访问这些顶点的所有未被访问过的邻接点，直至图中所有顶点都被访问过；若仍有顶点未被访问，则另选一个未访问顶点作始点重复上述过程。BFS 是一种分层的查找过程，它不是递归算法，必须借助一个辅助队列，以记忆正在访问的顶点的下一层顶点。本组为<b>基本操作实现题</b>（王道教材原码）。</p></div>
+<pre>bool visited[MAX_VERTEX_NUM]; //访问标记数组
+void BFSTraverse(Graph G){ //对图 G 进行广度优先遍历
+for(i=0;i&lt;G.vexnum;++i)
+visited[i]=FALSE; //访问标记数组初始化
+InitQueue(Q); //初始化辅助队列 Q
+for(i=0;i&lt;G.vexnum;++i) //从 0 号顶点开始遍历
+if(!visited[i]) //对每个连通分量调用一次 BFS()
+BFS(G,i); //若 vi 未访问过，从 vi 开始调用 BFS()
+}</pre>
+<p class="note">用邻接表实现广度优先搜索的算法（下段代码在截图中被截断，见其后注记）：</p>
+<pre>void BFS(ALGraph G,int i){
+visit(i); //访问初始顶点 i
+visited[i]=TRUE; //对 i 做已访问标记
+EnQueue(Q,i); //顶点 i 入队
+while(!IsEmpty(Q)){
+DeQueue(Q,v); //队首顶点 v 出队
+for(p=G.vertices[v].firstarc;p;p=p-&gt;nextarc){ //检测 v 的所有邻接点
+w=p-&gt;adjvex;
+if(visited[w]==FALSE){
+[截图截断：if 块内部及函数收尾未出现在截图中]
+}</pre>
+<p class="note">截断与补足说明：邻接表版 BFS 的后半段在讲义所有截图中均被屏幕下缘截断——整理时已回 p-79～p-84 原图再找一遍，仍只露到 if(visited[w]==FALSE){ 一行为止，续码未找到。缺失部分按王道教材的标准写法由<b>整理者补足</b>，单独列在下面，<b>不与原码混排</b>：</p>
+<pre>// 接上段 if(visited[w]==FALSE){ 之后：
+visit(w); //访问顶点 w
+visited[w]=TRUE; //对 w 做已访问标记
+EnQueue(Q,w); //顶点 w 入队
+} //if 结束
+} //for 结束
+} //while 结束
+} //BFS 函数结束</pre>
+<p class="cx">复杂度：时间——邻接表 <b>O(|V|+|E|)</b>、邻接矩阵 <b>O(|V|<sup>2</sup>)</b>；辅助队列空间 O(|V|)。</p>
+<p class="note">补足验算：把原码与补足行组装成完整函数实际编译运行——6 个顶点的无向图（边 0-1、0-2、1-3、2-3、3-4，顶点 5 孤立），BFSTraverse 输出访问序列 0 1 2 3 4 5（含第二个连通分量）✓。</p>
+
+<h3><span class="no">6</span>BFS 求非带权图的单源最短路径<span class="src">（新讲义 p-78，王道 6.3.1）</span><span class="tag orig">讲义原码</span></h3>
+<div class="prob"><p>使用 BFS，可以求解非带权图的单源最短路径问题，这是由广度优先搜索总是按照距离由近到远来遍历图中每个顶点的性质决定的：BFS 在遍历时同步记录每个顶点到源点的距离 d[i]，首次到达即为最短。</p></div>
+<pre>void BFS_MIN_Distance(Graph G,int u){
+//d[i]表示从 u 到 i 结点的最短路径
+for(i=0;i&lt;G.vexnum;++i)
+d[i]=∞; //初始化路径长度
+visited[u]=TRUE; d[u]=0;
+EnQueue(Q,u);
+while(!isEmpty(Q)){ //BFS 算法主过程
+DeQueue(Q,u); //队头元素 u 出队
+for(w=FirstNeighbor(G,u);w&gt;=0;w=NextNeighbor(G,u,w))
+if(!visited[w]){ //w 为 u 的尚未访问的邻接顶点
+visited[w]=TRUE; //设已访问标记
+d[w]=d[u]+1; //路径长度加 1
+EnQueue(Q,w); //顶点 w 入队
+}
+}
+}</pre>
+<p class="cx">复杂度：与 BFS 相同——邻接表 <b>O(|V|+|E|)</b>、邻接矩阵 <b>O(|V|<sup>2</sup>)</b>；d 数组中存的即各顶点到源点 u 的最短路径长度（边数）。</p>
+<p class="note">注：原图 while 条件写作 isEmpty（首字母小写），与本篇第 5 题 BFS 的 IsEmpty 写法不一致，照录；d[w]=d[u]+1 一行原图字形近似 d[w]=ed[u]+1，应为 d[u]，按 d[u] 转写并在此注明（按讲义提取稿口径）。</p>
+
+<h3><span class="no">7</span>图的深度优先遍历 DFS（主控＋邻接表＋邻接矩阵三版本）<span class="src">（新讲义 p-78、p-79、p-83、p-84，王道 6.3.2）</span><span class="tag orig">讲义原码</span></h3>
+<div class="prob"><p>深度优先搜索（Depth-First-Search，DFS）类似于树的先序遍历。其基本思想：首先访问图中某一起始顶点 v<sub>i</sub>，然后由 v<sub>i</sub> 出发，访问与 v<sub>i</sub> 邻接且未被访问的任意一个顶点 w<sub>1</sub>，再访问与 w<sub>1</sub> 邻接且未被访问的任意一个顶点 w<sub>2</sub>……当不能再继续向下访问时，依次退回到最近被访问的顶点，若它还有邻接顶点未被访问过，则从该点开始继续搜索，直至图中所有顶点均被访问过为止。一般情况下，其递归形式的算法十分简洁。本组为<b>基本操作实现题</b>（王道教材原码）。</p></div>
+<pre>bool visited[MAX_VERTEX_NUM]; //访问标记数组
+void DFSTraverse(Graph G){ //对图 G 进行深度优先遍历
+for(i=0;i&lt;G.vexnum;i++)
+visited[i]=FALSE; //初始化已访问标记数组
+for(i=0;i&lt;G.vexnum;i++) //本代码中是从 v0 开始遍历
+if(!visited[i]) //对尚未访问的顶点调用 DFS()
+DFS(G,i);
+}</pre>
+<p class="note">用邻接表实现深度优先搜索的算法：</p>
+<pre>void DFS(ALGraph G,int i){
+visit(i); //访问初始顶点 i
+visited[i]=TRUE; //对 i 做已访问标记
+for(p=G.vertices[i].firstarc;p;p=p-&gt;nextarc){ //检测 i 的所有邻接点
+j=p-&gt;adjvex;
+if(visited[j]==FALSE)
+DFS(G,j); //j 为 i 的尚未访问的邻接点，递归访问 j
+}
+}</pre>
+<p class="note">用邻接矩阵实现深度优先搜索的算法：</p>
+<pre>void DFS(MGraph G,int i){
+visit(i); //访问初始顶点 i
+visited[i]=TRUE; //对 i 做已访问标记
+for(j=0;j&lt;G.vexnum;j++){ //检测 i 的所有邻接点
+if(visited[j]==FALSE&amp;&amp;G.edge[i][j]==1)
+DFS(G,j); //j 为 i 的尚未访问的邻接点，递归访问 j
+}
+}</pre>
+<p class="cx">复杂度：时间——邻接表 <b>O(|V|+|E|)</b>、邻接矩阵 <b>O(|V|<sup>2</sup>)</b>；递归栈空间最坏 O(|V|)。</p>
+
+
+<h2>附篇　递归入门（不分篇）</h2>
+<h3><span class="no">1</span>递归入门：求阶乘<span class="src">（5 号讲义 p2）</span><span class="tag orig">讲义原码</span></h3>
+<div class="prob"><p>用函数求 n 的阶乘，讲义给了递归与循环两种写法（同为按定义直算，无技巧）。本题与顺序表、链表均无关，是讲义的递归入门例题，单列于附篇。</p></div>
+<pre>// 递归版
+int f(int n) {
+    if (n == 1) return 1; //递归出口
+    return n * f(n - 1);
+}
+
+// 循环版
+int f(int n) {
+    int a = 1;
+    for (int i = 1; i &lt;= n; i++) {
+        a = a * i;
+    }
+    return a;
+}</pre>
+<p class="note">原码疑似（审核记录，不改原码）：递归版终止条件只有 n==1，n=0 或负数时无法正常结束；循环版 n=0 返回 1，两版适用范围不一致；int 在 13! 即溢出。复杂度：递归版时间 O(n)、栈空间 O(n)；循环版时间 O(n)、空间 O(1)。</p>
+
+
+
+<hr class="rule">
+<p class="note">整理说明：本集由 12 份暂存讲义（213 页录课截图）逐页提取而成。<b>v2 修订（2026-11-06）</b>：经 GPT酱新开对话（思考强度「高」）审核后修订——修复一处 HTML 结构重复、阶乘题移入附篇、回文 / 中点 / 判环 / 删最小值等补写代码按意见修正并重新验算、若干复杂度与前置条件标注已纠正；讲义原码一字未动，其疑似问题只在码外加注记录。复验确认补写算法修正全部通过；复验另指出的三处标题 / 注记错位（下篇标题位置、归并注记误入快排序、逆置注记误入重排题）已逐一移正，并给判环的扩容加了失败检查。标「讲义原码」的代码为讲义转写（个别纯排版性缩进经统一）；标「整理者补写」的代码为补写并经编译验算。<b>v3 续编（2026-11-08）</b>：据 2026-11-08 讲义 85 页（王道第 5 章树与二叉树、第 6 章图）新增第三篇二叉树（8 组）与第四篇图（7 组），体例与前两篇一致：讲义只有题面的课后习题 15、16 由整理者补写朴素解并编译验算；BFS 邻接表版在截图中被截断的后半段已回原图复查、未找到，按教材标准写法以【整理者补足】单独标示并组装验算；2017 年 Prim 题的图 G 未出现在本批截图中，该条只收题面与解题口径，未编造图中数据；2014 年路由器综合题的链路数据已回原图复核，第 3 问为整理者试算并经程序复核。讲义中被剔除的最优解包括：2013 主元素摩尔投票法、2011 中位数二分法、2009 倒数第 k 个快慢指针法（两种）、2019 重排快慢指针＋反转法、2012 公共后缀长度对齐法、回文链表反转法、第 k 小与集合划分的快速选择法、荷兰国旗三指针法、奇偶移动双指针法、2022 二叉树 BST 判定的 prev 在线优化法——均按「只留暴力解」的口径未收。</p>
+
+</body>
+</html>
